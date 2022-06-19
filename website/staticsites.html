@@ -16,8 +16,6 @@
 
 When writing many HTML pages for the same site, you may find yourself repeating blocks of code. For example, the code below shows an excerpt of the code used to generate the Overview section of this page. </p>
 
-<pre><code class="html">&ltscript src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"&gt&lt/script&gt</code></pre> 
-
 <pre><code class="html">&ltdiv class="row"&gt
 	&ltdiv class="col-md-3"&gt
 		&lth3&gt Overview &lt/h3&gt
@@ -163,9 +161,8 @@ include the library with the script tag below:</p>
 </p>
 
 <p>
-	After the above line, we can insert another script tag that actually uses
-	jQuery. The code is as follows:
-	</p>
+After the above line, we can insert another script tag that actually uses jQuery. The code is as follows:</p>
+
 <pre><code class="html">&ltscript&gt
 $(document).ready(function(){
 $("#header").load("header.html"); 
