@@ -1,38 +1,11 @@
-<!doctype html>
-<html class="no-js" lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<title>PHYSCI 70: Introduction to Digital Fabrication</title>
-<meta name="description" content="Index Page">
-<script src="../js/vendor/jquery.min.js"></script>
-<script>
-	$(function(){
-	  $("#header").load("../header.html");
-	  $("#footer").load("../footer.html");
-	});
-</script>
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<link href="../css/style.css" rel="stylesheet">
-<link href="../css/font-awesome.min.css" rel="stylesheet">
-<script src="../js/vendor/modernizr.js"></script>
+<head> 
+  <base target="_child">  
 </head>
-<body>
-
+ 
+<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
 <div id="header"></div>
 
-<!-- FIRST ROW -->
-<div class="row">
-	<div class="col-md-3">
-		<h3> Molding and Casting</h3>
-	</div >
-
-	<div class="col-md-9">
-
+<xmp style="display:none;">
 
 	<h3> CNC Milling Wax Positive</h3>
         <li>Import your STL file into Aspire and configure the tool paths for the Shop Bot.</li><br>
@@ -99,17 +72,9 @@
         <h3> Lost Foam Casting </h3>
         <iframe width="799" height="449" src="https://www.youtube.com/embed/u47fFxdMDXQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-	</div >
-</div>
+</xmp>
 
-
-
-<div id="footer"></div>
-
-<script src="../js/vendor/jquery.min.js"></script>
-<script src="../js/foundation.min.js"></script>
-<script src="../js/htdaa.js"></script>
-
-
-</body>
+<script src="../js/strapdown.js"></script>
+<script type="text/javascript" src="../js/iframeResizer.contentWindow.min.js"></script>
+<link href="../css/style.css" rel="stylesheet">
 </html>
