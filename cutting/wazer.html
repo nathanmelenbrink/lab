@@ -1,0 +1,54 @@
+<head> 
+  <base target="_child">  
+</head>
+
+<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
+<div id="header"></div>
+
+<xmp style="display:none;">
+
+### Wazer Water Jet Cutter 
+
+We have a [Wazer Water Jet](https://www.wazer.com/) cutter in the lab, a desktop machine that allows us to cut a wide range of materials. 
+
+#### File Preparation 
+
+You need to have a DXF or SVG file to bring into the WAM software. 
+
+If you prepare an SVG using e.g., Inkscape or Corel Draw, you must convert objects to paths or the SVG file imports but there is nothing there.
+
+Even though the Wazer spec says the cutting area is 18 by 12, I got an error when I made my page size 10 x 18 even though all actual elements to be cut were well within this rectangle (within a 17 x 8 rectangle).  This was very confusing since the page outline was not shown.
+There seems to be no way to use the page size to position the cut elements.  Only the cut elements are brought in (the error above notwithstanding) and the software only has a 3x3 grid which makes it difficult to position the cut elements precisely within the piece dimensions.
+
+The origin will be at the top left corner of the bounding box. 
+
+#### WAM Software 
+
+We have a shared license associated with the machine. You can access the WAM software by: 
+
+- Navigate to [https://wam.wazer.com/](https://wam.wazer.com/)
+- Login using 
+  - Name: SC Makerspace 
+  - Pwd: reynolds_r@p
+
+Once in the browser software, follow Wazer's 6 steps to prepare the file. Click the ? icon on each step for more help: 
+
+1. Import the DXF or SVG file 
+2. Set scale, position and rotation
+3. Select material (can be approximate)
+4. Specify an optional offset
+5. Add tabs and leads. You can often get by with fewer tabs than the automatic placement gives you. 
+6. Name and export the .gcode file
+
+Save the file to an SD card, and take it to the Wazer. 
+
+
+_Thanks to David Abrams, Daniel Davis, Daniel Rosenberg_
+
+</xmp>
+
+
+<script src="../js/strapdown.js"></script>
+<script type="text/javascript" src="../js/iframeResizer.contentWindow.min.js"></script>
+<link href="../css/style.css" rel="stylesheet">
+</html>
