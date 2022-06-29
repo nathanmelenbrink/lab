@@ -12,7 +12,7 @@
 
 <!-- ### A few of the most common components and their symbols -->
 
-  ![pic](./electronics/components.png)
+  ![pic](./components.png)
 
   [Resistor color code link](http://www.resistorguide.com/resistor-color-code/)
 
@@ -32,23 +32,23 @@ Sometimes people use the analogy of a water pipe, where voltage corresponds to w
 <!-- Another analogy is given by the arduino projects book.  -->
   
 
-  ![pic](./electronics/arduino_power.jpg)
+  ![pic](./arduino_power.jpg)
 
 The picture above shows a way to supply voltage to a protoboard circuit. The Arduino Uno (similar to the Metro) provides 5 V. Note that it can also provide 3.3 V. Note that many microcontrollers are not 5 V tolerant, and can be damaged by more than 3.3 V. Alternatively, you can power your [breadboard](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard) with an external power supply (any voltage) through a barrel connector to which leads have been soldered.  
 
 
-![pic](./electronics/Voltage-ArduinoLEDCircuit00.png)
+![pic](./Voltage-ArduinoLEDCircuit00.png)
 
 On the left a schematic and on the right a Tinkercad simulation of the circuit. Below, a measurement of the voltage. The arduino pins at 3.3V (or 5V) and GND act as the "battery".
 [Tutorial on breadboard circuits](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard).
 
-![pic](./electronics/Voltage-ArduinoLEDCircuitMultimeter.JPG)
+![pic](./Voltage-ArduinoLEDCircuitMultimeter.JPG)
 
-![pic](./electronics/dmm.png)
+![pic](./dmm.png)
 
 Using a multimeter to measure voltage (with respect to ground) at points in a circuit. Use mini-hooks to connect the black lead to ground. 
 
-![pic](./electronics/Voltage-MultimeterReadDiagram.png)
+![pic](./Voltage-MultimeterReadDiagram.png)
 
 The multimeter is used in the DC voltage mode to measure the voltage around the circuit.  The voltage reference or "ground" is chosen to be the negative terminal of the battery. A graph of these voltages is shown on the right procceding around the circuit from A through E and back through the battery to A again.
 
@@ -61,7 +61,7 @@ The multimeter is used in the DC voltage mode to measure the voltage around the 
   - Ohm's law applies to resistors.  Use Ohm's law to calculate the current flowing through
   a resistor.
 
-  ![pic](./electronics/Current-OhmsLawDiagram.png)
+  ![pic](./Current-OhmsLawDiagram.png)
 
   - An LED does not have the simple relation between voltage and current that a resistor does (Ohm's law
   does not work for diodes).  To learn what current is flowing through the LED, you need to use the fact that the current flowing through the resistor is the same as that flowing through the LED. Then measure the voltage across the resistor and use Ohm's Law to find the current.
@@ -73,13 +73,13 @@ The multimeter is used in the DC voltage mode to measure the voltage around the 
 
 [Kirchhoff's current law](https://en.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws) states that, for any node (junction) in an electrical circuit, the sum of currents flowing into that node is equal to the sum of currents flowing out of that node. 
 
-  ![pic](./electronics/KCL.png)
+  ![pic](./KCL.png)
 
 The current entering any junction is equal to the current leaving that junction. _i2 + i3 = i1 + i4_
 
 Kirchhoff's Voltage Rule states that the directed sum of the potential differences (voltages) around any closed loop is zero.
 
- ![pic](./electronics/KVL.png)
+ ![pic](./KVL.png)
 
 _v1 + v2 + v3 + v4 = 0_
 
@@ -94,7 +94,7 @@ _v1 + v2 + v3 + v4 = 0_
 
   ##Arduino as a voltmeter 
 
-  ![pic](./electronics/voltmeter.jpg)
+  ![pic](./voltmeter.jpg)
 
   Use the Arduino as a voltmeter. In the picture above, the A0 pin of the Arduino is used with the yellow lead, to measure
   voltage, using analogRead.  Use the program in Arduino IDE, File>Examples>Basic>AnalogReadSerial.  Open the serial monitor
@@ -118,14 +118,14 @@ Alternatively, Ohm's Law can be used to give:
 
 ##Voltage Divider
 
-![pic](./electronics/VoltageDivider.png)
+![pic](./VoltageDivider.png)
 
 - Voltage divider.  Here is a voltage divider, which forms the basis for many sensors.  Build this circuit
 with resistors, and measure voltages.  Does it make sense to you?
 
 ---
 
-  ![pic](./electronics/Potentiometer.png)
+  ![pic](./Potentiometer.png)
 
 - Potentiometers.  A potentiometer is a voltage divider with a movable contact.  It can be used to provide a variable voltage, or act
 as a variable resistance.
@@ -134,7 +134,7 @@ as a variable resistance.
 
 ##I-V Curves
 
-![pic](./electronics/resistor_iv.png)
+![pic](./resistor_iv.png)
 
 Ohm's Law describes a linear relationship between current and voltage: ∆V = iR.  It holds for a resistor, conducting
 current within its normal operating range. For other devices, such as diodes (for example, LEDs) the relation is not linear.  For
@@ -145,7 +145,7 @@ these devices, we need to use the Current-voltage curve (I-V) to model the behav
 
 ## Capacitors, time-varying voltage, Oscilloscope
 
-![pic](./electronics/CapacitorDiagram.png)
+![pic](./CapacitorDiagram.png)
 
 
   - A capacitor stores energy within its internal electric fields.  As current flows through the capacitor, the voltage across its teminals
@@ -155,7 +155,7 @@ increases as V = (1/C)*Q where C is the capacitance in Farads and Q is the total
 
   - Oscilloscope.
 
-  ![pic](./electronics/scope.png)
+  ![pic](./scope.png)
 
     - Use Oscilloscope to measure voltage of Arduino as it blinks.
     - Use the Oscilloscope to monitor capacitor voltage as it charges.
