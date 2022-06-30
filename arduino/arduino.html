@@ -15,7 +15,7 @@
 <h3> Arduino Workshop </h3>
 <p> For this workshop, please collect the following: 
 	<ul> 
-		<li>Metro M0 </li>
+		<li>Microcontroller </li>
 		<li>breadboard</li>
 		<li>hookup wires </li>
 		<li>button  </li>
@@ -212,7 +212,7 @@ void loop() {
 
 <p> For this exercise, please collect the following: 
   <ul> 
-    <li>Metro M0 </li>
+    <li>Microcontroller </li>
     <li>breadboard</li>
     <li>hookup wires </li>
     <!-- <li>button  </li>
@@ -221,7 +221,7 @@ void loop() {
     <li>potentiometer </li>
     <!-- <li>DC motor</li>
     <li>10K resistor</li> -->
-    <li>470 Ohm resistor</li>
+    <li>1K resistor</li>
   </ul>
 </p> 
 
@@ -233,12 +233,12 @@ for (init; test; update) {
 }</code></pre>
 		</p>
 
-<p> Let's connect an LED to pin 10 with a 470 ohm resistor in series. </p>
+<p> Let's connect an LED to pin 10 with a 1K resistor in series. </p>
 
 <p> Let's say you want to incrementally brighten an LED. You might do that with repetitive commands:</p>
 
 <pre><code class="language-arduino">
-int PWMpin = 10;  // LED in series with 470 ohm resistor on pin 10
+int PWMpin = 10;  // LED in series with 1K resistor on pin 10
 
 void setup() {
   // no setup needed
@@ -263,7 +263,7 @@ void loop() {
 <p> However, the same result can be generated with fewer lines of code using a <code>for</code> loop:</p>
 
 <pre><code class="language-arduino" >
-int PWMpin = 10;  // LED in series with 470 ohm resistor on pin 10
+int PWMpin = 10;  // LED in series with 1K resistor on pin 10
 
 void setup() {
   // no setup needed
@@ -281,7 +281,7 @@ void loop() {
 <p> This flexible pattern allows you to easily change the resolution of the fade:</p>
 
 <pre><code class="language-arduino" >
-int PWMpin = 10;  // LED in series with 470 ohm resistor on pin 10
+int PWMpin = 10;  // LED in series with 1K resistor on pin 10
 
 void setup() {
   // no setup needed
@@ -374,7 +374,7 @@ void loop() {
 }
 </code></pre>
 
-<p> This is just the beginning! Please check out Arduino's default examples as well as additional examples <a href='https://roberthart56.github.io/SCFAB/SC_lab/Arduino_code_and_circuit_examples/Code_examples.html'>here</a>. 
+<p> This is just the beginning! Please check out Arduino's default examples as well as additional examples in the <a href="https://www.eitkw.com/wp-content/uploads/2020/03/Arduino_Projects_Book.pdf">Arduino Projects Book</a> . 
 
 </xmp>
 
