@@ -17,7 +17,7 @@
 
 <p> For this workshop, please collect the following: 
 <ul> 
-  <li>Microcontroller </li>
+  <li>Microcontroller (MCU): Arduino Uno or similar </li>
   <li>DC motor </li>
   <li>L9110 </li>
   <li>Wires</li>
@@ -31,15 +31,15 @@
 
 <img src="./L9110-0.jpg" alt="L9110 first step">
 
-<p> Next, connect GND and 5V from the Metro to the L9110 (GND and VCC). For each connection, combine a pin-pin wire and a socket-socket wire to make a pin-socket wire. You can make these connections directly to the Metro, or via breadboard. </p>
+<p> Next, connect GND and 5V from the sockets on the MCU to the pins on the L9110 (GND and VCC). You can make these connections directly to the MCU, or via breadboard. </p>
 
 <img src="./L9110-1.jpg" alt="L9110 second step">
 
-<p> In the same way, connect the A-1A and A-1B pins of the L9110 to pins 3 and 4 of the Metro. (Avoid pin 2, which cannot do PWM). </p>
+<p> In the same way, connect the A-1A and A-1B pins of the L9110 to pins 3 and 4 of the MCU. (Avoid pin 2, which cannot do PWM). </p>
 
 <img src="./L9110-3.jpg" alt="L9110 third step">
 
-<p> Now plug in your USB cable and upload the following code to your Metro: </p>
+<p> Now plug in your USB cable and upload the following code to your MCU: </p>
 
 <pre><code class="language-arduino">
 const int A1A = 3;  // define pin 3 for A-1A 
@@ -212,7 +212,7 @@ void motorA(byte d, int s) {
 
 <p> For this workshop, please collect the following: 
   <ul> 
-    <li>Metro microcontroller </li>
+    <li>Microcontroller (MCU) </li>
     <li>potentiometer</li>
     <li>DC motor </li>
     <li>L9110 </li>
@@ -221,9 +221,9 @@ void motorA(byte d, int s) {
 
 <p> Using a potentiometer to control the speed of motor through Arduino code.  <!-- <a href='https://youtu.be/j0ohsu98v6c'>Here is alink to a video.</a> --> </p>
 
-<p> Attach the motor to the motor driver as described previously. Optionally, power the Metro with the 9V power supply instead, as pictured.  The VIN pin will be at 9V (do not connect this pin to any input pins of the Metro).</p>
+<p> Attach the motor to the motor driver as described previously. Optionally, power the MCU with the 9V power supply instead, as pictured.  The VIN pin will be at 9V (do not connect this pin to any input pins of the MCU).</p>
 
-<p> Connect GND and either VIN (9V), 5V or 3.3V from the Metro to the L9110 motor driver. Connect the motor control signal to one of the signal pins of the L9110 (A-1A, A-1B, B-1A, or B-1B on the same side as your motor). Place the potentiometer across pins A0, A2, and A4 of the Metro.  </p>
+<p> Connect GND and either VIN (9V), 5V or 3.3V from the MCU to the L9110 motor driver. Connect the motor control signal to one of the signal pins of the L9110 (A-1A, A-1B, B-1A, or B-1B on the same side as your motor). Place the potentiometer across pins A0, A2, and A4 of the MCU.  </p>
 
 <img src="./pot_motor_pic.jpg" alt="hookup Pot">
 
@@ -231,12 +231,12 @@ void motorA(byte d, int s) {
 
 
 
-<p> Now plug in your USB cable and upload code to your Metro: </p>
+<p> Now plug in your USB cable and upload code to your MCU: </p>
 
 <pre><code class="language-arduino">
 /*  Code to run motor in one direction based on potentiometer reading.
  *  Motor driver speed control on pin 3 (direction LOW by default)
- *  Potentiometer plugged into A0, A2, and A4 on Metro M0 (or similar).
+ *  Potentiometer plugged into A0, A2, and A4 on Arduino Uno (or similar).
  */
 
 void setup() {
