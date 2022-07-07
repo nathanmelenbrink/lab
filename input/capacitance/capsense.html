@@ -15,7 +15,7 @@
 
 This capacitance method, based on Arduino Capacitive Sensing library, can be used with most boards that support the Arduino IDE.
 
-![pic](./cap01.png)
+![pic](./figs/cap01.png)
 
 This is the configuration used for capacitance sensing with the Arduino.  The pin on the left (7 in this example)
     is used to charge the plate, through the resistor.  The pin on the right (5 in this example) senses the change in voltage as the plate charges up.
@@ -29,13 +29,12 @@ This is the configuration used for capacitance sensing with the Arduino.  The pi
 
 <b>[The Documentation on the Arduino Reference is here](http://playground.arduino.cc/Main/CapacitiveSensor?from=Main.CapSense)</b>.
 
-<b>[Here is the sample code for Capactive Sensing](./CapacitiveTouch.txt)</b> that works for the configuration shown above.  The resistor R is usually 1 to 10 Mega-ohm.  The larger
-resistance makes the sensor more sensitive.  Change the pin numbers to reflect your board.
+The resistor R is usually 1 to 10 Mega-ohm.  The larger resistance makes the sensor more sensitive.  Change the pin numbers to reflect your board.
 
-![pic](./cap02a.png)
-![pic](./Capac_metro.jpg)
+![pic](./figs/cap02a.png)
+![pic](./figs/Capac_metro.jpg)
 
-As shown above, the capacitive sensor can be used to measure position, force, tilt, airspeed, and more.  In some cases, the other configuration for capacitance sensing, [the transmit-receive method,](./../tx_rx_sensors/index.html) gives better results.  We're not sure why or in what cases one works better than another. Try both and document your results!
+As shown above, the capacitive sensor can be used to measure position, force, tilt, airspeed, and more.  In some cases, the other configuration for capacitance sensing, [the transmit-receive method,](./txrx.html) gives better results.  We're not sure why or in what cases one works better than another. Try both and document your results!
 
 <b> If Cap library does not work. </b>
 
