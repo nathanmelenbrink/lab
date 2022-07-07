@@ -1,0 +1,29 @@
+<head> 
+  <base target="_child">  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
+<div id="header"></div>
+
+<xmp style="display:none;">
+
+### Piezoelectric element for force, vibration, sound
+
+Below is shown a piezoelectric disc, and its connections to Arduino.  The schematic on the right is equivalent to the photograph on the left.
+
+The two 1MOhm resistors keep the average voltage level near 3.3V/2 = 1.65 V.  Use the voltage that is generated as the disc flexes to detect vibration, sound, force.  Notice that the voltage is transient - the level returns to 1.7 V after a fraction of a second.  For steady state measurement of force, try capacitance sensing.
+
+<img src='./piezo_metro.jpg' width="400px" >
+<img src='./piezo_schem.jpg' width="600px" >
+
+</xmp>
+
+
+<script src="../../js/strapdown.js"></script>
+<script type="text/javascript" src="../../js/iframeResizer.contentWindow.min.js"></script>
+<link href="../../css/style.css" rel="stylesheet">
+</html>

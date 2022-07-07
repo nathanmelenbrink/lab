@@ -20,7 +20,7 @@
 
 A thermistor is a device whose resistance varies as a function of temperature.  It is typically used in a voltage divider circuit.
 
-Below is the data from the datasheet.  T as a function of R between 0 and 100 C.  Make this plot, read data from spreadsheet using Python code.
+Below is the data from the datasheet.  T as a function of R between 0 and 100 C.  
 
 ![Thermistor](./Thermistor_data.png)
 
@@ -34,7 +34,7 @@ Here's the data and the fit, using the datasheet formula.
 
 Now we can confidently use this formula in the Arduino 
 
-Here is a Thermistor-reading Arduino code
+Here is a Thermistor-reading Arduino code:
 
 ```
 int ThermistorPin = A0;
@@ -45,14 +45,13 @@ float A = 3.354e-03;
 float B = 2.5698e-4;
 
 void setup() {
-  Serial.begin(9600);
-  analogReadResolution(12);                 
+  Serial.begin(9600);           
 }
 
 void loop() {
 
   Vo = analogRead(ThermistorPin);
-  R2 = R1 * 1/(4096.0 / (float)Vo - 1.0);  //Calculate resistance of thermistor from voltage divider math.
+  R2 = R1 * 1/(1023.0 / (float)Vo - 1.0);  //Calculate resistance of thermistor from voltage divider math.
   T = (1.0 / (A + B*log(R2/R1) ));  // Calculate temperature using datasheet formula.
   T = T - 273.15;                   //Convert from Kelvin to Celcius.
  
@@ -66,8 +65,8 @@ void loop() {
 ```
 
 
-### Thermocouple 
-
+<!-- ### Thermocouple 
+ -->
 
 </xmp>
 
