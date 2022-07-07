@@ -1,0 +1,78 @@
+<head> 
+  <base target="_child">  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
+<div id="header"></div>
+
+<xmp style="display:none;">
+
+### Thermistor
+
+[Thermistor datasheet](https://www.vishay.com/docs/29049/ntcle100.pdf)
+
+![pic](./thermistor_schem.jpg)
+
+
+A thermistor is a device whose resistance varies as a function of temperature.  It is typically used in a voltage divider circuit.
+
+Below is the data from the datasheet.  T as a function of R between 0 and 100 C.  Make this plot, read data from spreadsheet using Python code.
+
+![Thermistor](./Thermistor_data.png)
+
+[Tutorial on using a thermistor](https://create.arduino.cc/projecthub/Marcazzan_M/how-easy-is-it-to-use-a-thermistor-e39321)
+
+Our datasheet gives the formula for converting resistance to temperature in a slightly different way than this tutorial.
+
+Here's the data and the fit, using the datasheet formula.  
+
+![](Thermistor_modeled.png)
+
+Now we can confidently use this formula in the Arduino 
+
+Here is a Thermistor-reading Arduino code
+
+```
+int ThermistorPin = A0;
+int Vo;
+float R1 = 10000;
+float R2, T;
+float A = 3.354e-03;
+float B = 2.5698e-4;
+
+void setup() {
+  Serial.begin(9600);
+  analogReadResolution(12);                 
+}
+
+void loop() {
+
+  Vo = analogRead(ThermistorPin);
+  R2 = R1 * 1/(4096.0 / (float)Vo - 1.0);  //Calculate resistance of thermistor from voltage divider math.
+  T = (1.0 / (A + B*log(R2/R1) ));  // Calculate temperature using datasheet formula.
+  T = T - 273.15;                   //Convert from Kelvin to Celcius.
+ 
+
+  Serial.print("Temperature: "); 
+  Serial.print(T);
+  Serial.println("C"); 
+
+  delay(500);
+}
+```
+
+
+### Thermocouple 
+
+
+</xmp>
+
+
+<script src="../../js/strapdown.js"></script>
+<script type="text/javascript" src="../../js/iframeResizer.contentWindow.min.js"></script>
+<link href="../../css/style.css" rel="stylesheet">
+</html>

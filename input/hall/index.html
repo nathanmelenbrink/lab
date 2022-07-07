@@ -1,0 +1,68 @@
+<head> 
+  <base target="_child">  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
+<div id="header"></div>
+
+<xmp style="display:none;">
+
+<!DOCTYPE html>
+<html>
+<title> Magnetic Field Sensors.</title>
+
+<xmp theme="bootstrap" style="display:none;">
+<br>
+
+###[Hall Sensor](https://www.digikey.com/products/en?keywords=620-1432) that we use.
+
+Datasheet [here](https://www.allegromicro.com/~/media/Files/Datasheets/A1324-5-6-Datasheet.ashx).  Connections and behavior as a sensor are shown below. 
+The sensor is only sensitive to the magnetic field component perpendicular to its face.
+
+![pic](./Hall-pic.png)
+![pic](./Hall_sketch.jpg)
+![pic](./Hall_metro.jpg)
+
+###Hall sensor used with a magnet as a position sensor.
+
+The drawing below shows the magnetic field around a disc magnet, as seen from the side.  Magnetic field
+as a vector quentity is shown by arrows, representing direction and intensity (arrow length).
+
+
+![pic](./magfields.jpg)
+
+###Calibration
+
+Calibration of the Hall device as a distance sensor.  The magnetic field near the axis of the cylindrical magnet points along the axis, and decreases rapidly with distance.  The variation of sensor signal with magent distance can be used to make a position sensor.  Below is the setup for calibration.  Paper cards are added around the sensor to bring the surface up to the level of the sensor face.  The magnet is placed in a repeatable way over the sensor, with cardboard spacers used to vary the distance.
+
+![pic](./calib1.jpg)
+![pic](./calib2.jpg)
+![pic](./calib3.jpg)
+
+Below is the calibration data, and a graph on signal vs. distance, in mm.  This sensor is quite sensitive for distances less than ~10 mm.  As the distance increases from zero, the signal does not go up until about 1mm (not shown in this data.)  So the useful range is about 2-8 mm.
+
+![pic](./calib4.jpg)
+![pic](./calib5.jpg)
+
+
+###Accelerometer using Hall sensor.
+
+These pictures show a Hall sensor used as a distance probe, to act as an acceleration sensor.
+
+![pic](./mag_accel01.jpg)
+![pic](./mag_accel01A.jpg)
+![pic](./mag_accel02.jpg)
+![pic](./mag_accel03.jpg)
+![pic](./mag_accel04.jpg)
+![pic](./mag_accel05.jpg)
+</xmp>
+
+
+<script src="../../js/strapdown.js"></script>
+<script type="text/javascript" src="../../js/iframeResizer.contentWindow.min.js"></script>
+<link href="../../css/style.css" rel="stylesheet">
+</html>
