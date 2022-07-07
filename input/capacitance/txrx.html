@@ -86,9 +86,9 @@ long tx_rx(){         // Function to execute rx_tx algorithm and return a value
 ```
 
 
-- Here's how it works:
+Here's how it works:
 
-- transmit (tx) pin is made alternately high (5V or 3.3V) and low (0V).  Note that the figures show the number for 5V boards.  For 3V boards (like the ATSAM-based Adafruit boards) the highes voltgae is 3.3V.
+- transmit (tx) pin is made alternately high (5V or 3.3V) and low (0V).  Note that the figures show the number for 5V boards.  For 3V boards (like the ATSAM-based Adafruit boards) the highest voltgae is 3.3V.
 - This charges and discharges the tx electrode.
 - On the rx electrode there is a small 'blip' up or down as the tx pin toggles.
 - These blips are measured by the Arduino analog input (ADC), and "low" subracted from "high" (see figure).
@@ -139,6 +139,7 @@ Right, the plates get closer together (and the signal increases) when force is a
 ![picture](./figs/popsic_accel01.jpg)
 ![picture](./figs/popsic_accel02.jpg)
 ![picture](./figs/popsic_accel03.jpg)
+
 ---
 
 _Thanks to Rob Hart_
