@@ -11,54 +11,65 @@
 
 <xmp style="display:none;">
  
-<h3> Capacitive Sensors </h3>
+###Capacitance using the Arduino Capacitive Sensing Library.
 
+This capacitance method, based on Arduino Capacitive Sensing library, can be used with most boards that support the Arduino IDE.
 
-<h3> Parallel plate capacitors </h3>
+![pic](./cap01.png)
 
-<p> Capacitance-based sensors are used in a broad range of applications in consumer electronics (especially touch screens). </p>
+This is the configuration used for capacitance sensing with the Arduino.  The pin on the left (7 in this example)
+    is used to charge the plate, through the resistor.  The pin on the right (5 in this example) senses the change in voltage as the plate charges up.
+  The closer the grounded object is to the plate, the larger the capacitance, and the longer it takes to charge. The
+    time for charging (in arbitrary units) is the number that is reported by the sensing function.  
 
-<p>Capacitance can be calculated if the geometry of the conductors and the dielectric properties of the insulator between the conductors are known. A qualitative explanation for this can be given as follows. </p>
+ <b>To use this sensor, load the latest version of the Capacitive Sensing Library. </b> Go to Sketch -> Include Library -> Manage Libraries.  Search for "capacitive".  Install the library "CapacitiveSensor" , latest version.
 
-<p> Once a positive charge is put unto a conductor, this charge creates an electrical field, repelling any other positive charge to be moved onto the conductor; i.e., increasing the necessary voltage. But if nearby there is another conductor with a negative charge on it, the electrical field of the positive conductor repelling the second positive charge is weakened (the second positive charge also feels the attracting force of the negative charge). So due to the second conductor with a negative charge, it becomes easier to put a positive charge on the already positive charged first conductor, and vice versa; i.e., the necessary voltage is lowered. </p>
+ 
+ Your pin choice may vary, and you may use more than one sense pin for a single charging pin.
 
-<img src='cap1.png'> 
+<b>[The Documentation on the Arduino Reference is here](http://playground.arduino.cc/Main/CapacitiveSensor?from=Main.CapSense)</b>.
 
-<p> As a quantitative example consider the capacitance of a capacitor constructed of two parallel plates both of area A separated by a distance d. If d is sufficiently small with respect to the smallest chord of A, there holds, to a high level of accuracy: </p>
+<b>[Here is the sample code for Capactive Sensing](./CapacitiveTouch.txt)</b> that works for the configuration shown above.  The resistor R is usually 1 to 10 Mega-ohm.  The larger
+resistance makes the sensor more sensitive.  Change the pin numbers to reflect your board.
 
-<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/829b1da4f102f31c51b8be9babd08811a7c36cc6" class="mwe-math-fallback-image-inline" aria-hidden="true" style="vertical-align: -2.005ex; width:10.162ex; height:5.509ex;" alt="{\displaystyle \ C=\varepsilon _{0}{\frac {A}{d}}}">
+![pic](./cap02a.png)
+![pic](./Capac_metro.jpg)
 
-<p> where: <br> 
-<ul> 
-    <li> C is the capacitance, in farads;</li>
-    <li> A is the area of overlap of the two plates, in square meters;</li>
-    <li> ε is the permittivity (ε0 ≈ 8.854×10−12 F⋅m−1); and</li>
-    <li> d is the separation between the plates, in meters;</li>
-</ul>
-</p>
+As shown above, the capacitive sensor can be used to measure position, force, tilt, airspeed, and more.  In some cases, the other configuration for capacitance sensing, [the transmit-receive method,](./../tx_rx_sensors/index.html) gives better results.  We're not sure why or in what cases one works better than another. Try both and document your results!
 
-<p> Permittivity is a measure of the electric polarizability of a given dielectric material. Materials with a high permittivity are able to store more energy because they polarize more in response to an applied electric field. For designing capacitors, higher permittivity corresponds to greater capacitance. Permittivity is typically expressed as the unit-less relative permittivity ε (epsilon), or ratio of a material's permittivity to vacuum permittivity. The relative permittivity of polypropylene is 2.3; other common materials include printer paper (1.4), polyethylene (2.2), silicone (3.5), rubber (7), and water (80).  </p>
+<b> If Cap library does not work. </b>
 
-<!-- <iframe width="846" height="480" src="https://www.youtube.com/embed/IvFVu7Jxa2I?start=5" frameborder="0" allowfullscreen></iframe>
+Bare bones code for cases when you want to write your own function, or Arduino library does not work:
 
-<p> The RC time constant, also called tau, the time constant (in seconds) of an RC circuit, is equal to the product of the circuit resistance (in ohms) and the circuit capacitance (in farads), i.e. <br> <br> 
+```
 
-τ = R C <br> 
+void setup() {
+    Serial.begin(9600);
+    pinMode(5, OUTPUT);
+    pinMode(8, INPUT); 
+}
 
-<p>It is the time required to charge the capacitor, through the resistor, from an initial charge voltage of zero to approximately 63.2% of the value of an applied DC voltage, or to discharge the capacitor through the same resistor to approximately 36.8% of its initial charge voltage. </p> -->
+void loop() {
+    time=micros();
 
+    for(int count=0; count<1000; count++){
+        digitalWrite(5, HIGH);
+        while(!digitalRead(8)){
+            }
 
+        digitalWrite(5, LOW);
 
-<iframe src="https://phet.colorado.edu/sims/html/capacitor-lab-basics/latest/capacitor-lab-basics_en.html" width="800" height="600" scrolling="no" allowfullscreen></iframe>
+        while((digitalRead(8))){
+            }   
+    }
 
+    Serial.println(micros() - time);
+}
 
-<h3> Transmit-Receive Sensing </h3>
-<p> <a href='https://roberthart56.github.io/SCFAB/SC_lab/Sensors/tx_rx_sensors/index.html'>Tx-Rx capacitive sensing</a>, especially useful for making sensors to measure capacitance of a dielectric between two electrodes. </p>
+```
 
-<h3> Capacitive Touch Sensing </h3>
-<p> Alternatively, you can try using the <a href='https://playground.arduino.cc/Main/CapacitiveSensor/'>Capacitive Sensor</a> library. This method is particularly useful for detecting touch. More information on this technique <a href='https://roberthart56.github.io/SCFAB/SC_lab/Sensors/CapacitiveTouch/index.html'>here</a>.</p>
         
-   </xmp>
+</xmp>
 
 
 <script src="../../js/strapdown.js"></script>
