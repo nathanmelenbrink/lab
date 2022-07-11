@@ -12,69 +12,69 @@
 <xmp style="display:none;">
 
 
-<h3> LED Strip Workshop </h3>
-<p> For this workshop, please collect the following: 
-	<ul> 
-		<li>Microcontroller </li>
-		<li>protoboard</li>
-		<li>LED Strip with soldered wires  </li>
-		<li>300-1k Ohm resistor</li>
-	</ul>
-</p> 
+<!-- ### Light Emitting Diode (LED)
 
-<h3> LED Strips </h3>
+An LED is a semiconductor device that emits light when a current passes through it.  Most LEDs emit light in a small range of wavelenghts, so that they have a characteristic color. We have LEDs from infrared (~890 nm) through ultraviolet (~400 nm wavelength). A specially deisgned "white" LED emits light over the whole visible spectrum, and appears colorless to our vision.
 
-<p> LED strips give us a good excuse to use external libraries. We've previously looked at lighting and dimming a single LED of a single color. RGB LEDs are a bit more complex; they require <a href='https://learn.adafruit.com/adafruit-arduino-lesson-3-rgb-leds/arduino-sketch'>PWM-ing 3 separate color channels</a>, but we don't really need an extra library for this. However, if we want to use many RGB LEDS, the number of wires and <code>analogWrites()</code> commands quickly add up to something intractable. Luckily, a number of libraries exist that make controlling these LED strips much easier. For this tutorial, we'll be using the <a href='https://learn.adafruit.com/adafruit-neopixel-uberguide?embeds=allow'>Adafruit NeoPixel</a> library, though we could have instead used an alternative like <a href='https://github.com/pololu/pololu-led-strip-arduino'>Pololu</a> or <a href='http://fastled.io/'>FastLED</a>. You can see all of the functions contained in the library on Adafruit's <a herf='https://github.com/adafruit/Adafruit_NeoPixel/blob/master/Adafruit_NeoPixel.cpp'>GitHub page</a>.</p>
-
-<p>First, we'll want to <a href='https://learn.adafruit.com/adafruit-neopixel-uberguide/arduino-library-installation'>install the NeoPixel library</a> with the Library Manager.</p>
-
-<p>Then we'll want to wire up our RGB LED strip with a resistor between pin 9 and the DIN pad on the LED strip. Connect ground to the microcontroller's ground, and connect power to 3V. </p>
-
-<p> Finally, let's look at <a href='https://learn.adafruit.com/adafruit-neopixel-uberguide/arduino-library-use'>Adafruit's page on using their library</a>. We'll walk through the strandtest example, but first let's take a look at a minimal program to do something useful with this library:
-</p>
+Most of our LEDS dissipate little power - a few tens of millwatts.  More powerful (and cheap) LEDs are available now, in commercial lighting, and also in individual devices.
 
 
-<pre><code class="language-arduino">
-#include &lt;Adafruit_NeoPixel.h&gt;
+<img src='./LED.jpg' width="200px" ><img src='./LEDsymbol.jpg' width="400px" >
 
-#define PIN        9 
-#define NUMPIXELS 10 
-#define DELAYVAL 500 // Time (in milliseconds) to pause between pixels
 
-Adafruit_NeoPixel strip(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+An LED is shown above.  The long leg must be at a more positive voltage than the shorter lead in order for the device to emit light.  The electronic symbol is shown on the right.  The positive terminal is called the anode, and the negative (lower in this picture) terminal the cathode. In the symbol, the arrow points in the direction that current flows during usual operation of the diode. -->
 
+
+### RGB (red, green, blue) LEDs
+
+![pic](rgb.png)
+![pic](rgb_config.png)
+
+Above is the four-legged RGB LED that we have.  Diagrams from the [datasheet](http://www.kingbrightusa.com/images/catalog/SPEC/WP154A4SUREQBFZGC.pdf)
+show details of the configuration.  The three LEDs within this package have a common cathode (negative terminal).  The longest lead is the cathode.  Not all RGB LEDs have this arrangement - for each type of RGB that you encounter, you will have to ascertain the arrangement of the leads by testing or referring to the datasheet.
+
+Here is an exaple of code using digital writes to an RGB LED: 
+
+``` 
 void setup() {
-  strip.begin(); // INITIALIZE NeoPixel strip object (REQUIRED)
-  strip.show();            // Turn OFF all pixels ASAP
-  strip.setBrightness(10); // Set BRIGHTNESS low to reduce draw (max = 255)
+  pinMode(9, OUTPUT);   // red
+  pinMode(10, OUTPUT);  // green
+  pinMode(11, OUTPUT);  // blue  
 }
 
 void loop() {
-  strip.clear(); // Set all pixel colors to 'off'
-
-  // The first NeoPixel in a strand is #0, second is 1, all the way up
-  // to the count of pixels minus one.
-  for(int i=0; i&lt;NUMPIXELS; i++) { // For each pixel...
-
-    // strip.Color() takes RGB values, from 0,0,0 up to 255,255,255
-    // Here we're using a moderately bright green color:
-    strip.setPixelColor(i, strip.Color(0, 150, 0));
-
-    strip.show();   // Send the updated pixel colors to the hardware.
-
-    delay(DELAYVAL); // Pause before next pass through loop
-  }
+ digitalWrite(9, HIGH);   // turn on red channel
+ delay(500);              // delay 
+ digitalWrite(10, HIGH);  // turn on green channel
+ delay(500);              // delay
+ digitalWrite(11, HIGH);  // turn on green channel
+ delay(500);              // delay
+ digitalWrite(9, LOW);    // turn off red channel
+ digitalWrite(10, LOW);   // turn off green channel
+ digitalWrite(11, LOW);   // turn off blue channel
+ delay(3000);             // delay
 }
-</code></pre>
+```
 
-<p> See all the available <a href='https://adafruit.github.io/Adafruit_NeoPixel/html/class_adafruit___neo_pixel.html'>NeoPixel functions here</a>. 
+![pic](rgb_led_ckt.jpg)
+![pic](rgb_led_pic.jpg)
 
+Above is an example of a circuit to drive an RGB LED. The three inputs are connected to three separate digital pins of the microcontroller. If you want to be able to control the intensity of each color, make sure that these pins are capable of PWM (see the pinout diagram for your microcontroller.)  The resistors limit the current throgh each LED in the usual way.  You may find that the blue LED is less intense - it requires a greater voltage drop than the less energetic green and red.  To equalize intensity, you may reduce the resistor value for the blue (and maybe the green) LED relative to the red.  Note that the resistors shown here are 1k Ohm (brown, black, red).  Refer to the [resistor color code](https://www.arrow.com/en/research-and-events/articles/resistor-color-code) to decipher resistor values for the color-banded resistors.
 
+###LED arrays.  [Charlieplexing](https://en.wikipedia.org/wiki/Charlieplexing)
+is a way that you can control N*(N-1) LEDs with
+only N microcontroller ouputs.  [Here's an example](http://academy.cba.mit.edu/classes/output_devices/array/hello.array.44.mp4) from "How to Make (Almost) Anything"
+
+#### POV (persistence of vision) LED arrays 
+
+[example](https://learn.adafruit.com/bike-wheel-pov-display/overview) and simpler [example](https://maker.pro/arduino/projects/arduino-pov-display)
+
+_Thanks to Rob Hart_
 
 </xmp>
 
 
-<script src="../js/strapdown.js"></script>
-<script type="text/javascript" src="../js/iframeResizer.contentWindow.min.js"></script>
-<link href="../css/style.css" rel="stylesheet">
+<script src="../../js/strapdown.js"></script>
+<script type="text/javascript" src="../../js/iframeResizer.contentWindow.min.js"></script>
+<link href="../../css/style.css" rel="stylesheet">
 </html>
