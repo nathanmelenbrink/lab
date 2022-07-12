@@ -61,9 +61,10 @@ void loop() {
 
 Above is an example of a circuit to drive an RGB LED. The three inputs are connected to three separate digital pins of the microcontroller. If you want to be able to control the intensity of each color, make sure that these pins are capable of PWM (see the pinout diagram for your microcontroller.)  The resistors limit the current throgh each LED in the usual way.  You may find that the blue LED is less intense - it requires a greater voltage drop than the less energetic green and red.  To equalize intensity, you may reduce the resistor value for the blue (and maybe the green) LED relative to the red.  Note that the resistors shown here are 1k Ohm (brown, black, red).  Refer to the [resistor color code](https://www.arrow.com/en/research-and-events/articles/resistor-color-code) to decipher resistor values for the color-banded resistors.
 
-###LED arrays.  [Charlieplexing](https://en.wikipedia.org/wiki/Charlieplexing)
-is a way that you can control N*(N-1) LEDs with
-only N microcontroller ouputs.  [Here's an example](http://academy.cba.mit.edu/classes/output_devices/array/hello.array.44.mp4) from "How to Make (Almost) Anything"
+#### LED arrays
+
+Charlieplexing](https://en.wikipedia.org/wiki/Charlieplexing)
+is a way that you can control N*(N-1) LEDs with only N microcontroller ouputs.  
 
 #### POV (persistence of vision) LED arrays 
 
