@@ -11,19 +11,40 @@
 
 <xmp style="display:none;">
 
-## Setting up ESP32 Huzzah
 
- First we need to configure Arduino IDE to work with the Huzzah. 
+## Setting up ESP32 
 
- - First, download and install the <a href='http://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers'> CP2104 USB Driver</a>. 
- - Next, add this to Perferences &gt; Additional Boards Manager URLs: `https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json`. 
- - Finally, under Tools &gt; Boards Manager, add the "esp32" boards package. Select Adafruit ESP32 Feather as your board and select the corresponding port. 
+Note: the terms here can be confusing. <a href='https://en.wikipedia.org/wiki/ESP32'>ESP32</a> refers to a series of low-cost, low-power system-on-a-chip microcontrollers with integrated Wi-Fi and Bluetooth. Its precursor was the ESP8266 -- many tutorials will be compatible with both. 
 
-Note: the terms here can be confusing. <a href='https://en.wikipedia.org/wiki/ESP32'>ESP32</a> refers to a series of low-cost, low-power system-on-a-chip microcontrollers with integrated Wi-Fi and Bluetooth. Its precursor was the ESP8266 -- many tutorials will be compatible with both. <a href='https://www.adafruit.com/feather'>Feather</a> is a line of development boards from Adafruit. The <a href='https://www.adafruit.com/product/3405'>Huzzah32</a> is the specific Feather board that is built around the ESP32. 
+There are many brands and models of microcontrollers built around the ESP32 chip. A few of the ones we use most include the generic ESP32 Dev Board, the ESP32-CAM, and the Adafruit Huzzah. <a href='https://www.adafruit.com/feather'>Feather</a> is a line of development boards from Adafruit. The <a href='https://www.adafruit.com/product/3405'>Huzzah32</a> is the specific Feather board that is built around the ESP32. 
+
+In order to use any ESP32 device, we'll first need to [configure Arduino IDE]
+(https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/
+). 
+
+- First, download and install the <a href='http://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers'> CP2104 USB Driver</a>. 
+- Next, add this to Perferences &gt; Additional Boards Manager URLs: `https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json`. 
+- Under Tools &gt; Boards Manager, add the "esp32" boards package. 
+- Select the appropriate ESP32 board (see below)
+
+### ESP32 Dev Board
+
+A number of manufacturers make a product called something like "ESP32 Dev Kit" or "dev board". The RandomNerd Tutorials use a model called DOIT ESP32 DEVKIT V1. I tend to just select the first option, ESP32 Dev Module, regardless of the brand (many brands are not listed). I don't think there is much difference between Dev modules. 
+
+
+### Huzzah (Adafruit Feather)
+
+Compared to the Dev Board, the Feather is about 2x the cost, and features integrated power management. 
+
+- Under Tools &gt; Boards Manager, select Adafruit ESP32 Feather as your board and select the corresponding port. 
+
+
 
 ## Setting up ESP32-CAM
 
 RandomNerd has a great guide for [setting up ESP32-CAM](https://randomnerdtutorials.com/esp32-cam-video-streaming-face-recognition-arduino-ide/). It's worthwhile to follow this example all the way through. 
+
+The ESP32-CAM does not have its own USB interface. You must instead use a Serial-to-USB adapter to program it. 
 
 Note that ESP32s do not like WiFi features like 5GHz, two-factor authentication, etc. It's best to use networks with simple SSID and password credentials. In 102, we have a network called "MAKERSPACE" and password "12345678". 
 
@@ -34,7 +55,7 @@ There are many idiosyncracies for the ESP32 boards. It's helpful to bookmark the
 
 - All devices must be connected to the same WiFi network 
 - You cannot use `analogWrite()` for PWM. You must use `ledcWrite()` instead. See [explanation](https://randomnerdtutorials.com/esp32-pwm-arduino-ide/). 
-- ADC2 pins cannot be used while using the WiFi library (most ESP32 projects). ADC 1 pins are okay - that's 32-39, which, for the adafruit Huzzah, includes 32=A7, 33=A9, 34=A2, 36=A4, 39=A3.
+- ADC2 pins cannot be used while using the WiFi library (most ESP32 projects). ADC 1 pins are okay - that's 32-39, which, for the Adafruit Huzzah, includes 32=A7, 33=A9, 34=A2, 36=A4, 39=A3.
 
 
 </xmp>
