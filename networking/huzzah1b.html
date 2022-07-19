@@ -11,52 +11,52 @@
 
 <xmp style="display:none;">
 
-		<h3> Huzzah Workshop </h3>
-		<p> Materials needed for this tutorial: 
-			<ul> 
-				<li><a href='https://www.adafruit.com/product/3405'>Huzzah board</a> </li>
-				<li>Breadboard</li>
-				<li>LED, 470 Ohm Resistor</li>
-			</ul>
-		</p> 
+<h3> ESP32 Workshop </h3>
+<p> Materials needed for this tutorial: 
+<ul> 
+	<li>ESP32 Board </li>
+	<li>Breadboard</li>
+	<li>LED, 470 Ohm Resistor</li>
+</ul>
+</p> 
 
-		<p> The previous tutorial showed how to build a web interface to control your ESP32 over a Local Area Network. If you want to talk to your ESP32 from outside your LAN, you'll need to do a bit more work. There are many options: </p>
+<p> The previous tutorial showed how to build a web interface to control your ESP32 over a Local Area Network. If you want to talk to your ESP32 from outside your LAN, you'll need to do a bit more work. There are many options: </p>
 
-		<ul> 
-			<li> Build a full-stack server with a Model View Controller (MVC) architecture. This requires you to have (i.e. purchase) hosting services from e.g., BlueHost or DigitalOcean. Here's a <a href='https://randomnerdtutorials.com/control-esp32-esp8266-gpios-from-anywhere/'>tutorial</a> that walks through this method. Other useful tools for this method may include <a href='https://www.ibm.com/cloud-computing/bluemix/'> IBM</a> or <a href='https://aws.amazon.com/iot/'>Amazon Web Services</a>.  </li> 
-			<li> Use a 3rd party platform designed to allow for a server-less IoT. Examples include <a href='https://io.adafruit.com/'>Adafruit IO</a>, <a href='https://thingspeak.com/'>ThingSpeak</a>, etc.  
-			</li> 
-			<li> Use a service like <a href='https://ifttt.com/'>If This, Then That (IFTTT)</a> to manage websocket connections. This service has gotten a bit more "business-oriented" than the previous examples, and doesn't allow direct or low-level control over your IoT devices (at least not without subscribing). It does feature lots of integrations to applications like <a href='https://randomnerdtutorials.com/esp32-esp8266-publish-sensor-readings-to-google-sheets/'>Google Sheets</a>, which you can use for data logging. It might also be the best choice if you want to do things like send an email every time an event is triggered. </li> 
+<ul> 
+<li> Build a full-stack server with a Model View Controller (MVC) architecture. This requires you to have (i.e. purchase) hosting services from e.g., BlueHost or DigitalOcean. Here's a <a href='https://randomnerdtutorials.com/control-esp32-esp8266-gpios-from-anywhere/'>tutorial</a> that walks through this method. Other useful tools for this method may include <a href='https://www.ibm.com/cloud-computing/bluemix/'> IBM</a> or <a href='https://aws.amazon.com/iot/'>Amazon Web Services</a>.  </li> 
+<li> Use a 3rd party platform designed to allow for a server-less IoT. Examples include <a href='https://io.adafruit.com/'>Adafruit IO</a>, <a href='https://thingspeak.com/'>ThingSpeak</a>, etc.  
+</li> 
+<li> Use a service like <a href='https://ifttt.com/'>If This, Then That (IFTTT)</a> to manage websocket connections. This service has gotten a bit more "business-oriented" than the previous examples, and doesn't allow direct or low-level control over your IoT devices (at least not without subscribing). It does feature lots of integrations to applications like <a href='https://randomnerdtutorials.com/esp32-esp8266-publish-sensor-readings-to-google-sheets/'>Google Sheets</a>, which you can use for data logging. It might also be the best choice if you want to do things like send an email every time an event is triggered. </li> 
 
-			<li> A final option is to use a 3rd party platform that acts as a general-purpose database for your IoT project. We'll use <a href='https://firebase.google.com/'>Google Firebase</a> for this. Like the other 3rd party platforms, we'll be able to talk to your device from anywhere in the world. But we can also talk to the Firebase Realtime Database from personal webpages, or build <a href='https://github.com/nathanmelenbrink/artg2260/blob/45924db6e60abae73a9ead30eaee0fd356d31b24/09_media/test.html'>a full-fledged app</a> with logins and permissions on top of it. </li>
+<li> A final option is to use a 3rd party platform that acts as a general-purpose database for your IoT project. We'll use <a href='https://firebase.google.com/'>Google Firebase</a> for this. Like the other 3rd party platforms, we'll be able to talk to your device from anywhere in the world. But we can also talk to the Firebase Realtime Database from personal webpages, or build <a href='https://github.com/nathanmelenbrink/artg2260/blob/45924db6e60abae73a9ead30eaee0fd356d31b24/09_media/test.html'>a full-fledged app</a> with logins and permissions on top of it. </li>
 
-		</ul>
+</ul>
 
-			<p>Note: The following tutorial is a bit outdated. For working with Firebase, I recommend starting with <a href='https://randomnerdtutorials.com/esp32-firebase-realtime-database/'>this tutorial</a> from RandomNerd. There are additional tutorials on that site that explore other Firebase features as well. </p>
+<p>Note: The following tutorial is a bit outdated. For working with Firebase, I recommend starting with <a href='https://randomnerdtutorials.com/esp32-firebase-realtime-database/'>this tutorial</a> from RandomNerd. There are additional tutorials on that site that explore other Firebase features as well. </p>
 
-			<p> The first step is to head to <a href='https://firebase.google.com/'>Firebase</a> and sign in with your Google account. Click "Get Started" and then "Add Project". Next, specify your project name (I called mine ESP32-LED), which will be used to generate a url (like https://esp32-led-9a0ab.firebaseio.com) where you can access your project database. You can opt in to Google Analytics if you wish. Click OK; you should be taken to the Firebase console page for your project. Click "Realtime Database" from the panel on the left.  </p>
+<p> The first step is to head to <a href='https://firebase.google.com/'>Firebase</a> and sign in with your Google account. Click "Get Started" and then "Add Project". Next, specify your project name (I called mine ESP32-LED), which will be used to generate a url (like https://esp32-led-9a0ab.firebaseio.com) where you can access your project database. You can opt in to Google Analytics if you wish. Click OK; you should be taken to the Firebase console page for your project. Click "Realtime Database" from the panel on the left.  </p>
 
-			<img src='./fb1.png' alt='firebase screen grab'>
+<img src='./fb1.png' alt='firebase screen grab'>
 
-			<p> Scroll down to Realtime Database and click "Create database". For the Security rules options, select "Start in test mode" (you can change this later). Your Database console should now look something like this: </p>
+<p> Scroll down to Realtime Database and click "Create database". For the Security rules options, select "Start in test mode" (you can change this later). Your Database console should now look something like this: </p>
 
-			<img src='./fb2.png' alt='firebase database'>
+<img src='./fb2.png' alt='firebase database'>
 
-			<p>Write down the URL that points to your database (https://esp32-led-9a0ab.firebaseio.com) . You are looking at the root of your database, which is "null" because there isn't anything there yet. First let's change permissions (click "Rules" and set both read and write to "true"). Next we need to create a secret key to give to our Huzzah board so it can access this database. Click the gear icon next to "Project Overview" and select "Project settings". On the "Project settings" page, click "Service accounts" and then "Database secrets": </p>
+<p>Write down the URL that points to your database (https://esp32-led-9a0ab.firebaseio.com) . You are looking at the root of your database, which is "null" because there isn't anything there yet. First let's change permissions (click "Rules" and set both read and write to "true"). Next we need to create a secret key to give to our Huzzah board so it can access this database. Click the gear icon next to "Project Overview" and select "Project settings". On the "Project settings" page, click "Service accounts" and then "Database secrets": </p>
 
-			<img src='./fb3.png' alt='database secrets'>
+<img src='./fb3.png' alt='database secrets'>
 
-			<p>Hover over the secret key, and select "Show". Copy this and save it somewhere to use in later steps. Also make sure to write down the auto-generated URL where you can access your database (something like esp32-led-9a0ab.firebaseio.com).  </p>
+<p>Hover over the secret key, and select "Show". Copy this and save it somewhere to use in later steps. Also make sure to write down the auto-generated URL where you can access your database (something like esp32-led-9a0ab.firebaseio.com).  </p>
 
 
-			<p> Set up your circuit so that there is an LED attached to pin 5. In Arduino IDE, make sure you've installed the necessary libraries for ESP32 and the Feather boards <a href='./huzzah1.html'>(see previous step if not)</a>. </p>
+<p> Set up your circuit so that there is an LED attached to pin 5. In Arduino IDE, make sure you've installed the necessary libraries for ESP32 and the Feather boards <a href='./huzzah1.html'>(see previous step if not)</a>. </p>
 
-			<p> Additionally, we need to add a couple libraries in order to talk to Firebase. Search and install the Firebase ESP32 Client by Mobizt, as well as the ArduinoJson library (version 6). </p> <!-- In order to get this library to work correctly, we need to install an extra dependency. Go to <a href='https://github.com/mobizt/HTTPClientESP32Ex'>https://github.com/mobizt/HTTPClientESP32Ex</a> and download the ZIP. In Arduino, go to Sketch &gt; Include Library &gt; Add .ZIP Library and find the zip file you just downloaded. We'll also need to install its dependency library, ArduinoJson. You can find this in Library Manager as well.</p>  -->
+<p> Additionally, we need to add a couple libraries in order to talk to Firebase. Search and install the Firebase ESP32 Client by Mobizt, as well as the ArduinoJson library (version 6). </p> <!-- In order to get this library to work correctly, we need to install an extra dependency. Go to <a href='https://github.com/mobizt/HTTPClientESP32Ex'>https://github.com/mobizt/HTTPClientESP32Ex</a> and download the ZIP. In Arduino, go to Sketch &gt; Include Library &gt; Add .ZIP Library and find the zip file you just downloaded. We'll also need to install its dependency library, ArduinoJson. You can find this in Library Manager as well.</p>  -->
 
-			<!-- <p> Additionally, we need to add another library in order to talk to Firebase. Go to <a href='https://github.com/ioxhop/IOXhop_FirebaseESP32'>https://github.com/ioxhop/IOXhop_FirebaseESP32</a> and download the ZIP. In Arduino, go to Sketch &gt; Include Library &gt; Add .ZIP Library and find the zip file you just downloaded. In order to make this library work, we'll also need to install its dependency library, ArduinoJson. You can find this in Library Manager -- make sure to get the latest version 5 (version 6 won't work).  </p>  -->
+<!-- <p> Additionally, we need to add another library in order to talk to Firebase. Go to <a href='https://github.com/ioxhop/IOXhop_FirebaseESP32'>https://github.com/ioxhop/IOXhop_FirebaseESP32</a> and download the ZIP. In Arduino, go to Sketch &gt; Include Library &gt; Add .ZIP Library and find the zip file you just downloaded. In order to make this library work, we'll also need to install its dependency library, ArduinoJson. You can find this in Library Manager -- make sure to get the latest version 5 (version 6 won't work).  </p>  -->
 
-			<p> In Arduino IDE, we can start with some of the WiFi library boilerplate code that we used in the last example (no need to start a server instance this time). Also, paste in your key and URL from Firebase. To learn more about how to use the FirebaseESP32 library, check <a href='https://github.com/mobizt/Firebase-ESP32'>the documentation</a>. </p>
-		
+<p> In Arduino IDE, we can start with some of the WiFi library boilerplate code that we used in the last example (no need to start a server instance this time). Also, paste in your key and URL from Firebase. To learn more about how to use the FirebaseESP32 library, check <a href='https://github.com/mobizt/Firebase-ESP32'>the documentation</a>. </p>
+
 
 <pre><code class="language-arduino">
 #include &lt;WiFi.h&gt;                                 // esp32 library
