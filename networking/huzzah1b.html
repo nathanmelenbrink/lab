@@ -58,7 +58,7 @@
 <p> In Arduino IDE, we can start with some of the WiFi library boilerplate code that we used in the last example (no need to start a server instance this time). Also, paste in your key and URL from Firebase. To learn more about how to use the FirebaseESP32 library, check <a href='https://github.com/mobizt/Firebase-ESP32'>the documentation</a>. </p>
 
 
-<pre><code class="language-arduino">
+```
 #include &lt;WiFi.h&gt;                                 // esp32 library
 #include &lt;FirebaseESP32.h&gt;                        // firebase library
 
@@ -118,18 +118,17 @@ void loop() {
 
   delay(1000);                                 // not strictly necessary
 }
-</code></pre>
+```
 
 
-	<p> After modifying and uploading the above code, open your Serial monitor. In your browser, go to the Realtime Database console, where you should see a new field called "LED_STATUS" that is set to "OFF". Try changing it to "ON" (case sensitive) and observe the results. You can now turn on this LED from anywhere in the world where you have internet access! </p>
+<p> After modifying and uploading the above code, open your Serial monitor. In your browser, go to the Realtime Database console, where you should see a new field called "LED_STATUS" that is set to "OFF". Try changing it to "ON" (case sensitive) and observe the results. You can now turn on this LED from anywhere in the world where you have internet access! </p>
 
-	<h3> Web Interface</h3>
-	<p> While we can now talk to our device remotely, directly meddling with the database isn't exactly a smooth UI. Let's make a simple web interface to do this. </p>
+<h3> Web Interface</h3>
+<p> While we can now talk to our device remotely, directly meddling with the database isn't exactly a smooth UI. Let's make a simple web interface to do this. </p>
 
-	<p> Save the code below as a new HTML file (e.g., in your Week 10 folder). On your Firebase console page, look under where it says "Get started by adding Firebase to your app" and click the Web icon (&lt;/&gt;). On the next page, make a name for your app (like LED Toggle), and then copy the auto-generated configuration code into the firebaseConfig variable below. </p>
+<p> Save the code below as a new HTML file (e.g., in your Week 10 folder). On your Firebase console page, look under where it says "Get started by adding Firebase to your app" and click the Web icon (&lt;/&gt;). On the next page, make a name for your app (like LED Toggle), and then copy the auto-generated configuration code into the firebaseConfig variable below. </p>
 		
-
-<pre><code class="html">
+```
 &lt;!doctype html&gt;
 &lt;html class="no-js" lang="en"&gt;
 &lt;head&gt;
@@ -147,9 +146,9 @@ void loop() {
 
 	&lt;!-- TODO: Add SDKs for Firebase products that you want to use
 	     https://firebase.google.com/docs/web/setup#available-libraries --&gt;
-	&lt;script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"&gt;&lt;/script&gt;
+	&lt;script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"&gt;&lt;/script>;
 
-	&lt;script>
+	<script>
 	// Your web app's Firebase configuration
 	var firebaseConfig = {
 		apiKey: "REPLACE_WITH_YOUR_OWN",
