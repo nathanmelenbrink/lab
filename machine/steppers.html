@@ -38,15 +38,6 @@
 
 <iframe width="916" height="550" src="https://www.youtube.com/embed/bkqoKWP4Oy4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<h3> Driving Stepper Motors</h3>
-
-<p> There are a number of ways to drive stepper motors. We can send motor coils HIGH and LOW pulses directly from our microcontroller, but that won't give us much current.  </p>
-
-<p>A chopper drive addresses the problem of obtaining high torque at high speed from a stepper motor by turning the output voltage to the motor on and off rapidly (aka “chopping”) to control the motor current. At each step of the motor, a very high voltage (typically eight times higher than the motor’s nominal voltage) is applied to the motor windings. This causes the current to rise rapidly, according to the relationship between current rise and inductance. It also allows higher current to be produced, according to Ohm’s law. (From <a href='https://www.linearmotiontips.com/what-is-a-chopper-drive-for-a-stepper-motor/'> Linear Motion Tips</a>).</p>
-
-<p>Voltage = Current x Resistance, so stepper motors with higher coil resistance need less current to operate at the same voltage.  </p>
-
-<img src='./chopper.jpg' alt='stepper motor'>
 
 <h3> Microstepping</h3>
 
@@ -55,10 +46,28 @@ Microstepping control divides each full step into smaller steps to help smooth o
 
 <p>  Microstepping is achieved by using pulse-width modulated (PWM) voltage to control current to the motor windings. The driver sends two voltage sine waves, 90 degrees out of phase, to the motor windings. While current increases in one winding, it decreases in the other winding. This gradual transfer of current results in smoother motion and more consistent torque production than full- or half-step control.</p>
 
-<h3>Stepper Drivers </h3>
+<h3> Driving Stepper Motors</h3>
 
-<p> We will be using either the <a href='https://www.pololu.com/product/1182'>A4988 Driver</a> or the <a href='https://www.pololu.com/product/2134'>DRV8834 Low-Voltage Stepper Driver</a> (for 5V, portable projects). Make sure to review the product description and datasheet. 
-</p>
+There are a range of options available for driving stepper motors. 
+
+- Similar to DC motors, if they are very tiny and require very little current, it is possible to [drive motors directly from the MCU](https://www.hackster.io/news/drive-a-tiny-stepper-directly-with-arduino-911571f8cd0e) without an additional driver. However, most of the practical applications we're interested in require more current than that. 
+- You can use both ports of the [L9110 motor driver](https://www.youtube.com/watch?v=aKxi7B4-d2U) to drive a stepper, but you'll be limited to 12 V. Alternatively, you can use the more powerful [L298N module](https://www.makerguides.com/l298n-stepper-motor-arduino-tutorial/) in a similar way. 
+But neither of these options allow you to limit current. 
+- Chopper drivers address the current limiting problem, in a much more common package. These are used in 3D printers and lots of other consumer applications. 
+
+<p>A chopper drive addresses the problem of obtaining high torque at high speed from a stepper motor by turning the output voltage to the motor on and off rapidly (aka “chopping”) to control the motor current. At each step of the motor, a very high voltage (typically eight times higher than the motor’s nominal voltage) is applied to the motor windings. This causes the current to rise rapidly, according to the relationship between current rise and inductance. It also allows higher current to be produced, according to Ohm’s law. (From <a href='https://www.linearmotiontips.com/what-is-a-chopper-drive-for-a-stepper-motor/'> Linear Motion Tips</a>).</p>
+
+<p>Voltage = Current x Resistance, so stepper motors with higher coil resistance need less current to operate at the same voltage.  </p>
+
+<img src='./chopper.jpg' alt='stepper motor'>
+
+We keep a number of chopper drivers around the lab: 
+
+- The most common, and cheapest, is the <a href='https://www.pololu.com/product/1182'>A4988 Driver</a>. It works with voltages from 8-35 V, so it won't work for driving a stepper with 5 V. 
+- In order to work with lower voltages, we can use the <a href='https://www.pololu.com/product/2134'>DRV8834 Low-Voltage Stepper Driver</a>. See our page on it <a href='../../lab/machine/drv8834.html' target="_self">here</a>. 
+- Another, cheaper, low-voltage chopper driver is the <a href='https://www.pololu.com/product/2876'>STSPIN220</a>. This works equally well, but pay attention to the wiring diagram. 
+
+Make sure to review the product description and datasheet for the device you plan to use. 
 
 <p> Note: These products can get hot enough to burn you long before the chip overheats. Take care when handling this product and other components connected to it. </p>
 
@@ -80,18 +89,11 @@ Note some of the Electrical Specifications:
 </p>
 
 <h3> Wiring</h3>
-<p> Wire the board as described on the product page. Include a 100uF capacitor between the VCC and GND in order to protect the driver from voltage spikes. In the photo, I've used a barrel jack connector to connect to a 9V wall outlet supply. Alternatively, you could run the motor at a lower voltage, like the 5V supply from the USB pin on the Huzzah. 
-
+<p> Wire the board as described on the product page. Include a 100uF capacitor between the VCC and GND in order to protect the driver from voltage spikes. 
 </p>
 
-<img src='https://a.pololu-files.com/picture/0J4344.600.png?519b6c6d74c2f655dd6637eccd4590c0' alt='wiring diagram'>
-<br> <br>
-<img src='./step1.jpg' alt='wiring photo'>
-<br> <br>
-<img src='./step2.jpg' alt='wiring photo'>
-
 <h3> Programming </h3>
-<p> At the most basic level, we can control the chopper driver simply by sending pulses to the STEP pin of the driver. 
+<p> At the most basic level, we can control the chopper driver simply by sending pulses to the STEP pin of the driver. Note: if you are using a driver with 4 wires connected to your MCU, you should use a different control program. 
 </p>
 
 <pre><code class="language-arduino">
