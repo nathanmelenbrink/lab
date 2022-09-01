@@ -127,6 +127,10 @@ div div h3 {
 Header & Nav
 ==================================================================================================*/
 
+.navbar-fixed-top {
+  margin-bottom: 0px;
+}
+
 header {
   padding-top: 3em;
   padding-bottom: 2em;
@@ -736,7 +740,8 @@ p {
 /* Default Link Styles */
 /* line 152, ../bower_components/foundation/scss/foundation/components/_type.scss */
 a {
-  color: #38BFC3;
+  color: #e33434;
+  /*color: #38BFC3;*/
   /*color: #ed225d;*/
   /*color: #4286f4;*/
   text-decoration: none;
@@ -774,7 +779,7 @@ h1, h2, h3 {
   font-style: normal;
   color: #333d41;
   text-rendering: optimizeLegibility;
-  margin-top: 2rem; /*0.2*/
+  margin-top: 0.2rem; /*0.2*/
   margin-bottom: 0rem;
   line-height: 1.4;
 }
