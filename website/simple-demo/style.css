@@ -3,10 +3,9 @@ body {
     line-height: 1.8;
     color: black;
     margin: 0px !important;
+    padding-top: 0;
 }
   
-
-
 p {font-size: 16px;}
 .margin {margin-bottom: 15px;}
 
@@ -21,7 +20,7 @@ p {font-size: 16px;}
 
 .topnav {
   overflow: hidden;
-  background-color: white;
+  background-color: #eee;
 }
 
 .topnav a {
@@ -30,15 +29,10 @@ p {font-size: 16px;}
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .topnav a:hover {
   background-color: #ddd;
   color: black;
-}
-
-.topnav a.active {
-  background-color: #04AA6D;
-  color: white;
 }
