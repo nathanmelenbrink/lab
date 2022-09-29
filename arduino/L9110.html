@@ -190,11 +190,11 @@ void loop() {
   delay(4000);      // delay for 4 seconds
 }
 
-/*
- * This is a custom function to drive Motor A
- * inputs: direction (HIGH/LOW), speed (0-255)
- * outputs: motor control
- */
+
+// This is a custom function to drive Motor A
+// inputs: direction (HIGH/LOW), speed (0-255)
+// outputs: motor control
+
 void motorA(byte d, int s) {
   if(d == 1){
     analogWrite(A1A, 255-s); 
