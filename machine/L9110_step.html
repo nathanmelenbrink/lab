@@ -15,6 +15,12 @@
 
 <p> Note: These products can get hot enough to burn you long before the chip overheats. Take care when handling this product and other components connected to it. </p>
 
+This device is a "double h-bridge" module. We only need one h-bridge to drive a DC motor in two directions. But for a stepper motor, we need to reverse polarity in 2 sets of poles, so we'll need two h-bridges. Luckily, our old friend L9110 provides us with two. 
+
+<img src='./h-bridge.png' alt='wiring photo'>
+
+A great [video from Science Fun](https://www.youtube.com/watch?v=aKxi7B4-d2U) describes this method in great detail, including a way to microstep using software. Alternatively, you can use the more powerful [L298N module](https://www.makerguides.com/l298n-stepper-motor-arduino-tutorial/) in a similar way. 
+
 <h3>Stepper Motor </h3>
 
 <p> We have a number of different bipolar stepper motors in the lab.
@@ -43,65 +49,70 @@ Above, the Arduino, with motor leads on pins 8,9,10, and 11 (green, yellow, oran
 The same six wires plug into the module as shown in the picture below: Red and black in the middle and the four leads from the digital out pins go to the two sides.
 
 On the output side of the module the green/black and blue/red wires from the stepper are plugged into the two outputs, using the solid-core short yellow wires.
-
+ 
 <img src='./L9110_conn.jpg' alt='wiring photo'>
 
 <h3> Programming </h3>
-<p> At the most basic level, we can control the chopper driver simply by sending pulses to the STEP pin of the driver. 
-</p>
 
 <pre><code class="language-arduino">
-const int stepPin = 13;
-const int dirPin = 12;
+
+int Aplus = 11;
+int Aminus = 10;
+int Bplus = 9;
+int Bminus = 8;
+
+uint16_t step_count = 0;
 
 void setup() {
-  // put your setup code here, to run once:
-  pinMode(stepPin, OUTPUT);
-  pinMode(dirPin, OUTPUT);
+  Serial.begin(0);
+  pinMode(Aplus, OUTPUT);
+  pinMode(Aminus, OUTPUT);
+  pinMode(Bplus, OUTPUT);
+  pinMode(Bminus, OUTPUT);
+}
 
-  digitalWrite(dirPin, LOW);
+void pulse_0(){
+  digitalWrite(Aplus,0);
+  digitalWrite(Bplus,0);
+}
+
+void pulse_1(){
+  digitalWrite(Aminus,0);
+  digitalWrite(Bplus,0);
+}
+
+void pulse_2(){
+  digitalWrite(Aminus,0);
+  digitalWrite(Bminus,0);
+}
+
+void pulse_3(){
+  digitalWrite(Aplus,0);
+  digitalWrite(Bminus,0);
+}
+
+void all_off() {
+  digitalWrite(Aplus,1);
+  digitalWrite(Aminus,1);
+  digitalWrite(Bplus,1);
+  digitalWrite(Bminus,1);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  digitalWrite(stepPin, LOW);
-  delay(50);
-  digitalWrite(stepPin, HIGH);
-  delay(50);
-}
-</code></pre>
+  
+  all_off();                          //turn off coils before sending new step.
 
-<p> Switching the DIR pin from LOW to HIGH will reverse the direction of the motor. </p>
+  step_count++;
+  step_count = step_count%4;
+  
+  if (step_count == 0) pulse_0();
+  if (step_count == 1) pulse_1();
+  if (step_count == 2) pulse_2();
+  if (step_count == 3) pulse_3();  
+  delay(10);
+  
+ }
 
-<p> We can choose a library to help simplify control of stepper motors. The <a href='https://www.arduino.cc/en/reference/stepper'>Arduino Stepper Motor Library</a> supports differnt driver configurations. The <a href='https://www.airspayce.com/mikem/arduino/AccelStepper/index.html'>AccelStepper</a> library extends this functionality with acceleration/deceleration and non-blocking (no delay()) functions.   </p>
-
-
-<pre><code class="language-arduino">
-#include &lt;AccelStepper.h&gt;
-
-const int stepPin = 13;  // blue
-const int dirPin = 12;   // orange
-
-// Define a stepper and the pins it will use
-AccelStepper stepper(1, stepPin, dirPin); // initialise accelstepper for a two wire board
-
-void setup()
-{
-}
-
-void loop()
-{
-  if (stepper.distanceToGo() == 0)
-  {
-    // Random change to speed, position and acceleration
-    // Make sure we dont get 0 speed or accelerations
-    delay(1000);
-    stepper.moveTo(rand() % 1000);
-    stepper.setMaxSpeed((rand() % 1000) + 1);
-    stepper.setAcceleration((rand() % 1000) + 1);
-  }
-  stepper.run();
-}
 </code></pre>
 
 </xmp>

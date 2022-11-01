@@ -51,7 +51,8 @@ Microstepping control divides each full step into smaller steps to help smooth o
 There are a range of options available for driving stepper motors. 
 
 - Similar to DC motors, if they are very tiny and require very little current, it is possible to [drive motors directly from the MCU](https://www.hackster.io/news/drive-a-tiny-stepper-directly-with-arduino-911571f8cd0e) without an additional driver. However, most of the practical applications we're interested in require more current than that. 
-- You can use both ports of the [L9110 motor driver](https://www.youtube.com/watch?v=aKxi7B4-d2U) to drive a stepper, but you'll be limited to 12 V. Alternatively, you can use the more powerful [L298N module](https://www.makerguides.com/l298n-stepper-motor-arduino-tutorial/) in a similar way. 
+- You can use both ports of the <a href='../../lab/machine/L9110
+_step.html' target="_self">L9110</a> to drive a stepper, but you'll be limited to 12 V. Alternatively, you can use the more powerful [L298N module](https://www.makerguides.com/l298n-stepper-motor-arduino-tutorial/) in a similar way. 
 But neither of these options allow you to limit current. 
 - Chopper drivers address the current limiting problem, in a much more common package. These are used in 3D printers and lots of other consumer applications. 
 
