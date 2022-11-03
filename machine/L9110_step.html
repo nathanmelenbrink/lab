@@ -19,7 +19,7 @@ This device is a "double h-bridge" module. We only need one h-bridge to drive a 
 
 <img src='./h-bridge.png' alt='wiring photo'>
 
-A great [video from Science Fun](https://www.youtube.com/watch?v=aKxi7B4-d2U) describes this method in great detail, including a way to microstep using software. Alternatively, you can use the more powerful [L298N module](https://www.makerguides.com/l298n-stepper-motor-arduino-tutorial/) in a similar way. 
+A [video from Science Fun](https://www.youtube.com/watch?v=aKxi7B4-d2U) describes this method in detail, including a way to microstep using software. Alternatively, you can use the more powerful [L298N module](https://www.makerguides.com/l298n-stepper-motor-arduino-tutorial/) in a similar way. 
 
 <h3>Stepper Motor </h3>
 
@@ -54,8 +54,9 @@ On the output side of the module the green/black and blue/red wires from the ste
 
 <h3> Programming </h3>
 
-<pre><code class="language-arduino">
+Here is some example code that energizes coil pairs in the sequence needed to take one step. 
 
+<pre><code class="language-arduino">
 int Aplus = 11;
 int Aminus = 10;
 int Bplus = 9;
@@ -64,7 +65,6 @@ int Bminus = 8;
 uint16_t step_count = 0;
 
 void setup() {
-  Serial.begin(0);
   pinMode(Aplus, OUTPUT);
   pinMode(Aminus, OUTPUT);
   pinMode(Bplus, OUTPUT);
@@ -72,47 +72,116 @@ void setup() {
 }
 
 void pulse_0(){
-  digitalWrite(Aplus,0);
-  digitalWrite(Bplus,0);
+  digitalWrite(Aplus,1);
+  digitalWrite(Bplus,1);
 }
 
 void pulse_1(){
-  digitalWrite(Aminus,0);
-  digitalWrite(Bplus,0);
+  digitalWrite(Aminus,1);
+  digitalWrite(Bplus,1);
 }
 
 void pulse_2(){
-  digitalWrite(Aminus,0);
-  digitalWrite(Bminus,0);
-}
-
-void pulse_3(){
-  digitalWrite(Aplus,0);
-  digitalWrite(Bminus,0);
-}
-
-void all_off() {
-  digitalWrite(Aplus,1);
   digitalWrite(Aminus,1);
-  digitalWrite(Bplus,1);
   digitalWrite(Bminus,1);
 }
 
+void pulse_3(){
+  digitalWrite(Aplus,1);
+  digitalWrite(Bminus,1);
+}
+
+void all_off() {
+  digitalWrite(Aplus,0);
+  digitalWrite(Aminus,0);
+  digitalWrite(Bplus,0);
+  digitalWrite(Bminus,0);
+}
+
 void loop() {
-  
-  all_off();                          //turn off coils before sending new step.
+
+  all_off(); // turn off coils before sending new step.
 
   step_count++;
   step_count = step_count%4;
-  
+
   if (step_count == 0) pulse_0();
   if (step_count == 1) pulse_1();
   if (step_count == 2) pulse_2();
   if (step_count == 3) pulse_3();  
-  delay(10);
+  
+  delay(10);  // too short and motor will skip steps
   
  }
 
+</code></pre>
+
+If we use `analogWrite()` instead of `digitalWrite()`, we can partially energize coils, allowing us to microstep. A great [video from Science Fun](https://www.youtube.com/watch?v=aKxi7B4-d2U) describes this method in more detail (see also code example below). 
+
+<pre><code class="language-arduino">
+int A1A = 11;
+int A1B = 10;
+int B1A = 9;
+int B1B = 8;
+
+int Pa;
+int Pb;
+
+uint16_t stepnumber = 0; 
+
+void setup() {
+  pinMode(A1A, OUTPUT);
+  pinMode(A1B, OUTPUT);
+  pinMode(B1A, OUTPUT);
+  pinMode(B1B, OUTPUT);
+}
+
+void take_step(int stepnumber, int MAXpower, int wait) {
+  Pa = (sin(stepnumber * 0.098174) * MAXpower);
+  Pb = (cos(stepnumber * 0.098174) * MAXpower);
+
+  if (Pa>0) {
+    analogWrite(A1A,Pa);
+    analogWrite(A1B,0);
+  } else{
+    analogWrite(A1A,0);
+    analogWrite(A1B,abs(Pa));
+  }
+
+  if (Pb>0) {
+    analogWrite(B1A,Pb);
+    analogWrite(B1B,0);
+  } else{
+    analogWrite(B1A,0);
+    analogWrite(B1B,abs(Pb));
+  }
+
+  delayMicroseconds(wait);
+}
+
+void hold(int wait){     // apply max holding torque 
+  analogWrite(A1A, 255);
+  analogWrite(A1B, 0);
+  analogWrite(B1A, 255);
+  analogWrite(B1B, 0);
+  delay(wait);
+}
+
+void loop() {
+  for (int i = 1; i < 3200; i++){
+    stepnumber++;
+    take_step(stepnumber, 255, 250);
+  }
+  
+  hold(3000);
+  
+  for (int i = 1600; i > 0; i--){
+    stepnumber--;
+    take_step(stepnumber, 255, 250);
+  }
+  
+  hold(1000);
+}
 </code></pre>
 
 </xmp>
