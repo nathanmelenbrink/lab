@@ -4,64 +4,69 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
-	<script src="https://toolness.github.io/p5.js-widget/p5-widget.js"></script>
-	<script src="../js/p5.min.js"></script>	
 </head>
-
+ 
 <div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
 <div id="header"></div>
 
 <xmp style="display:none;">
-		
-<h3>p5 and WebUSB </h3>
 
-<p> Demo <a href='./p5-webusb/index.html'>here</a>.</p>
+### WebSerial 
 
-<p> This tutorial combines <a href='https://learn.adafruit.com/using-webusb-with-arduino-and-tinyusb?view=all'>Adafruit's documentation</a> on WebUSB with a p5 demo for plotting points in 3D space. This WebUSB method is particularly useful because it allows your browser to directly ask permission to access your microcontroller over USB, meaning you don't need to go through the step of establishing a connection bridge yourself. </p>
+Demo <a href='./p5-webserial/index.html'>here</a>.
 
 <img src='./p5web.gif' alt='p5 demo'>
 
-<p> For this tutorial, you'll need the following: 
+For this tutorial, you'll need the following: 
 	<ul> 
-		<li>Metro M0 </li>
+		<li>Microcontroller </li>
 		<li>breadboard</li>
 		<li>hookup wires </li>
 		<li>potentiometer or other analog input  </li>
 	</ul>
-</p> 
 
-<p>Similar to the Adafruit tutorial, we'll want to install the Adafruit_TinyUSB library and make sure to go to Tools -> USB Stack and select TinyUSB. Copy and upload the following code. </p>
+The Arduino code is pretty straightforward. We'll start with the AnalogReadSerial example, but modify it slightly so that we can plug a potentiometer into A0, A2, and A4. 
 
 <pre><code class="language-arduino">
-#include "Adafruit_TinyUSB.h"
-
-// USB WebUSB object
-Adafruit_USBD_WebUSB usb_web;
-
-// Landing Page: scheme (0: http, 1: https), url
-WEBUSB_URL_DEF(landingPage, 1 /*https*/, "https://nathanmelenbrink.github.io/ps70/13_programming/p5-webusb/index.html");
-
-void setup(){
-usb_web.setLandingPage(&landingPage);
-usb_web.begin();
-
-Serial.begin(115200);
-
-// wait until device mounted
-while ( !USBDevice.mounted() ) delay(1);
-
-Serial.println("p5 WebUSB Serial example");
+void setup() {
+  // initialize serial communication at 9600 bits per second:
+  Serial.begin(9600);
+  pinMode(A0, OUTPUT);
+  pinMode(A4, OUTPUT); 
+  digitalWrite(A0, HIGH);
+  digitalWrite(A4, LOW);
 }
 
-void loop(){
-int reading = analogRead(A2);
-usb_web.println(reading);
-
-delay(100);
+// the loop routine runs over and over again forever:
+void loop() {
+  // read the input on analog pin 0:
+  int sensorValue = analogRead(A2);
+  // print out the value you read:
+  Serial.println(sensorValue);
+  delay(1);        // delay in between reads for stability
 }
 </code></pre>
 
-<p> The javascript side is a little more complicated. We'll want to make a folder that contains an index.html file, a serial.js file, and a sketch.js file. Use the browser Inspect tool to see the contents of the demo file (click the "Sources" panel). </p>
+The javascript side is a little more complicated. We'll want to make a folder that contains an `index.html` file and a `serial.js` file. The `index.html` file should look like this: 
+
+<pre><code class="html">
+&lt;!doctype html&gt;
+&lt;html class="no-js" lang="en"&gt;
+&lt;head&gt;
+	&lt;meta charset="UTF-8"&gt;
+	&lt;script language="javascript" type="text/javascript" src="serial.js"&gt; &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div class="connect-container"&gt;
+		&lt;button id="connect"&gt;Connect&lt;/button&gt;
+		&lt;span id="status">&lt;/span&gt;
+	&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+
+, and a sketch.js file. Use the browser Inspect tool to see the contents of the demo file (click the "Sources" panel). 
 
 <img src='./sources.png' alt='source'>
 
@@ -91,6 +96,18 @@ delay(100);
 </div >
 </div>
 
+https://github.com/svendahlstrand/web-serial-api
+
+Make sure you have the following to play along at home:
+
+    Arduino compatible device and USB cable
+    Arduino IDE
+    Beta version of Chrome or Edge
+    Experimental Web Platform features enabled
+
+After installing your browser of choice, launch it, and enable the Experimental Web Platform features flag.
+
+
 
 </xmp>
 
@@ -99,3 +116,5 @@ delay(100);
 <script type="text/javascript" src="../js/iframeResizer.contentWindow.min.js"></script>
 <link href="../css/style.css" rel="stylesheet">
 </html>
+
+
