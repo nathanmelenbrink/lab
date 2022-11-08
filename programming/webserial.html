@@ -58,41 +58,20 @@ The javascript side is a little more complicated. We'll want to make a folder th
 &lt;/head&gt;
 &lt;body&gt;
 	&lt;div class="connect-container"&gt;
-		&lt;button id="connect"&gt;Connect&lt;/button&gt;
-		&lt;span id="status">&lt;/span&gt;
+		&lt;button id="connect-button"&gt;Connect&lt;/button&gt;
+		&lt;span id="current-value">&lt;/span&gt;
 	&lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
 
 
-, and a sketch.js file. Use the browser Inspect tool to see the contents of the demo file (click the "Sources" panel). 
+We can also create a `sketch.js` file, which we'll use later. Use the browser Inspect tool to see the contents of the demo file (click the "Sources" panel). 
 
 <img src='./sources.png' alt='source'>
 
-<p> The index.html file should look something like this: </p>
 
-<pre><code class="html">
-&lt;!doctype html&gt;
-&lt;html class="no-js" lang="en"&gt;
-&lt;head&gt;
-&lt;meta charset="UTF-8"&gt;
-&lt;script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/lib/p5.js"&gt; &lt;/script&gt;
-&lt;script language="javascript" type="text/javascript" src="serial.js"&gt; &lt;/script&gt;
-&lt;script language="javascript" type="text/javascript" src="sketch.js"&gt; &lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;div class="connect-container"&gt;
-	&lt;button id="connect"&gt;Connect&lt;/button&gt;
-	&lt;span id="status">&lt;/span&gt;
-  	&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-
-<p> We'll need to include a file to help connect to the Serial port, called serial.js. It should look like <a href='https://nathanmelenbrink.github.io/ps70/13_programming/p5-webusb/serial.js'>this</a>: </p>
-
-<p> Finally, you'll need a sketch.js file, which can look something like <a href='https://nathanmelenbrink.github.io/ps70/13_programming/p5-webusb/sketch.js'>this</a>. The first half of the code consists of p5 drawing functions, while the second half of the code handles the Serial port listener (you only need to pay attention to lines 103-116, where points are removed and added to the <code>path</code> array). You'll want to find a way to replace <code>mouseX</code> and <code>mouseY</code> with your sensor data as well. </p>
+<!-- <p> Finally, you'll need a sketch.js file, which can look something like <a href='https://nathanmelenbrink.github.io/ps70/13_programming/p5-webusb/sketch.js'>this</a>. The first half of the code consists of p5 drawing functions, while the second half of the code handles the Serial port listener (you only need to pay attention to lines 103-116, where points are removed and added to the <code>path</code> array). You'll want to find a way to replace <code>mouseX</code> and <code>mouseY</code> with your sensor data as well. </p>
 </div >
 </div>
 
@@ -105,7 +84,7 @@ Make sure you have the following to play along at home:
     Beta version of Chrome or Edge
     Experimental Web Platform features enabled
 
-After installing your browser of choice, launch it, and enable the Experimental Web Platform features flag.
+After installing your browser of choice, launch it, and enable the Experimental Web Platform features flag. -->
 
 
 

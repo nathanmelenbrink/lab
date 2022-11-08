@@ -1,18 +1,15 @@
 
 const connectButton = document.getElementById ('connect-button');
-
 let val = document.getElementById ('current-value');
 let port;
 let lineBuffer = '';
 let latestValue = 0;
 
 function update(){
-val.innerText = latestValue;
-console.log(latestValue);
+  val.innerText = latestValue;
+  console.log(latestValue);
 }
 window.setInterval(update, 100);
-
-
 
 if ('serial' in navigator) {
   connectButton.addEventListener('click', function () {
