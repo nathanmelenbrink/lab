@@ -48,7 +48,7 @@ function setup() {
 function draw() {
 	background(247, 134, 131);
 
-	let val = map(latestValue, 0, 1024, 0, width); 
+	let val = map(latestValue, 0, 1024, width, 0); 
 	paddle.moveTowards(val, height - 50, 1);
 
 	if (mouse.presses()) {
