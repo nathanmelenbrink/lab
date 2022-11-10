@@ -7,7 +7,7 @@ let latestValue = 0;
 
 function update(){
   val.innerText = latestValue;
-  console.log(latestValue);
+  // console.log(latestValue);
 }
 window.setInterval(update, 100);
 

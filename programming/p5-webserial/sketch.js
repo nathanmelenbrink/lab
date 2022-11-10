@@ -13,6 +13,15 @@ function setup() {
 }
 
 function draw() {
+
+	// Shift all elements 1 place to the left
+	for (let i=1; i < numPoints; i++ ) {
+		path[i-1] = path[i];
+	}
+
+	// Add new point to the end of the array
+	path[numPoints-1] = new p5.Vector(mouseX, mouseY, latestValue);
+
 	background(0);
 	orbitControl();
 
@@ -77,4 +86,5 @@ function drawPath() {
 	// path.forEach(p=>{
 	// 	point(p.x, p.y, p.z);
 	// })
+
 }
