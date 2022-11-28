@@ -25,16 +25,16 @@ Be careful with the motor pinout. Here's what I see all over the internet, but i
 
 The [motor I have](https://www.amazon.com/gp/product/B07J516Z1L) has a different pinout: 
 
-black: motor power "-"
-red: motor power "+"
-brown: encoder power "+"
-green: encoder power "-"
-blue: encoder output A phase
-white: encoder output B phase
+- black: motor power "-"
+- red: motor power "+"
+- brown: encoder power "+"
+- green: encoder power "-"
+- blue: encoder output A phase
+- white: encoder output B phase
 
 ![motor](motor.png)
 
-I connected the black and red wires to one port of the L9110 motor driver, which I connected to pins 14 and 27 of the ESP32. I drive the L9110 motor in "Analog mode" as described in the [L9110 tutorial](../../arduino/l9110.html). 
+I connected the black and red wires to one port of the L9110 motor driver, which I connected to pins 14 and 27 of the ESP32. I drive the L9110 motor in "Analog mode" as described in the [L9110 tutorial](../../arduino/L9110.html). 
 
 I connected the blue and white wires from the encoder to pins 25 and 26 on the ESP32. Encoder pins should be specified as interrupt pins (but the Encoder library already does that for us). Finally, we also connect the encoder to 5 V (brown) and GND (green). 
 
@@ -120,6 +120,12 @@ void moveMotor_A(long target, int spd) {
 2800 seems to be the number of "steps" to complete a full revolution for an N20 motor with this particular gear ratio (the Amazon page claims it's 70 RPM). 
 
 I picked 10 as a threshold for reaching a target. I haven't tested the performance limits, like how small of a delay can be used. 
+
+Here's a demo of the above code, rotating ~360 degrees back and forth. 
+
+<video width="320" height="240" controls>
+  <source src="demo1.mp4" type="video/mp4">
+</video> 
 
 </xmp>
 
