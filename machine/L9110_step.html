@@ -21,7 +21,7 @@ This device is a "double h-bridge" module. We only need one h-bridge to drive a 
 
 A [video from Science Fun](https://www.youtube.com/watch?v=aKxi7B4-d2U) describes this method in detail, including a way to microstep using software. Alternatively, you can use the more powerful [L298N module](https://www.makerguides.com/l298n-stepper-motor-arduino-tutorial/) in a similar way. 
 
-<h3>Stepper Motor </h3>
+<!-- <h3>Stepper Motor </h3>
 
 <p> We have a number of different bipolar stepper motors in the lab.
 Find motors around the lab and look up their data sheets, especially rated current/phase, voltage, and phase resistance (e.g. US-17HS441, 17HS19-2004S1, etc.). Let's use the following motor for this example: 
@@ -36,7 +36,7 @@ Note some of the Electrical Specifications:
 
 <h3>Current Limiting </h3>
 <p> Our motors have a maximum current rating of 0.4A with a 30Ω coil resistance, which would indicate a maximum motor supply of 12V. Using such a motor with a higher voltage would allow higher step rates, but the current must actively be limited to under 0.4A. (Anyway, we won't be using more than 9V). 
-</p>
+</p> -->
 
 <h3> Wiring</h3>
 
@@ -54,7 +54,33 @@ On the output side of the module the green/black and blue/red wires from the ste
 
 <h3> Programming </h3>
 
-Here is some example code that energizes coil pairs in the sequence needed to take one step. 
+There are a number of ways to program the Arduino to control the L9110 driver. My preference is the AccelStepper library, which implements accelerations for smooth motor movement. It requires you to download this library within the Arduino IDE. Here's some example code that should work with our wiring: 
+
+<pre><code class="language-arduino">
+#include &lt;AccelStepper.h&gt;
+
+AccelStepper stepper1(AccelStepper::FULL4WIRE, 8, 9, 10, 11);
+
+void setup() {
+  stepper1.setMaxSpeed(50);
+}
+
+void loop() {
+  
+  position1 = 50;
+  stepper1.moveTo(position1);
+  stepper1.runSpeedToPosition(); 
+  delay(1000);
+  
+  // Move to a different coordinate
+  position1 = -100;
+  stepper1.moveTo(position1);
+  stepper1.runSpeedToPosition(); 
+  delay(1000);
+}
+</code></pre>
+
+<!-- Here is some example code that energizes coil pairs in the sequence needed to take one step. 
 
 <pre><code class="language-arduino">
 int Aplus = 11;
@@ -182,7 +208,7 @@ void loop() {
   
   hold(1000);
 }
-</code></pre>
+</code></pre> -->
 
 </xmp>
 
