@@ -11,7 +11,7 @@
 
 <xmp style="display:none;">
  
-###Capacitance using the Arduino Capacitive Sensing Library.
+###Capacitance using the Arduino Capacitive Sensing Library
 
 This capacitance method, based on Arduino Capacitive Sensing library, can be used with most boards that support the Arduino IDE.
 
@@ -36,34 +36,35 @@ The resistor R is usually 1 to 10 Mega-ohm.  The larger resistance makes the sen
 
 As shown above, the capacitive sensor can be used to measure position, force, tilt, airspeed, and more.  In some cases, the other configuration for capacitance sensing, [the transmit-receive method,](./txrx.html) gives better results.  We're not sure why or in what cases one works better than another. Try both and document your results!
 
-<b> If Cap library does not work. </b>
-
 Bare bones code for cases when you want to write your own function, or Arduino library does not work:
 
 ```
 
 void setup() {
     Serial.begin(9600);
-    pinMode(5, OUTPUT);
-    pinMode(8, INPUT); 
+    pinMode(4, OUTPUT);
+    pinMode(2, INPUT); 
 }
 
 void loop() {
-    time=micros();
+    long start = micros();
 
     for(int count=0; count<1000; count++){
-        digitalWrite(5, HIGH);
-        while(!digitalRead(8)){
+        digitalWrite(4, HIGH);
+        while(!digitalRead(2)){
             }
 
-        digitalWrite(5, LOW);
+        digitalWrite(4, LOW);
 
-        while((digitalRead(8))){
+        while(digitalRead(2)){
             }   
     }
 
-    Serial.println(micros() - time);
+    Serial.println(micros() - start);
+
+    delay(10);
 }
+
 
 ```
 
