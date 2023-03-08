@@ -1,0 +1,71 @@
+<head> 
+  <base target="_child">  
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+ 
+<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
+<div id="header"></div>
+
+<xmp style="display:none;">
+
+
+### OLED Displays 
+
+OLED displays like the [SSD1306](./SSD1306.pdf) are monochrome devices that are much cheaper than TFT displays. 
+
+For controlling the graphic outputs, you'll find it useful to rely on existing libraries. A good one to start with is Adafruit's [SSD1306 Library](https://github.com/adafruit/Adafruit_SSD1306). They recommend purchasing Adafruit's OLED displays, which have both SPI and I2C, but cost 5x as much as OLEDs on Amazon that feature only I2C. 
+
+### Hardware I2C
+
+It's most convenient to use hardware I2C if possible. For Arduino Uno, that's pins D18 (SDA) and D19 (SCL). For ESP32, that's pins 21 (SDA) and 22 (SCL). Those pins can be directly connected to the corresponding pins on the OLED. However, some ESP32 Dev Boards are missing pin 22, so those will require you to set up software I2C instead.
+
+Try the Adafruit [demo code](https://github.com/adafruit/Adafruit_SSD1306/blob/master/examples/ssd1306_128x64_i2c/ssd1306_128x64_i2c.ino). You may need to change `#define SCREEN_ADDRESS 0x3D` to `#define SCREEN_ADDRESS 0x3C`, even though the screen we're using is 128x64 pixels.  
+
+### Software I2C
+
+To implement software I2C, you can also start with the Adafruit [demo code](https://github.com/adafruit/Adafruit_SSD1306/blob/master/examples/ssd1306_128x64_i2c/ssd1306_128x64_i2c.ino). 
+
+You'll need to add pin definitions and declare the TwoWire object near the top of the code: 
+
+```
+#define I2C_SDA 18
+#define I2C_SCL 19
+
+TwoWire I2C_screen = TwoWire(0);
+```
+
+Change `#define SCREEN_ADDRESS 0x3D` to `#define SCREEN_ADDRESS 0x3C`. 
+
+In the following line of code, change the `&Wire` to the new &TwoWire object, which we called `I2C_screen`:
+
+```
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &I2C_screen, OLED_RESET);
+```
+
+Finally, we need to initialize I2C at the beginning of  `setup()`:
+
+```
+Serial.begin(115200);
+I2C_screen.begin(I2C_SDA, I2C_SCL, 100000);
+```
+
+<!-- <pre><code class="language-arduino">
+#include &lt;Adafruit_NeoPixel.h&gt;
+
+
+</code></pre> -->
+
+
+_Thanks to Kassia Love_
+
+
+</xmp>
+
+
+<script src="../../js/strapdown.js"></script>
+<script type="text/javascript" src="../../js/iframeResizer.contentWindow.min.js"></script>
+<link href="../../css/style.css" rel="stylesheet">
+</html>
