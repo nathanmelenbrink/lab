@@ -1,0 +1,36 @@
+// setting PWM properties
+const int freq = 5000;
+const int pwmChannel = 0;
+const int resolution = 8;
+
+const int transistorPin = 42;    // connected to the base of the transistor
+
+void setup() {
+  // set  the transistor pin as output:
+  pinMode(transistorPin, OUTPUT);
+  
+  // configure LED PWM functionalities
+  ledcSetup(pwmChannel, freq, resolution);
+
+  // attach the channel to the GPIO to be controlled
+  ledcAttachPin(transistorPin, pwmChannel);
+
+  // hack to connect potentiometer directly into 3 pins
+  pinMode(14, OUTPUT);
+  pinMode(12, INPUT);
+  pinMode(10, OUTPUT);
+  digitalWrite(14, HIGH);
+  digitalWrite(10, LOW); 
+
+  Serial.begin(115200);
+}
+
+void loop() {
+  // read the potentiometer:
+  int sensorValue = analogRead(12);
+  // map the sensor value to a range from 0 - 255:
+  int outputValue = map(sensorValue, 0, 8191, 0, 255);
+  Serial.println(outputValue); 
+  // use that to control the transistor:
+  ledcWrite(pwmChannel, outputValue);
+}
