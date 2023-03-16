@@ -16,7 +16,7 @@
 
 _Note: the terms here can be confusing. <a href='https://en.wikipedia.org/wiki/ESP32'>ESP32</a> refers to a series of low-cost, low-power system-on-a-chip microcontrollers with integrated Wi-Fi and Bluetooth. Its precursor was the ESP8266 -- many tutorials will be compatible with both._ 
 
-There are many brands and models of microcontrollers built around the ESP32 chip. A few of the ones we use most include the generic ESP32 Dev Board, the ESP32-CAM, and the Adafruit Huzzah. <a href='https://www.adafruit.com/feather'>Feather</a> is a line of development boards from Adafruit. The <a href='https://www.adafruit.com/product/3405'>Huzzah32</a> is the specific Feather board that is built around the ESP32. 
+There are many brands and models of microcontrollers built around the ESP32 chip. A few of the ones we use most include the generic ESP32 Dev Board, the new ESP32-S2 Dev Board, the new ESP32-C3 XIAO, the ESP32-CAM, and the Adafruit Huzzah. 
 
 In order to use any ESP32 device, we'll first need to [configure Arduino IDE](https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/
 ). 
@@ -30,8 +30,18 @@ In order to use any ESP32 device, we'll first need to [configure Arduino IDE](ht
 
 A number of manufacturers make a product called something like "ESP32 Dev Kit" or "dev board". The RandomNerd Tutorials use a model called DOIT ESP32 DEVKIT V1. I tend to just select the first option, ESP32 Dev Module, regardless of the brand (many brands are not listed). I don't think there is much difference between Dev modules. 
 
+### ESP32-S2 Dev Board
+
+The ESP32-S2 is a newer model (2019). Compared to ESP32 (2016), it has less ROM, less RAM, more GPIO pins, and no Bluetooth. It is easier to work with, and has fewer restrictions around the ADCs, etc. You can see more detailed comparisons [here](https://socialcompare.com/en/comparison/esp8266-vs-esp32-vs-esp32-s2). 
+
+### ESP32-C3 XIAO
+
+The ESP32-C3 XIAO is an even newer model (2020). Compared to ESP32, it has comparable ROM and RAM, fewer GPIO pins, and BLE in addition to Bluetooth Classic. Its most important advantage is its small size. 
+
 
 ### Huzzah (Adafruit Feather)
+
+<a href='https://www.adafruit.com/feather'>Feather</a> is a line of development boards from Adafruit. The <a href='https://www.adafruit.com/product/3405'>Huzzah32</a> is the specific Feather board that is built around the ESP32. 
 
 Compared to the Dev Board, the Feather is about 2x the cost, and features integrated power management. 
 
@@ -39,13 +49,13 @@ Compared to the Dev Board, the Feather is about 2x the cost, and features integr
 
 
 
-## Setting up ESP32-CAM
+## ESP32-CAM
 
 RandomNerd has a great guide for [setting up ESP32-CAM](https://randomnerdtutorials.com/esp32-cam-video-streaming-face-recognition-arduino-ide/). It's worthwhile to follow this example all the way through. 
 
 The ESP32-CAM does not have its own USB interface. You must instead use a Serial-to-USB adapter to program it. 
 
-Note that ESP32s do not like WiFi features like 5GHz, two-factor authentication, etc. It's best to use networks with simple SSID and password credentials. In 102, we have a network called "MAKERSPACE" and password "12345678". 
+Note that ESP32s do not like WiFi features like 5GHz, two-factor authentication, etc. It's best to use networks with simple SSID and password credentials. In SC 102, we have a network called "MAKERSPACE" and password "12345678". 
 
 
 ## Disclaimers 
@@ -54,7 +64,7 @@ There are many idiosyncracies for the ESP32 boards. It's helpful to bookmark the
 
 - All devices must be connected to the same WiFi network 
 - You cannot use `analogWrite()` for PWM. You must use `ledcWrite()` instead. See [explanation](https://randomnerdtutorials.com/esp32-pwm-arduino-ide/). 
-- ADC2 pins cannot be used while using the WiFi library (most ESP32 projects). ADC 1 pins are okay - that's 32-39, which, for the Adafruit Huzzah, includes 32=A7, 33=A9, 34=A2, 36=A4, 39=A3.
+- For older ESP32s, ADC2 pins cannot be used while using the WiFi library (this library is used in most ESP32 projects). ADC 1 pins are okay - that's 32-39. For ESP32-S2 and beyond, this is no longer a restriction. 
 
 
 </xmp>
