@@ -63,20 +63,21 @@ AccelStepper stepper1(AccelStepper::FULL4WIRE, 8, 9, 10, 11);
 
 void setup() {
   stepper1.setMaxSpeed(50);
+  stepper1.setAcceleration(50);
 }
 
 void loop() {
-  
-  position1 = 50;
+
+  int position1 = 500;
   stepper1.moveTo(position1);
-  stepper1.runSpeedToPosition(); 
-  delay(1000);
-  
+  stepper1.runToPosition(); 
+  delay(5000);
+
   // Move to a different coordinate
   position1 = -100;
   stepper1.moveTo(position1);
-  stepper1.runSpeedToPosition(); 
-  delay(1000);
+  stepper1.runToPosition(); 
+  delay(5000);
 }
 </code></pre>
 
@@ -142,7 +143,7 @@ void loop() {
 
 </code></pre>
 
-If we use `analogWrite()` instead of `digitalWrite()`, we can partially energize coils, allowing us to microstep. A great [video from Science Fun](https://www.youtube.com/watch?v=aKxi7B4-d2U) describes this method in more detail (see also code example below). 
+If we use `analogWrite()` instead of `digitalWrite()`, we can partially energize coils, allowing us to microstep. A [video from Science Fun](https://www.youtube.com/watch?v=aKxi7B4-d2U) describes this method in more detail (see also code example below). 
 
 <pre><code class="language-arduino">
 int A1A = 11;
