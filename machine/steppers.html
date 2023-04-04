@@ -32,11 +32,13 @@
     <li> Draws maximum current constantly </li>
 </ul>
 
-<p> We will be using bipolar stepper motors. Compared to unipolar stepper motors, bipolar steppers require more complicated circutry (in order to switch polarities) but are stronger by weight. </p>
+We will be using bipolar stepper motors. Compared to unipolar stepper motors, bipolar steppers require more complicated circuitry (in order to switch polarities) but are stronger by weight. 
 
-<iframe width="600" src="https://www.youtube.com/embed/u12dt1RqLW0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="600" height="400" src="https://www.youtube.com/embed/u12dt1RqLW0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<iframe width="600" src="https://www.youtube.com/embed/bkqoKWP4Oy4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br> <br> 
+
+<iframe width="600" height="400" src="https://www.youtube.com/embed/bkqoKWP4Oy4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 <h3> Microstepping</h3>
@@ -56,9 +58,9 @@ _step.html' target="_self">L9110</a> to drive a stepper, but you'll be limited t
 But neither of these options allow you to limit current. 
 - Chopper drivers address the current limiting problem, in a much more common package. These are used in 3D printers and lots of other consumer applications. 
 
-<p>A chopper drive addresses the problem of obtaining high torque at high speed from a stepper motor by turning the output voltage to the motor on and off rapidly (aka “chopping”) to control the motor current. At each step of the motor, a very high voltage (typically up to eight times higher than the motor’s nominal voltage) is applied to the motor windings. This causes the current to rise rapidly, according to the relationship between current rise and inductance. It also allows higher current to be produced, according to Ohm’s law. (From <a href='https://www.linearmotiontips.com/what-is-a-chopper-drive-for-a-stepper-motor/'> Linear Motion Tips</a>).</p>
+A chopper driver addresses the problem of obtaining high torque at high speed from a stepper motor by turning the output voltage to the motor on and off rapidly (aka “chopping”) to control the motor current. At each step of the motor, a very high voltage (typically up to eight times higher than the motor’s nominal voltage) is applied to the motor windings. This causes the current to rise rapidly, according to the relationship between current rise and inductance. It also allows higher current to be produced, according to Ohm’s law. (From <a href='https://www.linearmotiontips.com/what-is-a-chopper-drive-for-a-stepper-motor/'> Linear Motion Tips</a>).
 
-<p>Voltage = Current x Resistance, so stepper motors with higher coil resistance need less current to operate at the same voltage.  </p>
+Voltage = Current x Resistance, so stepper motors with higher coil resistance need less current to operate at the same voltage. 
 
 <img src='./chopper.jpg' alt='stepper motor'>
 
@@ -70,13 +72,13 @@ We keep a number of chopper drivers around the lab:
 
 Make sure to review the product description and datasheet for the device you plan to use. 
 
-<p> Note: These products can get hot enough to burn you long before the chip overheats. Take care when handling this product and other components connected to it. </p>
+_Note: These products can get hot enough to burn you long before the chip overheats. Take care when handling this product and other components connected to it._
 
-<h3>Stepper Motor </h3>
+### Stepper Motors
 
-<p> We have a number of different bipolar stepper motors in the lab. (We also have <a href='https://create.arduino.cc/projecthub/debanshudas23/getting-started-with-stepper-motor-28byj-48-3de8c9'>28BYJ-48 unipolar steppers</a> and drivers, but that's a separate topic). 
+We have a number of different bipolar stepper motors in the lab. (We also have <a href='https://create.arduino.cc/projecthub/debanshudas23/getting-started-with-stepper-motor-28byj-48-3de8c9'>28BYJ-48 unipolar steppers</a> and drivers, but that's a separate topic). 
 Find motors around the lab and look up their data sheets, especially rated current/phase, voltage, and phase resistance (e.g. US-17HS441, 17HS19-2004S1, etc.). Let's use the following motor for this example: 
-<a href='https://www.omc-stepperonline.com/nema-17-bipolar-1-8deg-26ncm-36-8oz-in-0-4a-12v-42x42x34mm-4-wires.html?search=Nema%2017%20Bipolar%201.8deg%2026Ncm%20%2836.8oz.in%29%200.4A%2012V%2042x42x34mm%204%20Wires'>Nema 17 Bipolar 1.8deg 26Ncm (36.8oz.in) 0.4A 12V 42x42x34mm 4 Wires</a>. </p>
+<a href='https://www.omc-stepperonline.com/nema-17-bipolar-1-8deg-26ncm-36-8oz-in-0-4a-12v-42x42x34mm-4-wires.html?search=Nema%2017%20Bipolar%201.8deg%2026Ncm%20%2836.8oz.in%29%200.4A%2012V%2042x42x34mm%204%20Wires'>Nema 17 Bipolar 1.8deg 26Ncm (36.8oz.in) 0.4A 12V 42x42x34mm 4 Wires</a>. 
 
 Note some of the Electrical Specifications: 
 
