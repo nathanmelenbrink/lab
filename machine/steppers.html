@@ -80,18 +80,26 @@ _Note: These products can get hot enough to burn you long before the chip overhe
 ### Stepper Motors
 
 We have a number of different bipolar stepper motors in the lab. (We also have <a href='https://create.arduino.cc/projecthub/debanshudas23/getting-started-with-stepper-motor-28byj-48-3de8c9'>28BYJ-48 unipolar steppers</a> and drivers, but that's a separate topic). 
-Find motors around the lab and look up their data sheets, especially rated current/phase, voltage, and phase resistance (e.g. US-17HS441, 17HS19-2004S1, etc.). Let's use the following motor for this example: 
+Find motors around the lab and look up their data sheets, especially rated current/phase, voltage, and phase resistance (e.g. US-17HS441, 17HS19-2004S1, 17HS4401, etc.). 
+
+Let's use the [17HS19-2004S1]() for this example. Note some of the Electrical Specifications: 
+
+- Rated Current/phase: 2.0 A 
+- Voltage: 2.8 V
+- Phase Resistance: 1.4 Ω
+
+<!-- Let's use the following motor for this example: 
 <a href='https://www.omc-stepperonline.com/nema-17-bipolar-1-8deg-26ncm-36-8oz-in-0-4a-12v-42x42x34mm-4-wires.html?search=Nema%2017%20Bipolar%201.8deg%2026Ncm%20%2836.8oz.in%29%200.4A%2012V%2042x42x34mm%204%20Wires'>Nema 17 Bipolar 1.8deg 26Ncm (36.8oz.in) 0.4A 12V 42x42x34mm 4 Wires</a>. 
 
 Note some of the Electrical Specifications: 
 
 - Rated Current/phase: 0.4A 
 - Voltage: 12V
-- Phase Resistance: 30ohms
+- Phase Resistance: 30ohms -->
 
 
 <h3>Current Limiting </h3>
-<p> Our motors have a maximum current rating of 0.4A with a 30Ω coil resistance, which would indicate a maximum motor supply of 12V. Using such a motor with a higher voltage would allow higher step rates, but the current must actively be limited to under 0.4A. (Anyway, we won't be using more than 9V). 
+<p> Our motors have a maximum current rating of 2 A with a 1.4 Ω coil resistance, which would indicate a maximum motor supply of 2.8 V. Using such a motor with a higher voltage would allow higher step rates, but the current must actively be limited to under 2 A. 
 </p>
 
 <h3> Wiring</h3>
