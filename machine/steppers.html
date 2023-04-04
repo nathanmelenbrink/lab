@@ -34,9 +34,9 @@
 
 <p> We will be using bipolar stepper motors. Compared to unipolar stepper motors, bipolar steppers require more complicated circutry (in order to switch polarities) but are stronger by weight. </p>
 
-<iframe width="916" height="687" src="https://www.youtube.com/embed/u12dt1RqLW0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="600" src="https://www.youtube.com/embed/u12dt1RqLW0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<iframe width="916" height="550" src="https://www.youtube.com/embed/bkqoKWP4Oy4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="600" src="https://www.youtube.com/embed/bkqoKWP4Oy4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 <h3> Microstepping</h3>
@@ -56,7 +56,7 @@ _step.html' target="_self">L9110</a> to drive a stepper, but you'll be limited t
 But neither of these options allow you to limit current. 
 - Chopper drivers address the current limiting problem, in a much more common package. These are used in 3D printers and lots of other consumer applications. 
 
-<p>A chopper drive addresses the problem of obtaining high torque at high speed from a stepper motor by turning the output voltage to the motor on and off rapidly (aka “chopping”) to control the motor current. At each step of the motor, a very high voltage (typically eight times higher than the motor’s nominal voltage) is applied to the motor windings. This causes the current to rise rapidly, according to the relationship between current rise and inductance. It also allows higher current to be produced, according to Ohm’s law. (From <a href='https://www.linearmotiontips.com/what-is-a-chopper-drive-for-a-stepper-motor/'> Linear Motion Tips</a>).</p>
+<p>A chopper drive addresses the problem of obtaining high torque at high speed from a stepper motor by turning the output voltage to the motor on and off rapidly (aka “chopping”) to control the motor current. At each step of the motor, a very high voltage (typically up to eight times higher than the motor’s nominal voltage) is applied to the motor windings. This causes the current to rise rapidly, according to the relationship between current rise and inductance. It also allows higher current to be produced, according to Ohm’s law. (From <a href='https://www.linearmotiontips.com/what-is-a-chopper-drive-for-a-stepper-motor/'> Linear Motion Tips</a>).</p>
 
 <p>Voltage = Current x Resistance, so stepper motors with higher coil resistance need less current to operate at the same voltage.  </p>
 
