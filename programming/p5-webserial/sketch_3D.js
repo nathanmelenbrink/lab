@@ -4,11 +4,11 @@ let numPoints = 100;
 function setup() {
 	createCanvas(710, 400, WEBGL);
 
-    camera(0, -100, width * 1.5, 0, 0, 0, 0, 1, 0);
+  camera(0, -100, width * 1.5, 0, 0, 0, 0, 1, 0);
 
-    for (let i = 0; i < numPoints; i++ ) {
-    	path[i] = new p5.Vector(0, 0, 0);
-    }
+  for (let i = 0; i < numPoints; i++ ) {
+  	path[i] = new p5.Vector(0, 0, 0);
+  }
 
 }
 
