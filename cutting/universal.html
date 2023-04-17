@@ -19,7 +19,6 @@ Read the [manual](./PLS.pdf) to learn more about ULS laser cutters._
 1. Turn on the exhaust (switch on the wall)
   - It will take 1-2 min for fan to get up to speed and power interlock to engage
   - The air compressor will turn on automatically. 
-  - Check the air pressure coming into the laser cutter (dial indicator on the left side toward the back). It should be ~20 psi. 
 
 2. Turn on the laser cutter 
   - Switch is on right side
@@ -28,14 +27,22 @@ Read the [manual](./PLS.pdf) to learn more about ULS laser cutters._
   - Home XY
   - Check focus (adjust Z as needed)
   - Check for debris in nozzle at output lens
-  - Check SETTINGS in control software before printing!
+  - Check SETTINGS in ULS control software before printing!
 
 4. Turn of the laser cutter and the exhaust when finished 
 
 
 ### File Preparation 
 
-From Inkscape, Rhino or Fusion 360: 
+From Rhino (preferred): 
+
+1. Open ULS Template.3dm. This file contains all of the settings needed to cut or score. 
+2. File -> Import your DXF, SVG or other CAD file. Check scale relative to the laser bed outline. 
+3. Move your vectors to the appropriate layer (cut, score, engrave). 
+4. Print to ULS 
+
+
+From Inkscape or Fusion 360: 
 
 1. Create drawing
 2. Save as .pdf  
