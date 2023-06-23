@@ -30,14 +30,30 @@
 - Press "menu" on the keypad twice. Press enter to set up material. Select sheet or roll and press "enter again"
 - Move cutting head with the arrows located on the keypad. Send it to desired location. Hold down the origin key about one second to set 0,0.
 
-#### To print from a bitmap image:
+<!-- #### To print from a bitmap image:
 - Create a png bitmap file, either black & white or grayscale.
 - To start the printserver, double-click the shortcut "start mods server" on the desktop. A command window will appear, with the text “listening for connection from client address 127.0.0.1 on server port 1234”.
 - Open the webpage, currently an icon on the desktop named "cut%20png.html"
 - Select png file.
 - Adjust scale (by changing pixel density), force, speed and other parameters.
 - Calculate
-- Send to file to printer.
+- Send to file to printer. -->
+
+  #### To print from an image in Inkscape:
+  - Open a new document in Inkscape. The document should be 22.99 inches in width and 62.99 inches in height. This is the default document size.
+  - On the top menu bar, click 'File', then click 'Import'. Import a black and white image into Inkscape.
+  - Move image to the bottom left corner. The bottom left corner is the origin.
+  - On the top menu bar, click 'Path', then click 'Trace Bitmap'.
+  - Select your image if it isn't already selected. It should show up in the preview box in the Trace Bitmap menu.
+  - For black and white images, the Brightness cutoff detection mode works. Click apply at the bottom of the menu.
+  - This creates a new Bitmap image over your original image. Move this new image out of the way, and delete the old image. Then place your new image in the bottom left corner.
+  - The new image only has the 'Fill' property. We need to add a 'Stroke' property. While holding down the Shift key, click on any color in the color bar to add a 'Stroke' to the image.
+  - Next, double click on the color next to the word 'Stroke' in the bottom left corner. This will pull up the Fill and Stroke menu to the right of the screen. 
+  - Click on stroke style. 
+  - Change the Stroke width to 0.5 px (IMPORTANT, will not cut if the stroke width is incorrect).
+  - Now print the image by clicking Ctrl+P or 'File->Print'.
+  - The Roland GX-24 should be the selected printer.
+  - Send file to vinyl cutter by pressing Print.
 
 </xmp>
 
