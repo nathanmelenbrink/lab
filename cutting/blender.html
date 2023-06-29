@@ -1,0 +1,164 @@
+<head> 
+  <base target="_child">  
+</head>
+
+<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
+<div id="header"></div>
+
+<xmp style="display:none;">
+
+### Blender CAD Sketcher
+
+In order to to make 2D Drawings in Blender and send them over to the Laser Cutter you will need to install 3 things 
+
+* Blender
+  * This is the program that will allow us to draw our designs 
+* CAD Sketcher
+  * This is an addon for Blender which allows Blender to do 2D Sketches similar to programs like Fusion 360
+* Outline To SVG
+  * This allows us to export all of our drawings into an SVG format in order to send over to Blender
+  
+
+###Installation 
+- [Blender Download](https://www.blender.org/download/)
+- [CAD Sketcher Download + Instructions](https://makertales.gumroad.com/l/CADsketcher)
+- <a href="./outline_to_svg_0_0_91.zip" download> Outline To SVG Download </a>
+- [Outline to SVG Install Instructions](https://makertales.gumroad.com/l/O2SVG)
+- [More Resources to Install Blender Addons](https://brandonsdrawings.com/how-to-install-and-activate-add-ons-in-blender/)
+
+<h3>Sketching in CAD Sketcher</h3>
+<p>
+  When you first start blender you will just want to click General under new file to get started
+</p>
+<img src = "blender0.png" alt = "blender0"> <br><br>
+<p>
+  Now we need to change the units from meters to millimeters. So in the bottom right hand panel you will want to select the icon that looks 
+  like a teardrop which will bring to the scene tab and allow us to change the units.
+</p>
+<p>
+  To do this change the unit scale from 1 to 0.001, and for length change it from meters to millimeters
+</p>
+<img src = "blender1.png" alt = "blender1" style = "height: 50%"> <br><br>
+<p>
+  Next we need to change it so that the view is also in millimeters, so click the arrow for overlays on the top of the screen
+  and change the scale from 1.000 to 0.001. 
+</p>
+<img src = "blender2.png" alt = "blender2"> <br><br>
+<p> 
+  Then once the units are properly set we can right click the objects in the scene and delete them. Now  we can start our sketch
+</p>
+<img src = "blender12.png" alt = "blender12"> <br><br>
+<p>
+  There is a gray tab on the right hand side, and click that in order to open to CAD Sketcher
+</p>
+<img src = "blender3.png" alt = "blender3"> <br><br>
+<p>
+  After clicking on that tab you will see this view and clickign on the tab which says Sketcher will allow 
+  us to draw sketches, and you can click Add Sketch to start you first sketch
+</p>
+<img src = "blender4.png" alt = "blender4" style = "height: 50%"> <br><br>
+<p>
+  On you clicked add sketch you can put your sketch on any of the three planes, but it is recommended
+  to put your sketch on the plane flat to the landscape
+</p>
+<img src = "blender5.png" alt = "blender5"> <br><br>
+<p>
+  You can then click the z on the compass to change camera to so it is looking at your sketch
+</p>
+<img src = "blender6.png" alt = "blender6" style = "height: 50%"> <br><br>
+<h3>Drawing Tool Bar</h3>
+<p> Now that you are sketching these are the tools you have at your disposal for drawing shapes</p>
+<ul>
+  <li>
+    Solvespace Select: You will want to select this whenever you are trying to select items you have already drawn
+  </li>
+  <li>
+    Add 2D Point: You can add an individual point for your sketch, and it is useful for additional points to geometry you have already drawn (like the midpoint of the line)
+  </li>
+  <li>
+    Add 2D Line: You can draw straight lines defined by 2 points that you can place
+  </li>
+  <li>
+    Add 2D Circle: You place the center point of a circle then you drag you cursor to adjust the size of the circle
+  </li>
+  <li>
+    Add 2D Arc: Similar to Add 2D Circle but you only try a portion of the circumference of a circle
+  </li>
+  <li>
+    Add Rectangle: Also you to place a rectangle by placing the top left and bottom right corners of the drawing
+  </li>
+</ul>
+<img src = "blender7.png" alt = "blender7" style = "height: 50%"> <br><br>
+<h3>Constraints</h3>
+<p>Constraints are rules you can put on geometry to set their dimension on relationship to each other and when apply constraints make sure you are using the Solvespace Select</p>
+<ul>
+  <li>
+    Distance: Set the of dimension any straight line segment (i.e. Side of Rectangle, or individual line)
+  </li>
+  <li>
+    Diameter: Set the diameter of circle defined by curved section (i.e. Circle, Arc)
+  </li>
+  <li>
+    Angle: Set angle between two selected and connected lines
+  </li>
+  <li>
+    Coincident: Attaches a selected point to a selected line
+  </li>
+  <li>
+    Equal: Sets two selected similar entities to the same size (i.e. two circles, two lines)
+  </li>
+  <li>
+    Vertical: Sets a line to be vertical
+  </li>
+  <li>
+    Horizontal: Sets a line to be horizontal
+  </li>
+  <li>
+    Parallel: Sets two selected lines to be parallel to each other
+  </li>
+  <li>
+    Perpendicular: Sets two selected lines to be perpendicular to each other
+  </li>
+  <li>
+    Tangent: Sets a Selected line to be tangent to the circle, or the circle defined by an arc. (However, tangent in CAD sketcher does not mean that the line is touching the arc or circle)
+  </li>
+  <li>
+    Midpoint: Sets a selected point to be the midpoint of a selected line 
+  </li>
+  <li>
+    Ratio: Sets the ratio of the length between two selected lines
+  </li>
+</ul>
+
+<p> Also for any geometry you can select to draw in construction mode which will allow you draw geometry to help you align objects without it actually showing up in your final drawing</p>
+<img src = "blender8.png" alt = "blender8" style = "height: 50%"> <br><br>
+
+<p>Once you are finished with your sketch set the convert type to mesh in order to export it</p>
+<img src = "blender9.png" alt = "blender9" style = "height: 50%"> <br><br>
+<p>
+  To export click Outline to SVG and then click on the file icon. Then click the directory you want to save to and press accept twice
+</p>
+<img src = "blender10.png" alt = "blender10"> <br><br>
+<p>
+  From there you are left with a file path, and at the end of that write the name of you file and double click export to SVG and you are not ready
+  to laser cut your drawing
+</p>
+<img src = "blender11.png" alt = "blender11"> <br><br>
+
+
+
+
+
+
+
+
+
+
+
+</xmp>
+
+
+<script src="../js/strapdown.js"></script>
+<script type="text/javascript" src="../js/iframeResizer.contentWindow.min.js"></script>
+<link href="../css/style.css" rel="stylesheet">
+</html>
