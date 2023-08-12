@@ -1,0 +1,183 @@
+<head> 
+  <base target="_child">  
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+</head>
+ 
+<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
+<div id="header"></div>
+
+<xmp style="display:none;">
+
+
+### Amplifiers and External DAC
+ESP32 Dev Boards have their own  Digital Audio Converter, so they have the capabaility to be hooked up directly to a amplifier and play a sound. However, the audio quality that the ESP32 can get on its own
+is very choppy.
+
+This is where EXTERNAL DACs come in! You can offload the task of converting the digital signal to audio to another board, and get much better sound quality. We use the MAX98357A which allows
+you to play mp3s with you esp32.
+
+In order to hook up the MAX98357A you will want to hook up the MAX98357A to these pins on your esp32:
+MAX98357A     | esp32
+------------- | -------------
+ LRC | 14
+ BCLK|  15
+ DIN| 22
+ GAIN| GND
+ GND | GND
+ VCC | 3.3V
+
+Then attach the speaker wires to the screw terminals.
+
+However, mp3 files are quite large, you will not be able to store them directly on your device. So you have two options you can stream them from the internet or you can stream them from a Micro SD card
+
+###Streaming from the Internet
+To stream from the internet you will nedd to use the [Arduino Audio Tools Library](https://github.com/pschatzmann/arduino-audio-tools)
+
+You will just need to download the ZIP file from the github and then go to Sketch -> Include Library -> Add .ZIP Library and click on the file you just downloaded
+
+Once you have the code downloaded it should be as simple as running the code below
+
+```
+/**
+ * @file streams-url_mp3-i2s.ino
+ * @author Phil Schatzmann
+ * @brief decode MP3 stream from url and output it on I2S
+ * @version 0.1
+ * @date 2021-96-25
+ * 
+ * @copyright Copyright (c) 2021
+ */
+
+// install https://github.com/pschatzmann/arduino-libhelix.git
+
+#include "AudioTools.h"
+#include "AudioCodecs/CodecMP3Helix.h"
+
+
+URLStream url("MAKERSPACE","12345678");
+I2SStream i2s; // final output of decoded stream
+VolumeStream volume(i2s);
+EncodedAudioStream dec(&i2s, new MP3DecoderHelix()); // Decoding stream
+StreamCopy copier(dec, url); // copy url to decoder
+
+
+void setup(){
+  Serial.begin(115200);
+  // AudioLogger::instance().begin(Serial, AudioLogger::Info);  
+
+  // setup i2s
+  auto config = i2s.defaultConfig(TX_MODE);
+  // you could define e.g your pins and change other settings
+  config.pin_ws = 14;
+  config.pin_bck = 15;
+  config.pin_data = 22;
+  // config.mode = I2S_STD_FORMAT;
+  i2s.begin(config);
+
+  // setup I2S based on sampling rate provided by decoder
+  dec.setNotifyAudioChange(i2s);
+  dec.begin();
+
+  // set initial volume
+  volume.begin(config); // we need to provide the bits_per_sample and channels
+  volume.setVolume(0);
+
+// mp3 radio
+
+  url.begin("http://stream.srg-ssr.ch/m/rsj/mp3_128","audio/mp3");
+  // url.begin("https://streamsquid.com/#/artist/calm%20singing%20birds%20zone","audio/mp3");
+}
+
+void loop(){
+  copier.copy();
+}
+
+```
+
+###Streaming from Micro SD Card
+To stream from an SD Card you will need to use the [ESP32-audioI2S library](https://github.com/schreibfaul1/ESP32-audioI2S)
+
+You will just need to download the ZIP file from the github and then go to Sketch -> Include Library -> Add .ZIP Library and click on the file you just downloaded
+
+Then once you have that completed that you will need to hook up the Micor SD to your ESP32 using pins
+
+SD Card Reader     | esp32
+------------- | -------------
+ CS | 5
+ MOSI|  23
+ MISO| 19
+ SCK| 18
+ GND | GND
+ VCC | 3.3V
+
+ Once it also hooked up you can try the sample code below
+
+```
+// Include required libraries
+#include "Arduino.h"
+#include "Audio.h"
+#include "SD.h"
+#include "FS.h"
+ 
+// microSD Card Reader connections
+#define SD_CS          5
+#define SPI_MOSI      23 
+#define SPI_MISO      19
+#define SPI_SCK       18
+ 
+// I2S Connections
+#define I2S_DOUT      22
+#define I2S_BCLK      15
+#define I2S_LRC       14
+ 
+ // Create Audio object
+Audio audio;
+ 
+void setup() {
+    
+    // Set microSD Card CS as OUTPUT and set HIGH
+    pinMode(SD_CS, OUTPUT);      
+    digitalWrite(SD_CS, HIGH); 
+    
+    // Initialize SPI bus for microSD Card
+    SPI.begin(SPI_SCK, SPI_MISO, SPI_MOSI);
+    
+    // Start Serial Port
+    Serial.begin(115200);
+    
+    // Start microSD Card
+    if(!SD.begin(SD_CS))
+    {
+      Serial.println("Error accessing microSD card!");
+      while(true); 
+    }
+    
+    // Setup I2S 
+    audio.setPinout(I2S_BCLK, I2S_LRC, I2S_DOUT);
+    
+    // Set Volume
+    audio.setVolume(5);
+    
+    // Open music file
+    audio.connecttoFS(SD,"/[INSERT SOUND HERE].mp3");
+    
+}
+ 
+void loop()
+{
+    audio.loop();    
+}
+```
+
+
+
+</xmp>
+
+
+<script src="../../js/strapdown.js"></script>
+<script type="text/javascript" src="../../js/iframeResizer.contentWindow.min.js"></script>
+<link href="../../css/style.css" rel="stylesheet">
+</html>
