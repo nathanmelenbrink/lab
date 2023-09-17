@@ -16,30 +16,41 @@ _Please do not use the laser cutter until you’ve been trained with lab staff.
 Read the [manual](./PLS.pdf) to learn more about ULS laser cutters._  
 
 
-1. Turn on the exhaust (switch on the wall)
-  - It will take 1-2 min for fan to get up to speed and power interlock to engage
-  - The air compressor will turn on automatically. 
+1. Turn on the ventilation 
+  - Open the sliding damper to allow air to flow out 
+  - Flip the switch on the wall to the right
+  - It will take ~1 min for fan to get up to speed 
+  - The green light will turn on when the power interlock is engaged 
 
 2. Turn on the laser cutter 
   - Switch is on right side
 
-3. Do all the normal checks before cutting/engraving
-  - Home XY
+3. Place material on laser bed 
   - Check focus (adjust Z as needed)
   - Check for debris in nozzle at output lens
-  - Check SETTINGS in ULS control software before printing!
 
-4. Turn of the laser cutter and the exhaust when finished 
+4. Check SETTINGS in ULS control software 
+  - Home XY
+  - Use the Move and Array tools to arrange parts 
+  - Use the Focus tool to make sure the material is correctly placed 
 
+5. Press the green button to start the cut
+  - The air compressor will start automatically 
+  - Always stay by the laser cutter and keep an eye on its operation
+  
+6. Turn off the laser cutter and the exhaust when finished 
+  - Close the damper to prevent rain from getting in the laser cutter 
+  - Return switch to center position to turn off ventilation 
 
 ### File Preparation 
 
-From Rhino (preferred): 
+From Rhino (recommended): 
 
 1. Open ULS Template.3dm. This file contains all of the settings needed to cut or score. 
 2. File -> Import your DXF, SVG or other CAD file. Check scale relative to the laser bed outline. 
-3. Move your vectors to the appropriate layer (cut, score, engrave). 
-4. Print to ULS 
+3. Move geometry so that it is within the black outline (representing the laser cutter bed). 
+4. In the Object Properties panel on the right, change the layer to the appropriate layer (CUT, SCORE, or ENGRAVE). Make sure all other properties are set to "By Layer". The geometry should be the same color as the layer it's on (e.g., curves on the CUT layer should be red). If this is not the case, you may need to "ungroup" grouped vectors or "explode" block instances. 
+5. Print to ULS 
 
 
 From Inkscape or Fusion 360: 
