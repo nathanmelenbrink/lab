@@ -73,7 +73,12 @@ ul.inline-list-custom li {
 /* line 138, ../scss/_custom.scss */
 ul li {
   margin-left: 0.25em;
-  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+}
+
+ol li {
+  margin-left: 0.25em;
+  padding-top: 0.5em;
 }
 
 div h1, div h2, div h3 {
@@ -816,6 +821,10 @@ ul {
 
 /* line 251, ../bower_components/foundation/scss/foundation/components/_type.scss */
 ul {
+  margin-left: /*1.1*/2.1rem;
+}
+
+ol {
   margin-left: /*1.1*/2.1rem;
 }
 /* line 253, ../bower_components/foundation/scss/foundation/components/_type.scss */
