@@ -57,7 +57,7 @@ Once you have the code downloaded it should be as simple as running the code bel
 #include "AudioCodecs/CodecMP3Helix.h"
 
 
-URLStream url("MAKERSPACE","12345678");
+URLStream url("WIFI_USERNAME","WIFI_PASSWORD");
 I2SStream i2s; // final output of decoded stream
 VolumeStream volume(i2s);
 EncodedAudioStream dec(&i2s, new MP3DecoderHelix()); // Decoding stream
@@ -98,11 +98,9 @@ void loop(){
 ```
 
 ###Streaming from Micro SD Card
-To stream from an SD Card you will need to use the [ESP32-audioI2S library](https://github.com/schreibfaul1/ESP32-audioI2S)
+To stream from an SD Card we will using Arduino Audio Tools.
 
-You will just need to download the ZIP file from the github and then go to Sketch -> Include Library -> Add .ZIP Library and click on the file you just downloaded
-
-Then once you have that completed that you will need to hook up the Micor SD to your ESP32 using pins
+Then once you have that completed that you will need to hook up the Micro SD to your ESP32 using pins
 
 SD Card Reader     | esp32
 ------------- | -------------
@@ -116,62 +114,51 @@ SD Card Reader     | esp32
  Once it also hooked up you can try the sample code below
 
 ```
-// Include required libraries
-#include "Arduino.h"
-#include "Audio.h"
-#include "SD.h"
-#include "FS.h"
- 
-// microSD Card Reader connections
-#define SD_CS          5
-#define SPI_MOSI      23 
-#define SPI_MISO      19
-#define SPI_SCK       18
- 
-// I2S Connections
-#define I2S_DOUT      22
-#define I2S_BCLK      15
-#define I2S_LRC       14
- 
- // Create Audio object
-Audio audio;
- 
-void setup() {
-    
-    // Set microSD Card CS as OUTPUT and set HIGH
-    pinMode(SD_CS, OUTPUT);      
-    digitalWrite(SD_CS, HIGH); 
-    
-    // Initialize SPI bus for microSD Card
-    SPI.begin(SPI_SCK, SPI_MISO, SPI_MOSI);
-    
-    // Start Serial Port
-    Serial.begin(115200);
-    
-    // Start microSD Card
-    if(!SD.begin(SD_CS))
-    {
-      Serial.println("Error accessing microSD card!");
-      while(true); 
-    }
-    
-    // Setup I2S 
-    audio.setPinout(I2S_BCLK, I2S_LRC, I2S_DOUT);
-    
-    // Set Volume
-    audio.setVolume(5);
-    
-    // Open music file
-    audio.connecttoFS(SD,"/[INSERT SOUND HERE].mp3");
-    
+#include "AudioTools.h"
+#include "AudioLibs/AudioSourceSD.h"
+#include "AudioCodecs/CodecMP3Helix.h"
+
+const char *startFilePath="/";
+const char* ext="mp3";
+AudioSourceSD source(startFilePath, ext);
+I2SStream i2s;
+MP3DecoderHelix decoder;
+AudioPlayer player(source, i2s, decoder);
+
+void printMetaData(MetaDataType type, const char* str, int len){
+  Serial.print("==> ");
+  Serial.print(toStr(type));
+  Serial.print(": ");
+  Serial.println(str);
 }
- 
-void loop()
-{
-    audio.loop();    
+
+void setup() {
+  Serial.begin(115200);
+  AudioLogger::instance().begin(Serial, AudioLogger::Info);
+
+  // setup output
+  auto cfg = i2s.defaultConfig(TX_MODE);
+  cfg.pin_ws = 14;
+  cfg.pin_bck = 15;
+  cfg.pin_data = 22;
+  i2s.begin(cfg);
+
+  // setup player
+  player.setMetadataCallback(printMetaData);
+  player.setVolume(0.5)
+  player.begin();
+}
+
+void loop() {
+  player.copy();
 }
 ```
+When you run this code it will play all the mp3s in the folder you specified with *startFilePath="/";
 
+You change the mp3 file you are playing with the player.setIndex() function which takes in an integer and will set the current mp3 to the mp3 that is at that index. For example 
+player.setIndex(0) with be the file at index 0.
+
+You can set volume by using player.setVolume() and plugging in any value between 0 and 1
 
 
 </xmp>

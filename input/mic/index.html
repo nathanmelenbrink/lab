@@ -73,6 +73,173 @@
 
 <p>Note, this is not measuring the frequency of the sounds being picked up by the microphone. Analyzing frequency is a much more subtle and complex process which can be achieved by using <a href='https://www.norwegiancreations.com/2017/08/what-is-fft-and-how-can-you-implement-it-on-an-arduino/'>Fast Fourier Transform (FFT) libraries.</a></p>
 
+<h3>I2S Microphone</h3>
+
+<p>
+   Another way to interface with audio data, is a method called i2s. Its just a standard of communication that samples analog signals to convert them into digital signals, and 
+   this allows your microcontroller to interface with your microphone
+</p>
+
+<p> In this example we will be using the inmp441 microphone and an esp32</p>
+<div style = 'display: flex; justify-content: center;'>
+   <div style = 'display: flex;'>
+      <img max-width = "100%" src='./inmp441.jpg' alt='inmp441'>
+      <img width = 200 src='./esp32.jpg' alt='esp32'>
+      <div>
+         <h4 style = "padding-left: 20px;">inmp441 pins:</h4>
+         <table>
+            <tr>
+            <th>INMP441</th>
+            <th>ESP32</th>
+            </tr>
+            <tr>
+            <td>WS</td>
+            <td>GPIO 25</td>
+            </tr>
+            <tr>
+            <td>SCK</td>
+            <td>GPIO 32</td>
+            </tr>
+            <tr>
+            <td>SD</td>
+            <td>GPIO 33</td>
+            </tr>
+            <tr>
+            <td>VDD</td>
+            <td>3.3V</td>
+            </tr>
+            <tr>
+            <td>GND</td>
+            <td>GND</td>
+            </tr>
+            <tr>
+            <td>L/R</td>
+            <td>GND</td>
+            </tr>
+         </table>
+      </div>
+   </div>
+</div>
+<p>
+   After wiring up the mic and esp32 here is the code you need to get the reading
+</p>
+<pre> <code>
+   /*
+   ESP32 I2S Microphone Sample
+   esp32-i2s-mic-sample.ino
+   Sample sound from I2S microphone, display on Serial Plotter
+   Requires INMP441 I2S microphone
+ 
+   DroneBot Workshop 2022
+   https://dronebotworkshop.com
+ */
+ 
+ // Include I2S driver
+ #include <driver/i2s.h>
+ 
+ // Connections to INMP441 I2S microphone
+ #define I2S_WS 25
+ #define I2S_SD 33
+ #define I2S_SCK 32
+ 
+ // Use I2S Processor 0
+ #define I2S_PORT I2S_NUM_0
+ 
+ // Define input buffer length
+ #define bufferLen 64
+ int16_t sBuffer[bufferLen];
+ 
+ void i2s_install() {
+   // Set up I2S Processor configuration
+   const i2s_config_t i2s_config = {
+     .mode = i2s_mode_t(I2S_MODE_MASTER | I2S_MODE_RX),
+     .sample_rate = 44100,
+     .bits_per_sample = i2s_bits_per_sample_t(16),
+     .channel_format = I2S_CHANNEL_FMT_ONLY_LEFT,
+     .communication_format = i2s_comm_format_t(I2S_COMM_FORMAT_STAND_I2S),
+     .intr_alloc_flags = 0,
+     .dma_buf_count = 8,
+     .dma_buf_len = bufferLen,
+     .use_apll = false
+   };
+ 
+   i2s_driver_install(I2S_PORT, &i2s_config, 0, NULL);
+ }
+ 
+ void i2s_setpin() {
+   // Set I2S pin configuration
+   const i2s_pin_config_t pin_config = {
+     .bck_io_num = I2S_SCK,
+     .ws_io_num = I2S_WS,
+     .data_out_num = -1,
+     .data_in_num = I2S_SD
+   };
+ 
+   i2s_set_pin(I2S_PORT, &pin_config);
+ }
+ 
+ void setup() {
+ 
+   // Set up Serial Monitor
+   Serial.begin(115200);
+   Serial.println(" ");
+ 
+   delay(1000);
+ 
+   // Set up I2S
+   i2s_install();
+   i2s_setpin();
+   i2s_start(I2S_PORT);
+ 
+ 
+   delay(500);
+ }
+ 
+ void loop() {
+ 
+   // False print statements to "lock range" on serial plotter display
+   // Change rangelimit value to adjust "sensitivity"
+   int rangelimit = 3000;
+   Serial.print(rangelimit * -1);
+   Serial.print(" ");
+   Serial.print(rangelimit);
+   Serial.print(" ");
+ 
+   // Get I2S data and place in data buffer
+   size_t bytesIn = 0;
+   esp_err_t result = i2s_read(I2S_PORT, &sBuffer, bufferLen, &bytesIn, portMAX_DELAY);
+ 
+   if (result == ESP_OK)
+   {
+     // Read I2S data buffer
+     int16_t samples_read = bytesIn / 8;
+     if (samples_read > 0) {
+       float mean = 0;
+       for (int16_t i = 0; i < samples_read; ++i) {
+         mean += (sBuffer[i]);
+       }
+ 
+       // Average the data reading
+       mean /= samples_read;
+ 
+       // Print to serial plotter
+       Serial.println(mean);
+     }
+   }
+ }
+</code></pre>
+
+<p>
+   i2s_install is just used to tell the microcontroller how we want to communicate with the microphone and i2s_setpin is to tell the microcontroller
+   what pins we want to connect to the microcontroller with. The only thing you need to care about with the setup is changing I2S_WS, I2S_SD, I2S_SCK,
+   if you want to communicate with microphone using different pins.
+</p>
+<p>
+   The most import part of the code is i2s_read which takes in data into a buffer, defined by sBuffer, and it also tells you how many bytes it read by writing to the 
+   variable we passed in called bytesIn. Using those to variables we can loop through the amount of bytes in our buffer to get the waveform of the audio from your
+   microphone
+</p>
+
 </xmp>
 
 
