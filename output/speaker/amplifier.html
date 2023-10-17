@@ -13,8 +13,9 @@
 
 
 ### Amplifiers and External DAC
-ESP32 Dev Boards have their own  Digital Audio Converter, so they have the capabaility to be hooked up directly to a amplifier and play a sound. However, the audio quality that the ESP32 can get on its own
-is very choppy.
+
+ESP32 Dev Boards have their own Digital Audio Converter, so they have the capabaility to be hooked up directly to a amplifier and play a sound. However, the audio quality that the ESP32 can get on its own
+is very choppy. (If you want to try this method, which uses the cheap amplifiers we have in the lab, check out <a href='https://circuitdigest.com/microcontroller-projects/esp32-based-audio-player'>this tutorial</a>.) The Arduino Uno can only play a very, very small WAV, [and at poor quality](https://github.com/charliegerard/dev-notes/blob/master/arduino/wavFilesWithoutSdCard.md). 
 
 This is where EXTERNAL DACs come in! You can offload the task of converting the digital signal to audio to another board, and get much better sound quality. We use the MAX98357A which allows
 you to play mp3s with you esp32.
@@ -34,6 +35,7 @@ Then attach the speaker wires to the screw terminals.
 However, mp3 files are quite large, you will not be able to store them directly on your device. So you have two options you can stream them from the internet or you can stream them from a Micro SD card
 
 ###Streaming from the Internet
+
 To stream from the internet you will nedd to use the [Arduino Audio Tools Library](https://github.com/pschatzmann/arduino-audio-tools)
 
 You will just need to download the ZIP file from the github and then go to Sketch -> Include Library -> Add .ZIP Library and click on the file you just downloaded
