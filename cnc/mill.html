@@ -9,15 +9,15 @@
   
 ## SRM-20 Mill  
 
-The SRM-20 is sometimes called a "circuit board mill", because it's most commonly used to mill copper traces for circuit boards. However, it also works great for milling soft materials like wax. We'll prepare an STL file, then import it using a browser interface called "mods" from our friends at MIT, which will convert the shape to gcode to control the machine. 
+The SRM-20 is sometimes called a "circuit board mill", because it's most commonly used to mill copper traces for circuit boards. However, it also works great for milling soft materials like wax or wood (it can even cut aluminum if you're careful with setting). We'll prepare an STL file, then import it to the Modela CAM software SRP Player, which will convert the shape to gcode to control the machine. 
 
 ### Preparing the STL
 
-Model a single unified mesh, including walls that will contain the mold. Export as stl. 
+Model a single unified mesh. If it is meant to be a mold, make sure to include walls that will contain the molding material (the walls should be higher than the pattern geometry). Export as STL. 
 
 ![stl file](./stl.png)
 
-### Start Mods 
+<!-- ### Start Mods 
 
 - On the Windows Desktop, double-click the shortcut "start mods"
 - Navigate to [mods.cba.mit.edu](mods.cba.mit.edu)
@@ -61,7 +61,9 @@ Alternatively, you can use the "mill 2.5D" program:
 - Select stl file, change settings, and calculate 
 - Send file to device 
 
-### Common Errors 
+ -->
+
+ ### Common Errors 
 
 - When the machine finishes running, wait ~5 seconds before opening shield. If you open too soon, communication is lost. In that case, turn off SRM20 and turn it on again. Communication should re-establish.
 - If the 'calculate' step is taking too long, check that your units are correct. If your mesh is very dense that can also slow things down. 
