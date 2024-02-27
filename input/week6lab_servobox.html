@@ -158,8 +158,106 @@ void loop() {
 </div>
 
 <div style="width:50%; margin-left:10em; ">
-    <h2>Part 3: Let's code the Buttons to move the Servo</h2>
+    <h2>Part 3: Let's Code the Buttons to Move the Servo</h2>
+    <div style="background-color:aliceblue; height: 70vh; overflow: scroll">
+    <pre><code>
+
+#include &lt;Servo.h&gt;
+        
+class Button{
+  //Member Variables
+  int buttonPin;
+  int buttonState;
+
+  //Constructor
+  public:
+  Button(int pin){
+    buttonPin = pin;
+    pinMode(buttonPin, INPUT_PULLUP);
+    buttonState = HIGH;
+  }
+
+  int Update(){
+    buttonState = digitalRead(buttonPin);
+    return buttonState;
+  }
+
+};
+
+class Sweeper{
+  Servo servo;
+  //Member variables
+  int servoPin;
+  int pos; //Varying position
+  int startPos;
+  int endPos;
+  int increment;
+  int updateInterval;
+  unsigned long previousMillis;
+
+  //Constructor
+  public:
+  Sweeper(int interval){
+    startPos = 30;
+    endPos = 170;
+    pos = startPos;
+    updateInterval = interval;
+    increment = 1;
+  }
+
+  void Attach(int pin){
+    servo.attach(pin);
+    servo.write(startPos);
+  }
+
+  void Detach(){
+    servo.detach();
+  }
+
+  void Open(){
+    if(millis() - previousMillis > updateInterval){
+      previousMillis = millis();
+      pos += increment;
+      servo.write(pos);
+      if(pos >= endPos){
+        increment = 0;
+      }
+    }
+  }
+
+};
+
+Sweeper boxServo(10);
+Button button1(5);
+Button button2(6);
+
+int success = 0;
+
+void setup() {
+  Serial.begin(9600);
+  boxServo.Attach(9);
+}
+
+void loop() {
+  Serial.print("Button 1: ");
+  Serial.print(button1.Update());
+  Serial.print(" Button 2: ");
+  Serial.println(button2.Update());
+
+  if(button1.Update() == 0 && button2.Update() == 0){
+    success = 1;
+  }
+  if(success == 1){
+    boxServo.Open();
+  }
+  
+}
+    </code>
+</pre>
 </div>
+</div>
+
+    
 
 </body>
 </html>
