@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6 Lab</title>
+</head>
+<body>
+    <center><h1>Week 6 Lab: Escape Room Box</h1></center>
+    <div style="width:50%; margin-left:10em; ">
+    <h2>Part 1: Make a Servo Class</h2>
+    <div style="background-color:aliceblue; height: 70vh; overflow: scroll">
+    <pre><code>
+#include &lt;Servo.h&gt;
+
+class Sweeper{
+    Servo servo;
+    int servoPin;
+    int startPos;
+    int endPos;
+    int pos; //varying position
+    int increment; //how much to change per time
+    int updateInterval;
+    unsigned long previousMillis;
+
+    public:
+    Sweeper(int interval){
+        updateInterval = interval;
+        startPos = 25;
+        pos = startPos;
+        endPos = 170;
+        increment = 1;
+
+    }
+
+    void Attach(int pin){
+        servo.attach(pin);
+    }
+
+    void Detach(){
+        servo.detach();
+    }
+
+    void Open(){
+        if(millis() - previousMillis > updateInterval){
+        previousMillis = millis();
+        pos += increment;
+        servo.write(pos);
+        if((pos >= endPos || pos <= startPos)){
+            increment = -increment;
+        }
+      }
+    }
+};
+
+Sweeper boxServo(10);
+
+void setup() {
+    boxServo.Attach(9);
+}
+
+void loop() {
+    boxServo.Open();
+}
+
+        </code>
+    </pre>
+    </div>
+</div>
+
+<div style="width:50%; margin-left:10em; ">
+    <h2>Part 2: Add the Button Class</h2>
+    <div style="background-color:aliceblue; height: 70vh; overflow: scroll">
+    <pre><code>
+
+#include &lt;Servo.h&gt;
+
+class Button{
+    int buttonPin;
+    int buttonState;
+
+    public:
+    Button(int pin){
+    buttonPin = pin;
+    pinMode(buttonPin, INPUT_PULLUP);
+        buttonState = HIGH;
+    }
+
+    int Update(){
+    buttonState = digitalRead(buttonPin);
+    return buttonState;
+    }
+};
+
+class Sweeper{
+    Servo servo;
+    int servoPin;
+    int startPos;
+    int endPos;
+    int pos; //varying position
+    int increment; //how much to change per time
+    int updateInterval;
+    unsigned long previousMillis;
+    
+    public:
+    Sweeper(int interval){
+    updateInterval = interval;
+    startPos = 25;
+    pos = startPos;
+    endPos = 170;
+    increment = 1;
+
+    }
+
+    void Attach(int pin){
+    servo.attach(pin);
+    }
+
+    void Detach(){
+    servo.detach();
+    }
+
+    void Open(){
+    if(millis() - previousMillis > updateInterval){
+        previousMillis = millis();
+        pos += increment;
+        servo.write(pos);
+        if((pos >= endPos || pos <= startPos)){
+        increment = -increment;
+        }
+    }
+    }
+};
+    
+Sweeper boxServo(10);
+Button button1(5);
+Button button2(6);
+
+void setup() {
+    Serial.begin(9600);
+    boxServo.Attach(9);
+}
+
+void loop() {
+    Serial.print("Button 1: ");
+    Serial.print(button1.Update());
+    Serial.print(" Button 2: ");
+    Serial.println(button2.Update());
+    
+    boxServo.Open();
+
+}
+            
+    </code>
+</pre>
+</div>
+</div>
+
+<div style="width:50%; margin-left:10em; ">
+    <h2>Part 3: Let's code the Buttons to move the Servo</h2>
+</div>
+
+</body>
+</html>
+
+
+
