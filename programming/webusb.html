@@ -17,7 +17,7 @@ Goal: Suppose you want to plug in a microcontroller and have it behave like a US
 
 <p> Web browsers cannot directly talk to USB devices like microcontrollers because by default they don't have access to serial ports. This limitation can be overcome by using (1) a Serial Bridge (i.e., running a server on your computer that can act as the communication bridge between the browser and the microcontroller), (2) WebUSB, or (3) WebSerial. </p>
 
-### Serial Bridge 
+### 1. Serial Bridge 
 
 One example specific to p5 is the <a href='https://github.com/p5-serial/p5.serialport'>P5.serialserver</a> (or p5.serialcontrol). This requires a separate program that you run to create a server, which can be downloaded <a href='https://github.com/p5-serial/p5.serialcontrol/releases/tag/0.1.2'>here</a>. (Some other tutorials that use this method include <a href='https://itp.nyu.edu/physcomp/labs/labs-serial-communication/lab-serial-input-to-the-p5-js-ide/'>Serial Input to p5</a>, 
 <a href='https://itp.nyu.edu/physcomp/labs/labs-serial-communication/two-way-duplex-serial-communication-using-p5js/'>Two-Way (Duplex) Serial Communication Using An Arduino and p5</a>, and an example for <a href='https://create.arduino.cc/projecthub/alankrantas/use-teachable-machine-ai-to-control-anything-2ad1ee'> Teachable Machine</a>. 
@@ -61,7 +61,7 @@ void loop() {
 
 <p> Finally, you'll need a sketch.js file, which can look something like <a href='https://github.com/ITPNYU/physcomp/tree/master/Labs/P5SerialLabs/P5ReadSerial/readSerial'>this</a>. Make sure to change your port name. </p>
 
-### WebUSB API
+### 2. WebUSB API
 
 Another way to talk to your browser is by using microcontrollers that are able to talk over USB directly. Check out <a href='https://learn.adafruit.com/using-webusb-with-arduino-and-tinyusb?view=all'>Adafruit's documentation</a> on how to do this. This method is particularly useful because it allows your browser to directly ask permission to access your microcontroller over USB, meaning you don't need to go through the step of establishing a connection bridge yourself. 
 
@@ -74,7 +74,7 @@ The WebUSB API:
 - requires the OS to allow the browser to "claim" the USB interface, which means there can't already be a USB device driver present.
 - requires support for the TinyUSB stack 
 
-### WebSerial API 
+### 3. WebSerial API 
 
 The WebSerial API is more generally accessible and useful with any device that can talk Serial. 
 

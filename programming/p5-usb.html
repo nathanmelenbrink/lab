@@ -39,25 +39,30 @@
 Adafruit_USBD_WebUSB usb_web;
 
 // Landing Page: scheme (0: http, 1: https), url
-WEBUSB_URL_DEF(landingPage, 1 /*https*/, "https://nathanmelenbrink.github.io/ps70/13_programming/p5-webusb/index.html");
+WEBUSB_URL_DEF(landingPage, 1 /*https*/, "nathanmelenbrink.github.io/lab/programming/p5-webusb/index.html");
 
-void setup(){
-usb_web.setLandingPage(&landingPage);
-usb_web.begin();
+void setup() {
+  pinMode(A0, OUTPUT);
+  pinMode(A4, OUTPUT);
+  digitalWrite(A0, HIGH);
+  digitalWrite(A4, LOW);
 
-Serial.begin(115200);
+  usb_web.setLandingPage(&landingPage);
+  usb_web.begin();
 
-// wait until device mounted
-while ( !USBDevice.mounted() ) delay(1);
+  Serial.begin(115200);
 
-Serial.println("p5 WebUSB Serial example");
+  // wait until device mounted
+  while ( !USBDevice.mounted() ) delay(1);
+
+  Serial.println("p5 WebUSB Serial example");
 }
 
-void loop(){
-int reading = analogRead(A2);
-usb_web.println(reading);
+void loop() {
+  int reading = analogRead(A2);
+  usb_web.println(reading);
 
-delay(100);
+  delay(10);
 }
 </code></pre>
 
