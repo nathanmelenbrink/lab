@@ -17,7 +17,7 @@
 
 <p> For this workshop, please collect the following: 
 <ul> 
-  <li>Microcontroller (MCU): ESP32 dev board or XIAO </li>
+  <li>Microcontroller (MCU): Arduino Uno or similar </li>
   <li>DC motor </li>
   <li>L9110 </li>
   <li>Wires</li>
@@ -109,7 +109,7 @@ void loop() {
 </code></pre> 
 
 <h3>Analog Mode </h3>
-<p> In addition to changing directions using <code>digitalWrite()</code> commands, we can also change the motor speed using PWM. However, once we start sending a pin PWM signals (using <code>ledcWrite()</code>), it will stop listening for <code>digitalWrite()</code> commands, so we'll need to stop the motor using <code>ledcWrite(A1A, 0)</code> instead. We'll also need to declare the PWM resolution and channel. </p>
+<p> In addition to changing directions using <code>digitalWrite()</code> commands, we can also change the motor speed using PWM. However, once we start sending a pin PWM signals (using <code>analogWrite()</code>), it will stop listening for <code>digitalWrite()</code> commands, so we'll need to stop the motor using <code>analogWrite(A1A, 0)</code> instead.</p>
 
 <p>Remember that when the direction pin (A1B) is HIGH, the logic of the speed pin (A1A) is inverted. So when A1B is LOW, <code>analogWrite(A1A, 255)</code> will move the motor at full speed, but when A1B is HIGH, <code>analogWrite(A1A, 0)</code> will move the motor at full speed. </p>
 
@@ -117,41 +117,36 @@ void loop() {
 const int A1A = 12;  // define pin 12 for A-1A (PWM Speed)
 const int A1B = 14;  // define pin 14 for A-1B (direction)
 
-// setting PWM properties
-const int freq = 5000;
-const int resolution = 8;
-
 void setup() {
   pinMode(A1A, OUTPUT);     // specify these pins as outputs
   pinMode(A1B, OUTPUT);
-  ledcAttach(A1A, freq, resolution);
-  ledcWrite(A1A, 0);   // start with the motors off 
+  analogWrite(A1A, 0);   // start with the motors off 
   digitalWrite(A1B, LOW);
 }
 
 void loop() {
   // start the motor at a low speed
-  ledcWrite(A1A, 200);
+  analogWrite(A1A, 150);   
   digitalWrite(A1B, LOW);
   delay(4000);              // allow the motor to run for 4 seconds
 
   // stop the motor
-  ledcWrite(A1A, 0);   // setting both pins LOW stops the motor
+  analogWrite(A1A, 0);   // setting both pins LOW stops the motor
   delay(2000);              // keep the motor off for 2 seconds
 
   // start the motor in opposite direction at the same speed
   digitalWrite(A1B, HIGH);  // switch direction
-  ledcWrite(A1A, 50); // here the logic for speed is inverted
+  analogWrite(A1A, 255-150); // here the logic for speed is inverted   
   delay(4000);              // allow the motor to run for 4 seconds
 
   // speed up the motor
-  ledcWrite(A1A, 0);   // here the logic for speed is inverted
-  delay(2000);
+  analogWrite(A1A, 0);   // here the logic for speed is inverted  
+  delay(2000);   
 
   // stop the motor
-  ledcWrite(A1A, 0);   // setting both pins LOW stops the motor
+  analogWrite(A1A, 0);   // setting both pins LOW stops the motor
   digitalWrite(A1B, LOW);
-  delay(2000);
+  delay(2000);   
 
 }
 </code></pre> 
@@ -169,10 +164,10 @@ void loop() {
 
 void motorA(byte d, int s) {
   if(d == 1){
-    ledcWrite(A1A, 255-s); 
+    analogWrite(A1A, 255-s); 
     digitalWrite(A1B, HIGH); 
   } else if (d == 0){
-    ledcWrite(A1A, s); 
+    analogWrite(A1A, s); 
     digitalWrite(A1B, LOW);    
   }    
 }
@@ -204,10 +199,10 @@ void loop() {
 
 void motorA(byte d, int s) {
   if(d == 1){
-    ledcWrite(A1A, 255-s); 
+    analogWrite(A1A, 255-s); 
     digitalWrite(A1B, HIGH); 
   } else if (d == 0){
-    ledcWrite(A1A, s); 
+    analogWrite(A1A, s); 
     digitalWrite(A1B, LOW);    
   }    
 }
@@ -247,6 +242,7 @@ void motorA(byte d, int s) {
 <pre><code class="language-arduino">
 /*  Code to run motor in one direction based on potentiometer reading.
  *  Motor driver speed control on pin 3 (direction LOW by default)
+ *  Potentiometer plugged into A0, A2, and A4 on Arduino Uno (or similar).
  */
 
 void setup() {
@@ -261,7 +257,7 @@ void setup() {
 void loop() {
   int pot_value = analogRead(A2);   //pot wiper is on A2
   int motor_speed = map(pot_value, 0, 1023, 255, 0); // map motor_level to pot_value so that zero corresponds to lowest speed
-  ledcWrite(3, motor_speed);
+  analogWrite(3, motor_speed);
   delay(1);
 }
 </code></pre>
