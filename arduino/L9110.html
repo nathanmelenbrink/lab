@@ -43,11 +43,11 @@ If we need precise positional control of the motor, we can either use a stepper 
 
 <img src="./L9110-3.jpg" alt="L9110 third step">
 
-<p> Now plug in your USB cable and upload the following code to your MCU: </p>
+<p> Now plug in your USB cable and upload the following code to your MCU. If using the XIAO, try pins D0 and D1 </p>
 
 <pre><code class="language-arduino">
-const int A1A = 3;  // define pin 3 for A-1A 
-const int A1B = 4;  // define pin 4 for A-1B 
+const int A1A = 12;  // define pin 12 for A-1A 
+const int A1B = 14;  // define pin 14 for A-1B 
 
 void setup() {
   pinMode(A1A, OUTPUT);     // specify these pins as outputs
@@ -74,8 +74,8 @@ void loop() {
 </p>
 
 <pre><code class="language-arduino">
-const int A1A = 3;  // define pin 3 for A-1A (speed)
-const int A1B = 4;  // define pin 4 for A-1B (direction)
+const int A1A = 12;  // define pin 12 for A-1A (speed)
+const int A1B = 14;  // define pin 14 for A-1B (direction)
 
 void setup() {
   pinMode(A1A, OUTPUT);     // specify these pins as outputs
@@ -114,8 +114,8 @@ void loop() {
 <p>Remember that when the direction pin (A1B) is HIGH, the logic of the speed pin (A1A) is inverted. So when A1B is LOW, <code>analogWrite(A1A, 255)</code> will move the motor at full speed, but when A1B is HIGH, <code>analogWrite(A1A, 0)</code> will move the motor at full speed. </p>
 
 <pre><code class="language-arduino">
-const int A1A = 3;  // define pin 3 for A-1A (PWM Speed)
-const int A1B = 4;  // define pin 4 for A-1B (direction)
+const int A1A = 12;  // define pin 12 for A-1A (PWM Speed)
+const int A1B = 14;  // define pin 14 for A-1B (direction)
 
 void setup() {
   pinMode(A1A, OUTPUT);     // specify these pins as outputs
@@ -177,8 +177,8 @@ void motorA(byte d, int s) {
 
 
 <pre><code class="language-arduino">
-const int A1A = 3;  // define pin 3 for A-1A (PWM Speed)
-const int A1B = 4;  // define pin 4 for A-1B (direction)
+const int A1A = 12;  // define pin 12 for A-1A (PWM Speed)
+const int A1B = 14;  // define pin 14 for A-1B (direction)
 
 void setup() {
   pinMode(A1A, OUTPUT); // specify these pins as outputs
