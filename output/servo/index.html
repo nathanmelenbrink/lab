@@ -24,7 +24,9 @@
 
 <h3> Servo Motors </h3>
 
-See <a href='https://learn.sparkfun.com/tutorials/hobby-servo-tutorial'>Sparkfun Tutorial</a> for more information. 
+Note: The code on this page has been updated to work with the ESP32C3 XIAO microcontroller. Refer to the builtin Arduino examples for other microcontrollers. 
+
+See <a href='https://learn.sparkfun.com/tutorials/hobby-servo-tutorial'>Sparkfun Tutorial</a> for more information on servo motors. 
 
 <p> Most of the actuators we'll look at are "open loop", meaning that we give them commands but don't expect any feedback. Servos are probably the easiest way to add "closed loop" actuation to your project. In industry, the word "servo" is used to describe different kinds of motors than we're using here; "servo" just means "closed loop". 
 </p>
@@ -34,12 +36,12 @@ See <a href='https://learn.sparkfun.com/tutorials/hobby-servo-tutorial'>Sparkfun
 <p> The easiest way to get up and running with a Servo motor is to use the Arduino Servo library. Let's start by pasting this minimal example: </p>
 
 <pre><code class="language-arduino">
-#include &lt;Servo.h&gt;
+#include &lt;ESP32Servo.h&gt;
 
 Servo myservo;  // create servo object to control a servo
 
 void setup() {
-  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+  myservo.attach(D7);  // attaches the servo on D7 to the servo object
 }
 
 void loop() {
@@ -59,14 +61,14 @@ void loop() {
 <p>In most applications, we'll want the servo to do more than just remain at a particular position. Sometimes, we'll want to program a servo to move in a certain way on repeat. With the same wiring, try uploading the following code (from the Arduino "Sweep" example): </p>
 
 <pre><code class="language-arduino">
-#include &lt;Servo.h&gt;
+#include &lt;ESP32Servo.h&gt;
 
 Servo myservo;  // create servo object to control a servo
 
 int pos = 0;    // variable to store the servo position
 
 void setup() {
-  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+  myservo.attach(D7);  // attaches the servo on pin 9 to the servo object
 }
 
 void loop() {
@@ -91,11 +93,11 @@ void loop() {
 
 Servo myservo;  // create servo object to control a servo
 
-int potpin = 0;  // analog pin used to connect the potentiometer
+int potpin = A0;  // analog pin used to connect the potentiometer
 int val;    // variable to read the value from the analog pin
 
 void setup() {
-  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+  myservo.attach(D7);  // attaches the servo on pin 9 to the servo object
 }
 
 void loop() {
