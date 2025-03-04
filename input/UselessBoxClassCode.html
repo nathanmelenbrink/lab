@@ -1,0 +1,105 @@
+#include <ESP32Servo.h>
+
+int switchPin = 25;
+int lidServoPin = 26;
+int switchServoPin = 27;
+
+class Switch{
+  int currentState;
+  int lastState = 0;
+
+  public:
+  Switch(int switchPin){
+    pinMode(switchPin, INPUT_PULLUP);
+  };
+
+  bool isPressed(){
+    currentState = digitalRead(switchPin);
+    if (currentState == HIGH && lastState == LOW){
+      lastState = currentState;
+      return true;
+    }
+    else if (currentState == LOW && lastState == HIGH){
+      lastState = currentState;
+      return false;
+    }
+  }
+};
+
+class UselessServo{
+  Servo servo;
+  int pos;
+  int increment;
+  int updateInterval;
+  unsigned long lastUpdate;
+  int startPos;
+  int endPos;
+
+  public:
+  UselessServo(int interval, int start, int target){
+    updateInterval = interval;
+    increment = -1;
+    startPos = start-1;
+    pos = startPos;
+    endPos = target;
+  }
+
+  void Attach(int pin){
+    servo.attach(pin);
+    servo.write(startPos);
+  }
+
+  void Detach(){
+    servo.detach();
+  }
+
+  void toTarget(){
+    if((millis() - lastUpdate) > updateInterval && pos != endPos){
+      lastUpdate = millis();
+      pos += increment;
+      servo.write(pos);
+    }
+  }
+
+  bool isMoving(){
+    if(pos == endPos || pos == startPos){
+      return 0;
+    } 
+    else{
+      return 1;
+    }
+  }
+
+  void Return(){
+    if((millis() - lastUpdate) > updateInterval && pos != startPos){
+      lastUpdate = millis();
+      pos -= increment;
+      servo.write(pos);
+    }
+  }
+};
+
+Switch mainSwitch(25);
+UselessServo lidServo(15, 180, 90);
+UselessServo switchServo(1, 180, 0);
+
+void setup() {
+  lidServo.Attach(lidServoPin);
+  switchServo.Attach(switchServoPin);
+  Serial.begin(9600);
+}
+
+void loop() {
+  if(mainSwitch.isPressed() == 1){
+    lidServo.toTarget();
+    if(!lidServo.isMoving()){
+      switchServo.toTarget();
+    }
+  }
+  else{
+    switchServo.Return();
+    if(!switchServo.isMoving()){
+      lidServo.Return();
+    }
+  }
+}
