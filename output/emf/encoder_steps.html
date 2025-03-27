@@ -46,12 +46,11 @@ Here's the code I used:
 <pre><code class="language-arduino">
 #include &lt;Encoder.h&gt;
 
-const int A1A = 14;  // define pin 3 for A-1A (PWM Speed)
-const int A1B = 27;  // define pin 4 for A-1B (direction)
+const int A1A = 14;  // define pin for A-1A (PWM Speed)
+const int A1B = 27;  // define pin for A-1B (direction)
 
 // setting PWM properties
 const int freq = 5000;
-const int pwmChannel_A = 0;
 const int resolution = 8;
 
 Encoder motor_A(26, 25);
@@ -63,11 +62,8 @@ void setup() {
   pinMode(A1A, OUTPUT); // specify these pins as outputs
   pinMode(A1B, OUTPUT);
 
-  // configure LED PWM functionalities
-  ledcSetup(pwmChannel_A, freq, resolution);
-
   // attach the channel to the GPIO to be controlled
-  ledcAttachPin(A1A, pwmChannel_A);
+  ledcAttach(A1A, freq, resolution);
 }
 
 void loop() {
