@@ -185,9 +185,16 @@ void motorA(byte d, int s) {
 const int A1A = 12;  // define pin 12 for A-1A (PWM Speed)
 const int A1B = 14;  // define pin 14 for A-1B (direction)
 
+// setting PWM properties
+const int freq = 5000;
+const int resolution = 8;
+
 void setup() {
   pinMode(A1A, OUTPUT); // specify these pins as outputs
   pinMode(A1B, OUTPUT);    
+
+  ledcAttach(A1A, freq, resolution);
+  ledcWrite(A1A, 0);   // start with the motors off 
 }
 
 void loop() {
