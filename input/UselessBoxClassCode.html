@@ -15,9 +15,8 @@
 
 #include &lt;ESP32Servo.h&gt;
 
-int switchPin = 25;
-int lidServoPin = 26;
-int switchServoPin = 27;
+int switchPin = 35;
+int switchServoPin = 32;
 
 class Switch{
   int currentState;
@@ -76,15 +75,6 @@ class UselessServo{
     }
   }
 
-  bool isMoving(){
-    if(pos == endPos || pos == startPos){
-      return 0;
-    } 
-    else{
-      return 1;
-    }
-  }
-
   void Return(){
     if((millis() - lastUpdate) > updateInterval && pos != startPos){
       lastUpdate = millis();
@@ -94,30 +84,24 @@ class UselessServo{
   }
 };
 
-Switch mainSwitch(25);
-UselessServo lidServo(15, 180, 90);
-UselessServo switchServo(1, 180, 0);
+Switch mainSwitch(switchPin);
+UselessServo switchServo(0.5, 180, 0);
 
 void setup() {
-  lidServo.Attach(lidServoPin);
   switchServo.Attach(switchServoPin);
   Serial.begin(9600);
 }
 
 void loop() {
   if(mainSwitch.isPressed() == 1){
-    lidServo.toTarget();
-    if(!lidServo.isMoving()){
-      switchServo.toTarget();
-    }
+    switchServo.toTarget();
+
   }
   else{
     switchServo.Return();
-    if(!switchServo.isMoving()){
-      lidServo.Return();
-    }
   }
 }
+
 
 </code>
 </pre>
