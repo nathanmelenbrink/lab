@@ -440,3 +440,17 @@ var PR=win['PR']={'createSimpleLexer':createSimpleLexer,'registerLangHandler':re
 
 })(window, document);
 
+// --- strapdown.js original code above ---
+
+/* ===== GA4 auto-insert (SC 102 Fabrication Lab) ===== */
+(function () {
+  var gtagSrc = 'https://www.googletagmanager.com/gtag/js?id=G-EDHJNS1LLD';
+  var s = document.createElement('script');
+  s.async = true; s.src = gtagSrc;
+  document.head.appendChild(s);
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-EDHJNS1LLD');
+})();
