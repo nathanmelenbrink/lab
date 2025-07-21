@@ -16,7 +16,7 @@ This guide explains how to set up **two ESP32 Dev boards** to estimate proximity
 
 ---
 
-## 🔧 What You Need
+## What You Need
 
 - 2x ESP32 DevKit boards (not C3 or S3)
 - Arduino IDE (v1.8 or 2.x)
@@ -25,7 +25,7 @@ This guide explains how to set up **two ESP32 Dev boards** to estimate proximity
 
 ---
 
-## ⚠️ ESP-NOW Requires Explicit Peer Registration (Why It Matters)
+## ESP-NOW Requires Explicit Peer Registration (Why It Matters)
 
 In ESP32 Arduino Core 3.x, ESP-NOW requires **explicit registration of peer MAC addresses**, even for receiving broadcast packets. This is a change from earlier cores (e.g. 2.0.6), where broadcasts were received without peer setup.
 
@@ -38,7 +38,7 @@ If you do not register peers:
 
 ---
 
-## ✅ Get MAC Addresses First
+## Get MAC Addresses First
 
 Upload this minimal sketch to each ESP32 board and open the Serial Monitor:
 
@@ -59,7 +59,7 @@ Record each MAC address (e.g. `B0:B2:1C:A7:82:FC`).
 
 ---
 
-## 📥 Upload This Code to Both Boards
+## Upload This Code to Both Boards
 
 Replace the `peerMAC[]` value on each board with the **other board's MAC address**.
 
@@ -79,7 +79,7 @@ const float DIST_MIN = 0.2;
 const float DIST_MAX = 20.0;
 float lastDistance = DIST_MAX + 1;
 
-// 👇 Replace this with the MAC address of the other board
+// Replace this with the MAC address of the other board
 uint8_t peerMAC[] = { 0xB0, 0xB2, 0x1C, 0xA7, 0x82, 0xFC };
 
 void setup() {
@@ -143,28 +143,28 @@ void OnDataRecv(const esp_now_recv_info_t *info, const uint8_t *data, int len) {
 
 ---
 
-## ✅ Will This Work on the XIAO ESP32 (C3)?
+## Will This Work on the XIAO ESP32 (C3)?
 
 Mostly **no** — unless you downgrade your board support.
 
-### ❌ On XIAO ESP32-C3 (RISC-V):
+### On XIAO ESP32-C3 (RISC-V):
 
 - ESP-NOW is **unreliable** in current (3.x) Arduino cores
 - Broadcast receive **does not work**
 - RSSI support is limited or missing
 
-### ✅ You can try:
+### You can try:
 
 - Downgrading to **ESP32 Arduino core 2.0.6**
 - Using only basic send/receive logic (no dynamic peer registration)
 
-### 🔥 Recommended:
+### Recommended:
 
 > Use the **original ESP32 XIAO (not C3/S3)** or **ESP32 DevKit** for stable ESP-NOW + RSSI functionality.
 
 ---
 
-## 🧪 Notes on Testing
+## Notes on Testing
 
 - Use Serial Monitor at 115200 baud
 - Check that both boards print `RECV` lines
@@ -172,7 +172,7 @@ Mostly **no** — unless you downgrade your board support.
 
 ---
 
-## ✅ Summary
+## Summary
 
 - Use ESP32 Dev boards (not C3 or S3)
 - Lock both to Wi-Fi channel 1
@@ -182,7 +182,7 @@ Mostly **no** — unless you downgrade your board support.
 
 ---
 
-## ✅ Working State Checklist
+## Working State Checklist
 
 - [x] `esp_now_init()` returns `ESP_OK`
 - [x] `esp_now_send()` returns `0`
