@@ -444,7 +444,7 @@ var PR=win['PR']={'createSimpleLexer':createSimpleLexer,'registerLangHandler':re
 
 /* ===== GA4 auto-insert (SC 102 Fabrication Lab) ===== */
 (function () {
-  var gtagSrc = '/gtag-local.js';
+  var gtagSrc = '/lab/js/gtag-local.js';
   var s = document.createElement('script');
   s.async = true; s.src = gtagSrc;
   document.head.appendChild(s);
