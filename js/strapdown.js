@@ -442,15 +442,32 @@ var PR=win['PR']={'createSimpleLexer':createSimpleLexer,'registerLangHandler':re
 
 // --- strapdown.js original code above ---
 
-/* ===== GA4 auto-insert (SC 102 Fabrication Lab) ===== */
+/* ─── SC‑102 Fabrication Lab · GA4 loader (self‑hosted) ─── */
 (function () {
-  var gtagSrc = '/lab/js/gtag-local.js';
-  var s = document.createElement('script');
-  s.async = true; s.src = gtagSrc;
+  const ID = 'G-EDHJNS1LLD';              // ← your GA4 Measurement ID
+
+  /* 1. load the LOCAL copy of gtag.js */
+  const s = document.createElement('script');
+  s.async = true;
+  /* adjust the path if you keep gtag-local.js elsewhere */
+  s.src = '/lab/js/gtag-local.js';
   document.head.appendChild(s);
 
+  /* 2. bootstrap dataLayer */
   window.dataLayer = window.dataLayer || [];
   function gtag(){ dataLayer.push(arguments); }
+
   gtag('js', new Date());
-  gtag('config', 'G-EDHJNS1LLD');
+
+  /* 3. config
+       • cookie_domain:'none' lets the _ga cookie work on nathanmelenbrink.github.io
+       • debug_mode:true lets you see hits in GA ► Configure ► DebugView
+  */
+  gtag('config', ID, {
+    cookie_domain: 'none',
+    debug_mode:    true
+  });
+
+  console.log('[GA4] self‑hosted loader initialised →', ID);
 })();
+
