@@ -1,104 +1,220 @@
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SC 102 Fabrication Studio</title>
 
-	<title>Science Center Fabrication Lab</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link href="./css/style.css" rel="stylesheet">
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <style>
+    :root{ --harvard-crimson:#A51C30; --harvard-dark:#2E2D29; --light-gray:#f5f5f7; --mid-gray:#dcdcdc; }
+    body{ font-family:"Source Sans 3",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; color:#222; line-height:1.6; }
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-	<link href="./css/style.css" rel="stylesheet">
+    /* HERO */
+    .hero{
+      background:linear-gradient(rgba(165,28,48,.85), rgba(165,28,48,.70)), url('./hero.jpg') center/cover no-repeat;
+      color:#fff; padding:2.25rem 0;
+    }
+    .hero h1{
+      font-family:"Crimson Text", Georgia, serif; font-weight:700; font-size:2rem;
+      margin:0 0 .25rem 0; display:flex; align-items:center; gap:.5rem;
+    }
+    .hero .hero-icon{ width:36px; height:36px; object-fit:contain; mix-blend-mode:multiply; background:transparent; opacity:.95; }
 
+    /* Section title + mini icon */
+    .section-title{
+      display:flex; align-items:center; gap:.5rem;
+      font-family:"Crimson Text", Georgia, serif; font-weight:700; font-size:1.5rem;
+      color:var(--harvard-dark); margin:2rem 0 1rem; padding-bottom:.4rem; border-bottom:3px solid var(--harvard-crimson);
+    }
+    .mini-icon{ width:22px; height:22px; object-fit:contain; mix-blend-mode:multiply; background:transparent; opacity:.95; }
+
+    /* Layout */
+    .sidebar{ background:var(--light-gray); border-left:1px solid var(--mid-gray); padding:1.25rem; border-radius:.5rem; position:sticky; top:1rem; }
+    .sidebar h5{ font-weight:700; font-size:1rem; margin-bottom:.75rem; }
+    .sidebar a{ display:block; padding:.35rem 0; color:#333; }
+    .sidebar a.active{ font-weight:700; text-decoration:underline; }
+    .sidebar a:hover{ text-decoration:underline; }
+
+    /* PDF preview (used by Organization) */
+    .pdf-preview-wrapper{ position:relative; width:100%; display:inline-block; border:1px solid #ccc; border-radius:8px; overflow:hidden; background:#fff; }
+    .pdf-preview-wrapper iframe{ width:100%; height:600px; border:none; }
+    .pdf-preview-wrapper a.click-layer{ position:absolute; inset:0; z-index:2; }
+
+    /* Staff grid */
+    .staff-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); gap:1rem; }
+    .person{ display:flex; gap:.75rem; align-items:center; border:1px solid #e6e6e6; border-radius:.5rem; padding:.5rem .75rem; background:#fff; }
+    .avatar{ width:56px; height:56px; border-radius:50%; object-fit:cover; background:#eee; flex:0 0 auto; }
+    .site-footer{ border-top:1px solid var(--mid-gray); margin-top:3rem; padding:1.5rem 0; color:#555; font-size:.95rem; }
+  </style>
 </head>
 <body>
 
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1 id="top">
+        <img class="hero-icon" src="https://nathanmelenbrink.github.io/ps70/data/icons/icons-02.png" alt="" onerror="this.style.display='none'">
+        SC&nbsp;102 Fabrication Studio
+      </h1>
+      <p class="mb-0">A hands-on organization supporting coursework, cross-disciplinary research, and student projects.</p>
+    </div>
+  </section>
 
-<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
-<div id="header"></div>
+  <main class="container my-4">
+    <div class="row">
+      <div class="col-lg-8">
+        <div id="content" aria-live="polite"></div>
+      </div>
 
-<xmp style="display:none;">
+      <aside class="col-lg-4">
+        <div class="sidebar">
+          <h5>On this page</h5>
+          <a href="#about"        data-load="about.html">About</a>]
+          <a href="#staff"        data-load="staff.html">Staff</a>
+          <a href="#projects"     data-load="projects.html">Projects</a>
+          <a href="#tutorials"    data-load="tutorials.html">Tutorials</a>
+          <a href="#classes"      data-load="classes.html">Classes</a>
+          <a href="#organization" data-load="organization.html">Organization</a>
+          <a href="#calendar"     data-load="calendar.html">Calendar</a>
+          <hr>
+          <h5>Quick actions</h5>
+          <a href="mailto:fabrication-lab-subscribe@lists.fas.harvard.edu">Join Mailing List</a>
+          <a href="#top">Back to top</a>
+        </div>
+      </aside>
+    </div>
+  </main>
 
+  <footer class="site-footer">
+    <div class="container d-flex flex-column flex-md-row justify-content-between">
+      <div>© Harvard University — SC 102 Fabrication Studio</div>
+      <!-- <div>Contact • Location • Policies</div> -->
+    </div>
+  </footer>
 
-## SC 102 Fabrication Studio
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-The Science Center Fabrication Lab is a resource available to the Harvard community to support coursework, cross-disciplinary research and personal projects. 
+  <!-- Client-side router: loads root partials, keeps hero & sidebar -->
+  <script>
+  (function(){
+    const routes = {
+      '#about':'about.html',
+      '#access':'access.html',
+      '#staff':'staff.html',
+      '#projects':'projects.html',
+      '#tutorials':'tutorials.html',
+      '#classes':'classes.html',
+      '#organization':'organization.html',
+      '#calendar':'calendar.html'
+    };
+    const content = document.getElementById('content');
+    const links = Array.from(document.querySelectorAll('.sidebar a[data-load]'));
 
-The lab offers access to equipment and training for fabrication skills including CNC machining, molding and casting, sensor fabrication, microcontroller programming, radio communication (internet of things) and 3D printing. 
+    function setActive(hash){
+      links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === hash));
+    }
 
-The Fabrication Lab is an inclusive environment that fosters self-directed learning and open collaboration. We host public events, open houses and project fairs. You can join our mailing list for events and occasional updates by sending a blank message to fabrication-lab-subscribe@lists.fas.harvard.edu. 
+    async function load(hash){
+      const url = routes[hash] || routes['#about'];
+      setActive(hash in routes ? hash : '#about');
+      try{
+        content.innerHTML = '<p class="text-muted">Loading…</p>';
+        const res = await fetch(url, {cache:'no-store'});
+        const html = await res.text();
+        content.innerHTML = html;
+        // hide any broken mini-icons automatically
+        document.querySelectorAll('.section-title img.mini-icon').forEach(img=>{
+          img.onerror = function(){ this.style.display='none'; };
+        });
+        // build Tutorials directory if that section is open
+        const tut = document.getElementById('tutorials-content');
+        if(tut){ buildTutorials(tut); }
+        window.scrollTo({top:0, behavior:'smooth'});
+      }catch(e){
+        content.innerHTML = '<p class="text-danger">Could not load this section.</p>';
+      }
+    }
 
-### Lab Access
+    // intercept clicks
+    links.forEach(a => a.addEventListener('click', e => {
+      e.preventDefault();
+      const hash = a.getAttribute('href');
+      if(location.hash !== hash) history.pushState(null, '', hash);
+      load(hash);
+    }));
 
-Due to resource limitations, we are typically only able to offer shop training and access to current and former students in our digital fabrication courses (PS70: Intro to Digital Fabrication in the Spring, Summer and Fall). Students interested in learning to use the lab equipment are encouraged to enroll in the course. Untrained students may use the space only under staff supervision; see our lab calendar below for staffing hours.
+    // back/forward
+    window.addEventListener('hashchange', ()=>load(location.hash));
+    // initial
+    load(location.hash || '#about');
 
-### About the Lab
+    // tutorials: simple 2-level listing
+    async function buildTutorials(container){
+      const owner='nathanmelenbrink', repo='lab';
+      const api = (p='')=>`https://api.github.com/repos/${owner}/${repo}/contents${p}`;
+      function fileItem(path, name){
+        const a=document.createElement('a'); a.href=`/lab${path}/${name}`; a.textContent=name; a.target='_blank'; a.rel='noopener';
+        const li=document.createElement('li'); li.appendChild(a); return li;
+      }
+      async function list(path){ const r=await fetch(api(path)); return r.status===200 ? r.json() : null; }
 
-The Fabrication Lab was created in 2013 as a resource in the Department of Physics, and has since grown to support the diverse fabrication needs of the College. We support projects from all corners of the community, including musicians building novel instruments, researchers developing lab automation devices, and artists experimenting with drawing machines.
+      container.innerHTML = '<p class="text-muted">Loading…</p>';
+      const root = await list('');
+      if(!Array.isArray(root)){ container.textContent='Could not load repository contents.'; return; }
+      container.innerHTML='';
 
-### Lab Organization
-<br> 
+      const dirs = root.filter(x=>x.type==='dir').map(x=>x.name).sort((a,b)=>a.localeCompare(b));
+      for(const d of dirs){
+        const details=document.createElement('details'); details.open=false;
+        const summary=document.createElement('summary'); summary.textContent=d+'/';
+        details.appendChild(summary);
+        const ul=document.createElement('ul'); ul.className='filelist';
 
-<!-- ==== PDF preview + click-through ==== -->
-<style>
-/* Wraps the preview and places a transparent “click-layer” on top */
-.pdf-preview-wrapper {
-position: relative;
-width: 100%;
-display: inline-block;   /* keeps it only as wide as the iframe */
-/*	    max-width: 600px;        /* adjust to taste */*/
-border: 1px solid #ccc;
-border-radius: 8px;
-overflow: hidden;
-}
+        const level1 = await list('/'+d);
+        if(level1){
+          level1.filter(x=>x.type==='file' && x.name.endsWith('.html'))
+                .forEach(f=>ul.appendChild(fileItem('/'+d, f.name)));
 
-.pdf-preview-wrapper iframe {
-width: 100%;
-height: 600px;           /* adjust to taste */
-border: none;
-}
+          const subdirs = level1.filter(x=>x.type==='dir').map(x=>x.name).sort((a,b)=>a.localeCompare(b));
+          for(const sd of subdirs){
+            const items = await list('/'+d+'/'+sd);
+            if(!items) continue;
+            const files = items.filter(x=>x.type==='file' && x.name.endsWith('.html'));
+            if(files.length){
+              const h6=document.createElement('h6'); h6.textContent=`${d}/${sd}/`; ul.appendChild(h6);
+              files.forEach(f=>ul.appendChild(fileItem('/'+d+'/'+sd, f.name)));
+            }
+          }
+        }
+        if(!ul.children.length){
+          const p=document.createElement('p'); p.className='text-muted'; p.textContent='(No HTML tutorials found)';
+          details.appendChild(p);
+        }else{
+          details.appendChild(ul);
+        }
+        container.appendChild(details);
+      }
+    }
+  })();
+  </script>
 
-/* Transparent layer that grabs the click and opens the PDF in a new tab */
-.pdf-preview-wrapper a.click-layer {
-position: absolute;
-inset: 0;                /* stretches to cover the iframe */
-z-index: 2;
-/* no background → fully transparent */
-}
-</style>
-
-<div class="pdf-preview-wrapper">
-<!-- Transparent overlay that does the navigation -->
-<a class="click-layer"
- href="SC_102.pdf"
- target="_blank"
- aria-label="Open SC_102.pdf in a new tab"></a>
-
-<!-- First page shown at 50 % zoom -->
-<iframe src="SC_102.pdf#page=1&zoom=50"
-      loading="lazy"
-      title="SC_102 – preview (50 % scale)">
-</iframe>
-</div>
-
-<br> <br>
-
-### Lab Calendar
-<br> 
-
-<iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=America%2FNew_York&mode=WEEK&src=aGFydmFyZC5lZHVfMzBkNmR2M3NkbGMwNm1naWxlcGIzNW1va2tAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23009688&color=%23009688" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe><br> <br>
-
-
-
-
-</xmp>
-
-<script src="./js/strapdown.js"></script>
-<!-- <script type="text/javascript" src="../js/iframeResizer.contentWindow.min.js"></script> -->
-<link href="./css/style.css" rel="stylesheet">
-
+  <!-- Self-hosted GA -->
+  <script>
+    (function () {
+      const ID = 'G-EDHJNS1LLD';
+      const s = document.createElement('script'); s.async = true; s.src = '/lab/js/gtag-local.js';
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', ID, { cookie_domain: 'none' });
+    })();
+  </script>
 </body>
 </html>
