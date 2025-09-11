@@ -1,0 +1,69 @@
+<head> 
+  <base target="_child">  
+</head>
+
+<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
+<div id="header"></div>
+
+<xmp style="display:none;">
+
+# Laser Cutter Tutorial 
+
+<video width = "100%"  controls style = "margin-top: 50px;margin-bottom: 50px;">
+    <source src = "laser-cutter-tutorial.mp4" type = "video/mp4">
+</video>
+
+
+##PS70 Lab - Laser Cutter Guide
+
+This guide is a quick summary of the video above
+
+
+###1. Turning On the Laser Cutter
+  * Turn the ventilation knob
+  * Open the ventilation door
+  * Turn the switch on the right side of the laser cutter on
+  * Give the ventilation a few minutes to warmup and then the laser cutter is ready to go
+
+###2. Preprocessing in Rhino
+  * Click a file labeled Lasercut template on the Desktop of the laser cutter computer
+  * Then go file import and then select your dxf file
+  * Then drag and select all of the lines of your design  
+  * Then use the arrows move it into the gray box in the middle of the screen
+  * Then with all of the lines still selected type explode into the command bar
+  * Then click off of the design to deselect the lines 
+  * Then type SelDup into the command bar and hit backspace to delete the duplicate lines 
+  * Now if you have any additional lines feel free to delete them now 
+  * Now just select each line and put it on the layer of the action you want to do 
+    * Either ENGRAVE, SCORE, or CUT
+  * Now type control + p to print and just hit print (DO NOT TOUCH ANY OTHER SETTINGS)
+
+###3. Controlling Laser Cutter in UCP
+  * Measure your stock with calipers and put it into the laser cutter
+  * Now enter the material type and thickness into the settings 
+    * Common Stock Lab Materials in UCP
+      * Cardboard : Natural -> MatBoard (But subtract 1.5 mm from thickness)
+      * Plywood : Natural -> Wood -> Medium Wood -> General Medium Wood
+      * Acrylic : Plastic -> Acrylic -> Continous Cast Acrylic
+  * Then using the move tool, move your design to a free space on your stock
+  * Then using the focus tool, verify your design fits on your stock
+  * Then take out the laser cutter focus tool to calibrate the z height 
+  * Go to the z menu on the laser cutter
+  * Move the laser cutter bed either up or down using the arrows until the lip of the tool 
+    meets the bottom of the laser cutter 
+  * Then put the tool back in the laser cutter and go back to the main menu
+  * Then start you cut
+***4. Safety
+  * If there is issue pause the cut in UCP and get lab staff
+  * If there is no lab staff around open the laser cutter and put the fire blanket on top of it
+  
+
+
+
+</xmp>
+
+
+<script src="../js/strapdown.js"></script>
+<script type="text/javascript" src="../js/iframeResizer.contentWindow.min.js"></script>
+<link href="../css/style.css" rel="stylesheet">
+</html>
