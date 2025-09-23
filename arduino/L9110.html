@@ -27,6 +27,8 @@
 
 <p> We'll be using the L9110 motor driver to make it easier to control our motors in two directions. See the <a href='https://datasheetspdf.com/pdf-file/839657/ASIC/L9110/1'>L9110 Data Sheet </a>for more information on this component. Under the hood, this component uses the H-bridge confirguration to allow for reversing the direction of the motor. </p>
 
+<p> Note that the L298 motor driver is a more reliable (but slightly more expensive) H-bridge motor driver. See the intructions <a href='https://randomnerdtutorials.com/esp32-dc-motor-l298n-motor-driver-control-speed-direction/'> here</a>. </p> 
+
 ![h-bridge](./H-bridge.png)
 
 If we need precise positional control of the motor, we can either use a stepper motor or a [DC motor with an encoder](../output/emf/encoder_steps.html). 
