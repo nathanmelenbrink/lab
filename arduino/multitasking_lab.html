@@ -47,7 +47,115 @@ void loop(){
 </code></pre>
 
 
+    <h3>2. </h3>
+<p> Class Structure</p>
 
+
+<pre><code class="language-arduino">
+//Motor 1
+int A1A = #;
+int A1B = #;
+
+//Motor 2
+int B1A = #;
+int B1B = #;
+
+class className{
+  //Member Variables
+  
+  public:
+  className(//input attributes//){
+      //Set up values for the member variables
+
+      //Declare pins
+
+      //Start with the motor off
+  
+  }
+
+  //Class Functions
+    void functionName(){
+      //Turn on the motor
+  
+    }
+
+};
+
+void setup(){
+
+}
+
+//Declare objects motor1 and motor2 with their respective pins
+
+void loop(){
+  //Run the motors by calling the class function
+
+}
+</code></pre>
+
+
+<h3>3. </h3>
+<p> Timers</p>
+
+
+<pre><code class="language-arduino">
+  //Motor 1
+int A1A = #;
+int A1B = #;
+
+//Motor 2
+int B1A = #;
+int B1B = #;
+
+class Motor{
+  //Member Variables
+
+  //Include time variables
+
+  public:
+  Motor(//input attributes//){
+      //Set up values for the member variables
+
+      //Declare pins
+
+      //Start with the motor off
+
+      //Start the timer
+  
+  }
+
+  //Class Functions
+  void runMotor(//input attributes){
+  //Set up values for the timer member variables
+
+  //If statement that checks if it is time to turn motor on
+    if(??? - ??? > ???){
+      //Turn motor on
+
+      //Store current time
+  
+    }
+  //Else if statement that checks if it is time to turn motor off
+    else if(??? - ??? > ???){
+      //Turn motor on
+
+      //Store current time
+    }
+  }
+};
+
+void setup(){
+
+}
+
+//Declare objects motor1 and motor2 with their respective pins
+
+void loop(){
+  //Run motor 1 for 4 seconds and turn off for 2 seconds
+  //Run motor 2 for 2 seconds and turn off for 3 seconds
+  
+}
+</code></pre>
 
 
 
