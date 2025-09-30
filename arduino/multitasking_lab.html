@@ -167,6 +167,135 @@ void loop(){
 
 
 
+<h3>4. </h3>
+<p> Work with a partner to convert this code for the Useless Box to Class Structure. Upload this code to see what it does.</p>
+
+
+<pre><code class="language-arduino">
+  #include &ltESP32Servo.h&gt
+
+int lidServoPin = 33;
+int switchServoPin = 32;
+
+Servo lidServo;
+Servo switchServo;
+
+void setup() {
+  lidServo.attach(lidServoPin);
+  switchServo.attach(switchServoPin);
+  lidServo.write(0);
+  switchServo.write(0);
+}
+
+void loop() {
+  for(int pos = 180; pos >= 0; pos--){
+    lidServo.write(pos);
+    delay(5);
+  }
+  for(int pos = 180; pos >= 0; pos--){
+    switchServo.write(pos);
+    delay(5);
+  }
+
+  for(int pos = 0; pos <= 180; pos++){
+    switchServo.write(pos);
+    delay(5);
+  }
+
+  for(int pos = 0; pos <= 180; pos++){
+    lidServo.write(pos);
+    delay(5);
+  }
+    
+}
+
+</code></pre>
+
+
+
+
+
+<h3>4. Conti </h3>
+<p> Here is some skeleton code for this example. </p>
+
+
+<pre><code class="language-arduino">
+
+#include &ltESP32Servo.h&gt
+
+int lidServoPin = #;
+int switchServoPin = #;
+
+class UselessServo{
+  Servo servo;
+  //Member variables
+
+  public:
+  UselessServo(int pin, int interval){
+     //Set up values for the member variables
+
+  }
+
+  void Attach(){
+    servo.attach(servoPin);
+    servo.write(startPos);
+  }
+
+  void moveForward(){
+  //If statement that checks the time and checks if it is at the endPos
+  //If time has passed the uptdate interval AND you are not at the endPos move the servo by the increment
+  
+  }
+
+  void moveBackward(){
+  //If statement that checks the time and checks if it is at the startPos
+  //If time has passed the uptdate interval AND you are not at the startPos move the servo by negative of the increment
+
+  }
+
+  bool isMoving(){
+  //Check if a servo is moving, since we only want one servo to move at a time
+    if(pos == endPos || pos == startPos){
+      return #;
+    } 
+    else{
+      return #;
+    }
+  }
+};
+
+//Declare objects lidServo and switchServo with their respective pins and intervals
+
+bool movingForward = true;
+
+void setup() {
+  lidServo.Attach();
+  switchServo.Attach();
+}
+
+void loop() {
+  if(movingForward){
+    lidServo.moveForward();
+    if(!lidServo.isMoving()){
+      switchServo.moveForward();
+      if(!switchServo.isMoving()){
+        movingForward = false;
+      }
+    } 
+  } else{
+    switchServo.moveBackward();
+    if(!switchServo.isMoving()){
+      lidServo.moveBackward();
+      if(!lidServo.isMoving()){
+        movingForward = true;
+      }
+    }
+  }
+
+}
+</code></pre>
+
+    
 </xmp>
 
 <script src="../js/strapdown.js"></script>
