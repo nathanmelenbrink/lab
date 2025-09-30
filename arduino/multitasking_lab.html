@@ -7,50 +7,40 @@
 </head>
 
 <div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
-<div id="header"></div>
 
 <xmp style="display:none;">
 
 <h3>Lab Skeleton Code</h3>
-<p> (Remember that when the direction is HIGH, the speed should be inverted, in other words <code>255-s</code> instead of <code>s</code>). Then we can call this function from our main loop() function. Putting it all together looks like this: </p>
+<p> Basic code for turning on 2 motors </p>
 
 
 <pre><code class="language-arduino">
-const int A1A = 12;  // define pin 12 for A-1A (PWM Speed)
-const int A1B = 14;  // define pin 14 for A-1B (direction)
+//Motor 1
+int A1A = #;
+int A1B = #;
 
-// setting PWM properties
-const int freq = 5000;
-const int resolution = 8;
+//Motor 2
+int B1A = #;
+int B1B = #;
 
-void setup() {
-  pinMode(A1A, OUTPUT); // specify these pins as outputs
-  pinMode(A1B, OUTPUT);    
+void setup(){
+  //Declare pins
 
-  ledcAttach(A1A, freq, resolution);
-  ledcWrite(A1A, 0);   // start with the motors off 
+  //Start with both motors off
 }
 
-void loop() {
-  motorA(LOW, 255);  // turn motor CW at full speed
-  delay(2000);      // delay for 2 seconds
-  motorA(HIGH, 63);  // turn motor CCW at quarter speed
-  delay(4000);      // delay for 4 seconds
-}
+void loop(){
+  //Run motor 1 for 4 seconds
+
+  
+  //Run motor 2 for 2 seconds
 
 
-// This is a custom function to drive Motor A
-// inputs: direction (HIGH/LOW), speed (0-255)
-// outputs: motor control
+  //Turn motor 1 off for 2 seconds
 
-void motorA(byte d, int s) {
-  if(d == 1){
-    ledcWrite(A1A, 255-s); 
-    digitalWrite(A1B, HIGH); 
-  } else if (d == 0){
-    ledcWrite(A1A, s); 
-    digitalWrite(A1B, LOW);    
-  }    
+
+  //Turn motor 2 off for 3 seconds
+
 }
 </code></pre>
 
