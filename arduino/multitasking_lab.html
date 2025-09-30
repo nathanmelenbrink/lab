@@ -1,0 +1,67 @@
+<head> 
+  <base target="_child">  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
+<div id="header"></div>
+
+<xmp style="display:none;">
+
+<h3>Lab Skeleton Code</h3>
+<p> (Remember that when the direction is HIGH, the speed should be inverted, in other words <code>255-s</code> instead of <code>s</code>). Then we can call this function from our main loop() function. Putting it all together looks like this: </p>
+
+
+<pre><code class="language-arduino">
+const int A1A = 12;  // define pin 12 for A-1A (PWM Speed)
+const int A1B = 14;  // define pin 14 for A-1B (direction)
+
+// setting PWM properties
+const int freq = 5000;
+const int resolution = 8;
+
+void setup() {
+  pinMode(A1A, OUTPUT); // specify these pins as outputs
+  pinMode(A1B, OUTPUT);    
+
+  ledcAttach(A1A, freq, resolution);
+  ledcWrite(A1A, 0);   // start with the motors off 
+}
+
+void loop() {
+  motorA(LOW, 255);  // turn motor CW at full speed
+  delay(2000);      // delay for 2 seconds
+  motorA(HIGH, 63);  // turn motor CCW at quarter speed
+  delay(4000);      // delay for 4 seconds
+}
+
+
+// This is a custom function to drive Motor A
+// inputs: direction (HIGH/LOW), speed (0-255)
+// outputs: motor control
+
+void motorA(byte d, int s) {
+  if(d == 1){
+    ledcWrite(A1A, 255-s); 
+    digitalWrite(A1B, HIGH); 
+  } else if (d == 0){
+    ledcWrite(A1A, s); 
+    digitalWrite(A1B, LOW);    
+  }    
+}
+</code></pre>
+
+
+
+
+
+
+</xmp>
+
+<script src="../js/strapdown.js"></script>
+<script type="text/javascript" src="../js/iframeResizer.contentWindow.min.js"></script>
+<link href="../css/style.css" rel="stylesheet">
+</html>
