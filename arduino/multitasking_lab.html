@@ -47,7 +47,7 @@ void loop(){
 </code></pre>
 
 
-    <h3>2. </h3>
+<h3>2. </h3>
 <p> Class Structure</p>
 
 
@@ -64,7 +64,7 @@ class className{
   //Member Variables
   
   public:
-  className(//input attributes//){
+  className(!! input attributes !!){
       //Set up values for the member variables
 
       //Declare pins
@@ -99,7 +99,7 @@ void loop(){
 
 
 <pre><code class="language-arduino">
-  //Motor 1
+ //Motor 1
 int A1A = #;
 int A1B = #;
 
@@ -110,36 +110,44 @@ int B1B = #;
 class Motor{
   //Member Variables
 
-  //Include time variables
+  //Timer member Variables
+
+  //Boolean to check if motor is on or off
 
   public:
-  Motor(//input attributes//){
+  Motor(!! input attributes !!){
       //Set up values for the member variables
 
       //Declare pins
 
       //Start with the motor off
 
-      //Start the timer
-  
+      //Set boolean variable to false
+
+      //Log the time
   }
+  void runMotor(!! input attributes !!){
+    //Assign values to member variables
 
-  //Class Functions
-  void runMotor(//input attributes){
-  //Set up values for the timer member variables
+    //Set the current time
 
-  //If statement that checks if it is time to turn motor on
-    if(??? - ??? > ???){
-      //Turn motor on
-
-      //Store current time
-  
-    }
-  //Else if statement that checks if it is time to turn motor off
-    else if(??? - ??? > ???){
-      //Turn motor on
-
-      //Store current time
+    //if statement to check if motor is running
+     if (________) {
+      // Motor is running, check if it's time to stop
+      //If statement to check how much time has passed
+      if (??? - ??? >= ???) {
+        // Stop the motor
+        // Log the time
+        // Update motor state boolean
+      }
+    } else {
+      // Motor is stopped, check if it's time to start
+      //If statement to check how much time has passed
+      if (??? - ??? >= ???) {
+        // Start the motor
+        // Log the time
+        // Update motor state boolean
+      }
     }
   }
 };
@@ -151,8 +159,8 @@ void setup(){
 //Declare objects motor1 and motor2 with their respective pins
 
 void loop(){
-  //Run motor 1 for 4 seconds and turn off for 2 seconds
-  //Run motor 2 for 2 seconds and turn off for 3 seconds
+  // Turn motor 1 on for 4 seconds and off for 2 seconds
+  // Turn motor 2 on for 2 seconds and off for 3 seconds
   
 }
 </code></pre>
