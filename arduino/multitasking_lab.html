@@ -295,6 +295,107 @@ void loop() {
 }
 </code></pre>
 
+
+
+
+
+
+<h3>5. </h3>
+<pre><code class="language-arduino">
+
+#include &ltESP32Servo.h&gt
+
+int lidServoPin = 32;
+int switchServoPin = 33;
+
+class UselessServo{
+  Servo servo;
+  int servoPin;
+  int pos;
+  int startPos;
+  int endPos;
+  int updateInterval;
+  int increment = -1;
+  unsigned long previousMillis;
+
+  public:
+  UselessServo(int pin, int interval){
+    servoPin = pin;
+    startPos = 180;
+    pos = startPos;
+    endPos = 0;
+    updateInterval = interval;
+  }
+
+  void Attach(){
+    servo.attach(servoPin);
+
+    servo.write(startPos);
+  }
+
+  void moveForward(){
+    if((millis() - previousMillis) > updateInterval && pos != endPos){
+      previousMillis = millis();
+      pos += increment;
+      servo.write(pos);
+    }
+  }
+
+  void moveBackward(){
+    if((millis() - previousMillis) > updateInterval && pos != startPos){
+      previousMillis = millis();
+      pos -= increment;
+      servo.write(pos);
+    }
+  }
+
+  bool isMoving(){
+    if(pos == endPos || pos == startPos){
+      return 0;
+    }
+    else{
+      return 1;
+    }
+  }
+};
+
+UselessServo lidServo(lidServoPin, 10);
+UselessServo switchServo(switchServoPin, 5);
+
+bool movingForward = true;
+
+void setup() {
+  lidServo.Attach();
+  switchServo.Attach();
+}
+
+void loop() {
+  if(movingForward){
+    lidServo.moveForward();
+    if(!lidServo.isMoving()){
+      switchServo.moveForward();
+      if(!switchServo.isMoving()){
+        movingForward = false;
+      }
+    }
+  } else{
+    switchServo.moveBackward();
+    if(!switchServo.isMoving()){
+      lidServo.moveBackward();
+      if(!lidServo.isMoving()){
+        movingForward = true;
+
+      }
+    }
+  }
+
+}
+</code></pre>
+
+
+
+    
+
     
 </xmp>
 
