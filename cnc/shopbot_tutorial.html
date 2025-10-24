@@ -1,0 +1,147 @@
+<head> 
+  <base target="_child">  
+</head>
+ 
+<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
+<div id="header"></div>
+
+<xmp style="display:none;">
+
+<h3> Shopbot 2.5D Tutorial </h3>
+
+<h4>
+    Export your DXF from fusion
+</h4>
+<ul>
+    <li>
+        Right click your sketch and click save as mesh
+    </li>
+    <li>
+        Also take some dimensions of your sketch so you can properly pick you stock (In our case we need a stock with at least 80mmx120mm)
+    </li>
+</ul>
+
+<h4>
+    Find a piece of stock
+</h4>
+<ul>
+
+
+    <li>
+        Pick a stock that has space for your design
+    </li>
+    <li>
+        Also be sure to measure it's thickness
+    </li>
+</ul>
+<h4>
+    Opening Aspire
+</h4>
+
+<ul>
+    <li>
+        Click create new file
+    </li>
+    <li>
+        I will make my cutting area slightly larger than my design file (the cutting area does not have to be the same dimensions as your stock)
+    </li>
+    <li>
+        Make sure the surface is set to material surface
+    </li>
+    <li>
+        Make sure the offset is clicked off
+    </li>
+</ul>
+
+<h4>
+    Selecting the cuts
+</h4>
+<p>
+    There are two major types of cuts that we do which are profile cuts and pockets cuts. Profile cuts cut along any line that you
+    select. Pocket Cuts hollows all of the space inside of a closed region.
+</p>
+
+<h5>
+    Cutting out the text
+</h5>
+<ul>
+ <li>
+    First lets cut out the text, for this I will select all of the text and select a pocket cut
+ </li>
+ <li>
+    Make sure we are using the proper tool, in my case I am cutting wood with a 1/8 in endmill.
+    So I will just select the default .125 in endmill as this calibrated for wood. 
+ </li>
+ <li>
+    Note: picking the proper tool is really important, it is not just about the size of the tool, but how
+    fast it is spins and moving through your material. If you pick the wrong tool it can break the endmill
+    you are using. So make sure you have the right one selected and if you are not sure it is best to ask the course
+    staff
+ </li>
+ <li>
+    Then we can select the depth we want to cut to which in my case is 3mm. 
+ </li>
+ <li>
+    After we have done all of that we can hit done
+ </li>
+</ul>
+
+<p>
+    Now you will be shown the 3D preview of your design which you should double check makes sense with what you are cutting
+    out, in our case I can see it is cutting out the text so we are good to go
+</p>
+<p>
+    Note: After each toolpath it will bring you to this screen, and to get back to the view we were just looking at all you need
+    to do is click 2D View and then click the close menu on the preview screen
+</p>
+
+<h5>
+    Cutting out the holes 
+</h5>
+<ul>
+    <li>
+        The hole we want to cut all of the way through so we will select profile cut
+    </li>
+    <li>
+        We can just use the same tool we used for the pocket cut
+    </li>
+    <li>
+        For start depth we can just keep that at 0, since the cut is starting at the 
+        material surface. However, for cut depth I will put in my material thickness.
+    </li>
+    <li>
+        Note: just to be sure that my profile cuts cut all the way through my material
+        I usually add an additional 0.3 mm because it is better to cut a little deeper into 
+        your material since we have a spoil board, then not fully cut through.
+    </li>
+    <li>
+        Now another thing about profile cuts is we have 3 options of how we can do the cuts: Inside, On, and Outside
+    </li>
+    <ul>
+        <li>
+            Inside will make such that your tool is always inside the line it's cutting, On will make it so the endmill
+            is centered along the line that it is cutting, and Outside will make sure the tool is on the outside of the
+            line it's cutting
+        </li>
+    </ul>
+    <li>
+        In my case the hole in my sketch is exact the diameter I wanted to be so I will cutting along the inside
+    </li>
+    <li>
+        I do not need to worry about anything else for this cut so I can click ok
+    </li>
+</ul>
+
+
+
+
+
+
+
+
+</xmp>
+
+<script src="../js/strapdown.js"></script>
+<script type="text/javascript" src="../js/iframeResizer.contentWindow.min.js"></script>
+<link href="../css/style.css" rel="stylesheet">
+</html>
