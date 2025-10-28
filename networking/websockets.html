@@ -10,6 +10,10 @@
 
 ## Websockets 
 
+A WebSocket is a communication protocol that creates a single persistent connection between a client (such as a web browser) and a server (like an ESP32) that allows bi-directional real-time message exchange (as opposed to the clunky GET request -> payload response seen in the HTTP protocol).
+
+WebSockets are used anywhere live, two-way communication is needed — for example, in chat apps (Slack, WhatsApp Web), live dashboards and stock tickers, online multiplayer games, and IoT systems where devices stream data or respond instantly to remote controls. Your laptop is likely running dozens of simultaneous WebSocket or HTTPS connections right now, all on different ports, even though it has just one IP.
+
 This code uses an ESP32 to read analog values and plots them on an HTML canvas. 
 
 [Link to txt](./websocket_chart.txt)
