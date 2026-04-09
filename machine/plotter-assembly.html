@@ -1,0 +1,136 @@
+<head> 
+  <base target="_child">  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
+<div id="header"></div>
+
+<xmp style="display:none;">
+
+### Drawing Machine Kit 
+
+This design has borrowed from: 
+
+- Other sidewalk plotter designs online (unable to find any good instructions)
+- [RandomNerd's Websockets tutorial](https://randomnerdtutorials.com/esp32-websocket-server-arduino/), but without all the CSS 
+- [RandomNerd's Stepper Websockets tutorial](https://randomnerdtutorials.com/stepper-motor-esp32-websocket/), but without the SPIFFS stuff
+
+#### Code 
+
+
+#### Assembly
+
+Here is a diagram of all of the materials you will need to assemble the drawing plotter 
+
+<img style = "width: 50vw;" src='./plotter-assembly-pictures/materials.jpeg' alt='materials diagram'>
+
+##### Cart Assembly 
+
+First we we will start with assemblying the cart where you will need to 3 lock nuts, 3 m5 x 30 bolts, the cart print, 3 roller wheels, and eccentric nut
+
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/cart-materials.jpeg' alt='materials diagram'>
+
+Place the bolts through the three holes in the print, put the eccentric nut through the largest hole, then place the wheels on, 
+and tighten the locks nuts until it is tight against the roller wheel
+
+Once the cart is assembled you can roll it directly onto the aluminum extrusion
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/cart.jpeg' alt='materials diagram'>
+
+You then can take some pliers and rotate the eccentric nut on the cart so that the cart rolls along the extrusion without falling off, but without the print bowing out
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/eccentric-nut.jpeg' alt='materials diagram'>
+
+<div style="display: flex; width: 100vw">
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/t-nut.jpeg' alt='materials diagram'>
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/t-nut-screwed.jpeg' alt='materials diagram'>
+</div>
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/t-nut.jpeg' alt='materials diagram'>
+
+
+<div style="display: flex; width: 100vw">
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/x-axis-belt-end.jpeg' alt='materials diagram'>
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/x-axis-belt.jpeg' alt='materials diagram'>
+</div>
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/x-axis-belt-top.jpeg' alt='materials diagram'>
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/t-nut-screwed.jpeg' alt='materials diagram'>
+
+<div style="display: flex; width: 100vw">
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/belt-tensioner.jpeg' alt='materials diagram'>
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/belt-tensioner-top.jpeg' alt='materials diagram'>
+</div>
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/belt-tensioner-belt.jpeg' alt='materials diagram'>
+
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/belt-tensioner-back-plate.jpeg' alt='materials diagram'>
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/belt-tensioner-back.jpeg' alt='materials diagram'>
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/belt-tensioning.jpeg' alt='materials diagram'>
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/y-axis-linear-bearings.jpeg' alt='materials diagram'>
+
+<div style="display: flex; width: 100vw;">
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/y-axis-pulleys.jpeg' alt='materials diagram'>
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/pulley-assembly-top.jpeg' alt='materials diagram'>
+</div>
+
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/y-axis-linear-rods.jpeg' alt='materials diagram'>
+
+<div style="display: flex; width: 100vw;">
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/y-axis-attachment.jpeg' alt='materials diagram'>
+    <img style = "width: 30vw;" src='./plotter-assembly-pictures/y-axis-attachment-top.jpeg' alt='materials diagram'>
+</div>
+
+<div style="display: flex; width: 100vw;">
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/servo-end-effector-front.jpeg' alt='materials diagram'>
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/servo-end-effector-back.jpeg' alt='materials diagram'>
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/servo-end-effector-top.jpeg' alt='materials diagram'>
+</div>
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/end-effector-assembly.jpeg' alt='materials diagram'>
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/end-effector-attached.jpeg' alt='materials diagram'>
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/front-belt-attachment.jpeg' alt='materials diagram'>
+
+
+<div style="display: flex; width: 100vw;">
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/y-axis-belt-attachment.jpeg' alt='materials diagram'>
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/end-effector-rubber-bands.jpeg' alt='materials diagram'>
+</div>
+
+<div style="display: flex; width: 100vw;">
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/limit-switch-front.jpeg' alt='materials diagram'>
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/limit-switch-side.jpeg' alt='materials diagram'>
+</div>
+
+
+
+
+
+
+
+
+
+
+#### 3D Model 
+ 
+
+
+</xmp>
+
+
+<script src="../js/strapdown.js"></script>
+<script type="text/javascript" src="../js/iframeResizer.contentWindow.min.js"></script>
+<link href="../css/style.css" rel="stylesheet">
+</html>
