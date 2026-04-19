@@ -1,0 +1,182 @@
+<head> 
+  <base target="_child">  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
+<div id="header"></div>
+
+<xmp style="display:none;">
+
+### Drawing Machine Kit 
+
+#### Code 
+<a href = "drawing-machine-websocket.zip" download=""> Drawing Machine Web Socket Code</a>
+
+#### Fusion Model
+<iframe title = "drawing machine assembly" src="https://myfas117.autodesk360.com/g/shares/SH90d2dQT28d5b60281174280a1bb9335919"  style = "aspect-ratio: 16/9 ;width: 100vw;" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"  frameborder="0"></iframe>
+
+<a href = "drawing-machine.f3z" download=""> Drawing Machine Fusion File</a>
+
+
+
+
+#### Assembly
+
+Here is a diagram of all of the materials you will need to assemble the drawing plotter 
+
+<img style = "width: 50vw;" src='./plotter-assembly-pictures/materials.jpeg' alt='materials diagram'>
+
+##### Cart Assembly 
+
+First we we will start with assemblying the cart where you will need to 3 lock nuts, 3 m5 x 30 bolts, the cart print, 3 roller wheels, and eccentric nut
+
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/cart-materials.jpeg' alt='materials diagram'>
+
+Place the bolts through the three holes in the print, put the eccentric nut through the largest hole, then place the wheels on, 
+and tighten the locks nuts until it is tight against the roller wheel
+
+Once the cart is assembled you can roll it directly onto the aluminum extrusion
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/cart.jpeg' alt='materials diagram'>
+
+You then can take some pliers and rotate the eccentric nut on the cart so that the cart rolls along the extrusion without falling off, but without the print bowing out
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/eccentric-nut.jpeg' alt='materials diagram'>
+
+
+Next we will want to connect the stepper motor holder plate.
+
+First use 4 m3x10 bolts, screw a stepper motor with the 30 tooth pulley to plate.
+
+In order to connect to the extrusion you will need two t nuts which we slide into the aluminum extrusion rails until it lines up with the hole in the 3d print and then you will screw it in with an m5x15 bolt
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/t-nut.jpeg' alt='materials diagram'>
+
+
+Once you have attached the stepper motor plate you will want to put your timing belt through the extrusion as shown below
+
+<div style="display: flex; width: 100vw">
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/x-axis-belt-end.jpeg' alt='materials diagram'>
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/x-axis-belt.jpeg' alt='materials diagram'>
+</div>
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/x-axis-belt-top.jpeg' alt='materials diagram'>
+
+Then once you have put the belt through you will want to add the belt tensioning holding with t nuts as you did for the other plate
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/t-nut-screwed.jpeg' alt='materials diagram'>
+
+Then using the pulley and m5 x 15 bolt you can assemble the pulley assembly. As well as place an m5 nut into the pulley assembly. 
+
+<div style="display: flex; width: 100vw">
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/belt-tensioner.jpeg' alt='materials diagram'>
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/belt-tensioner-top.jpeg' alt='materials diagram'>
+</div>
+
+Once the pulley assembly has been assembled, you will place the belt through the pulley and then into the belt tensioner holder. 
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/belt-tensioner-belt.jpeg' alt='materials diagram'>
+
+Then using an m5x20 bolt, a spring, and the back plate you assembly them as shown below
+
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/belt-tensioner-back-plate.jpeg' alt='materials diagram'>
+
+With the assembled back plate you can screw it directly into the belt tensioner holder using m3x10 bolts
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/belt-tensioner-back.jpeg' alt='materials diagram'>
+
+With the pulley back assembled you can place each end of the belts into the side of the cart with the excess belt just going
+through the cart. Then tightening the belt with an m3 x 5 bolt
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/cart+belt.jpeg' alt='materials diagram'>
+
+Then you can tension the belts with the m5 bolt to remove the slack from the belt
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/belt-tensioning.jpeg' alt='materials diagram'>
+
+##### Y Axis Assembly 
+
+Slide the linear bearings into the slots on the cart
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/y-axis-linear-bearings.jpeg' alt='materials diagram'>
+
+Then using 2 m5 x 30 bolts and nuts for the pulleys and 4 m3 x 10 bolts for the stepper motor
+
+<div style="display: flex; width: 100vw;">
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/y-axis-pulleys.jpeg' alt='materials diagram'>
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/pulley-assembly-top.jpeg' alt='materials diagram'>
+</div>
+
+Then place the steel rods through the linear bearings
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/y-axis-linear-rods.jpeg' alt='materials diagram'>
+
+Once the y axis is assembled you can attach it to the cart with m5 x35 bolts nad m5 nuts place in pockets underneath the cart
+
+<div style="display: flex; width: 100vw;">
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/y-axis-attachment.jpeg' alt='materials diagram'>
+    <img style = "width: 30vw;" src='./plotter-assembly-pictures/y-axis-attachment-top.jpeg' alt='materials diagram'>
+</div>
+
+##### End Effector Assembly 
+
+Place the servo into the servo slot putting m2 bolts and nuts to lock it in place. As well as m3 nuts into the pockets in the top
+of the servo holder
+
+<div style="display: flex; width: 100vw;">
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/servo-end-effector-front.jpeg' alt='materials diagram'>
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/servo-end-effector-back.jpeg' alt='materials diagram'>
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/servo-end-effector-top.jpeg' alt='materials diagram'>
+</div>
+
+Then place the carbon fiber rods and the pen holder onto the servo holder and press the carbon fiber rods into place
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/end-effector-assembly.jpeg' alt='materials diagram'>
+
+Then use m3x15 bolts in the side and tighten the nuts until the assembly cannot freely slide down the linear rods
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/end-effector-attached.jpeg' alt='materials diagram'>
+
+Then pulling the timing belt through the belt clips and trying to pull the belt as tight as you can. I think it is easier to start
+with the front belt and do the back belt
+
+<div style="display: flex; width: 100vw;">
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/front-belt-attachment.jpeg' alt='materials diagram'>
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/y-axis-belt-attachment.jpeg' alt='materials diagram'>
+    
+</div>
+
+Then you can add the rubber bands to the end effector assembly and the limit switches to the front and side
+
+<img style = "width: 25vw;" src='./plotter-assembly-pictures/end-effector-rubber-bands.jpeg' alt='materials diagram'>
+
+<div style="display: flex; width: 100vw;">
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/limit-switch-front.jpeg' alt='materials diagram'>
+    <img style = "width: 25vw;" src='./plotter-assembly-pictures/limit-switch-side.jpeg' alt='materials diagram'>
+</div>
+
+
+
+
+
+
+
+
+
+
+#### 3D Model 
+ 
+
+
+</xmp>
+
+
+<script src="../js/strapdown.js"></script>
+<script type="text/javascript" src="../js/iframeResizer.contentWindow.min.js"></script>
+<link href="../css/style.css" rel="stylesheet">
+</html>
