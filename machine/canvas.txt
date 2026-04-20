@@ -1,12 +1,17 @@
+/*
+Code updated by Nathan Melenbrink 4/19/2025
+Intended for an ESP32 Dev Board 
+
+Using Libraries: 
+- Async TCP 3.4.10 https://github.com/ESP32Async/AsyncTCP
+- ESP Async WebServer 3.10.3 https://github.com/ESP32Async/ESPAsyncWebServer
+- AccelStepper 1.64 https://www.airspayce.com/mikem/arduino/AccelStepper/
+*/
+
 #include <WiFi.h>
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 #include <AccelStepper.h>
-
-// Define a stepper and the pins it will use
-//AccelStepper stepper_X1(1, 9, 10); // initialise accelstepper for a two wire board
-//AccelStepper stepper_X2(1, 11, 12); // initialise accelstepper for a two wire board
-//AccelStepper stepper_Y(1, 13, 14); // initialise accelstepper for a two wire board
 
 AccelStepper stepper_X1(1, 2, 4); // initialise accelstepper for a two wire board
 AccelStepper stepper_X2(1, 5, 18); // initialise accelstepper for a two wire board
