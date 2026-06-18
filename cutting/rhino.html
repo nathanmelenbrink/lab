@@ -1,0 +1,62 @@
+<head> 
+  <base target="_child">  
+</head>
+
+<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
+<div id="header"></div>
+
+<xmp style="display:none;">
+
+
+### Rhino Commands For Laser Cutting
+
+_Rhino works best as a command-line tool. While icons/menu items exist for these commands, it's easiest to just type them and then follow the prompts._
+
+## Rhino commands for Fusion DXF cleanup and Universal Laser cutting
+
+| Command | Use |
+|---|---|
+| `Import` | Bring in a DXF, DWG, AI, PDF, or other vector file while keeping the current Rhino file open. Useful for importing Fusion DXFs into a laser template. (Drag and drop also works) |
+| `Distance` | Measure a known feature to verify scale after import. |
+| `Scale` | Resize imported geometry if the DXF came in at the wrong scale. |
+| `Move` | Reposition parts onto the laser bed or material boundary. |
+| `Rotate` | Reorient parts for grain direction, material efficiency, or laser bed layout. |
+| `Copy` | Duplicate parts or test cuts. |
+| `Delete` | Remove unwanted geometry, construction lines, duplicate parts, imported title blocks, or failed cleanup artifacts. |
+| `Trim` | Cut away portions of curves using other curves as cutting edges. Useful for cleaning overlapping DXF geometry. |
+| `Split` | Break curves apart at intersections without deleting either side. Useful before manual cleanup. |
+| `Join` | Combine connected curve segments into closed or continuous curves. Important for clean vector cutting. |
+| `Explode` | Break blocks, polylines, hatches, or grouped objects into editable pieces. Useful when imported Fusion geometry cannot be edited directly. |
+| `SelDup` | Select duplicate curves. Essential for Fusion DXFs because stacked lines can cause the laser to cut the same path multiple times. |
+| `SelOpenCrv` | Select open curves. Useful for finding outlines that should be closed before cutting. |
+| `SelClosedCrv` | Select closed curves. Useful for checking which profiles are ready for cutting or hatching. |
+| `SelShortCrv` | Select tiny stray curve fragments. Useful for deleting small artifacts from imports. | |
+| `CloseCrv` | Close a curve by connecting its endpoints. Use carefully, because it may create a straight closing segment. |
+| `Print` | Send the file to the Universal Laser driver. Confirm scale, placement, colors, vector/raster settings, and material setup before cutting. |
+
+<!-- | `Extend` | Extend curves until they meet another curve. Useful before trimming or joining. |
+| `Fillet` | Create rounded corners between curves. Use radius `0` to force two curves to meet at a sharp corner. |
+| `Offset` | Create inside or outside outlines. Useful for kerf tests, press-fit adjustments, or engraving offsets. |
+| `CurveBoolean` | Generate clean closed regions from overlapping curves. Useful for simplifying messy imported outlines. |
+| `Make2D` | Convert 3D or surface geometry into 2D curves. Useful if the source geometry was not exported cleanly as flat DXF curves. |
+| `ProjectToCPlane` | Flatten selected curves onto the construction plane. Important if imported geometry has tiny Z offsets. |
+| `SetPt` | Set selected geometry to a common X, Y, or Z value. Use `Z only` to force all laser geometry flat. |
+| `BoundingBox` | Create a rectangular boundary around selected geometry. Useful for checking part size or material layout. |
+| `Rectangle` | Draw material boundaries, laser bed boundaries, or alignment boxes. |
+| `Text` | Add vector text for labels. Convert to curves if needed before cutting. |
+| `TextObject` | Create text as curves, surfaces, or solids. For laser cutting, curves are usually preferred. |
+| `Hatch` | Fill closed curves with hatch patterns for raster engraving. Useful when you want the Universal Laser to engrave filled areas instead of only following vector outlines. |
+| `DupBorder` | Duplicate the border of a surface or hatch-like region as curves. Useful for recovering cut outlines. |
+| `Group` | Keep related curves together during layout. |
+| `Ungroup` | Separate grouped imported or arranged geometry for editing. |
+| `BlockEdit` | Edit imported block geometry if Fusion or another CAD tool exported repeated parts as blocks. |
+| `Purge` | Remove unused layers, blocks, linetypes, materials, and other file clutter. |
+| `Layer` | Manage cut, score, raster, construction, and reference layers. Useful for separating operations by color or power settings. |
+| `ChangeLayer` | Move selected objects to the correct laser operation layer. |
+| `Properties` | Check or edit object color, print width, layer, and curve properties. Useful before printing to the Universal Laser driver. | -->
+
+</xmp>
+<script src="../js/strapdown.js"></script>
+<script type="text/javascript" src="../js/iframeResizer.contentWindow.min.js"></script>
+<link href="../css/style.css" rel="stylesheet">
+</html>
