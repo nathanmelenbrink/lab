@@ -13,7 +13,7 @@
 
 ---
 
-#### Structured Light
+### Structured Light
 
 A projector casts a known pattern onto the object. A camera sees how the pattern bends across the surface. The scanner calculates depth from that distortion.
 
@@ -26,37 +26,33 @@ Best for: matte objects, faces, sculptures, medium-sized parts.
 
 ---
 
-#### Photogrammetry
+### Photogrammetry
 
 Photogrammetry uses many overlapping photos. Software finds the same visual features in different images, estimates camera positions, and reconstructs 3D points.
 
-Matching the same point from many views
-lets software triangulate its 3D position.
+![photogrammetry](photogrammetry.jpg)
+
+_Matching the same point from many views
+lets software triangulate its 3D position._
 
 Best for: textured objects, artifacts, sculpture, architecture, outdoor objects, classroom/makerspace use.
 
 ---
 
-## Time-of-Flight / LiDAR
+### Time-of-Flight / LiDAR
 
-A sensor emits light and measures how long it takes to return. Distance is calculated from travel time or phase shift.
+LiDAR (Light Detection and Ranging) is an active remote sensing technology that uses pulsed lasers to measure distances. A sensor emits light and measures how long it takes to return. Distance is calculated from travel time or phase shift.
 
-```text
-Sensor emits light pulse
-        |
-        v
-   [ LiDAR ]  ----->  object
-   [sensor]  <-----  reflected light
+![lidar](lidar.jpg)
 
-Longer return time = farther surface.
-Shorter return time = closer surface.
-```
+_Longer return time = farther surface.
+Shorter return time = closer surface._
 
 Best for: rooms, furniture, bodies, AR, spatial mapping, large objects.
 
 ---
 
-## Contact / Probe Scanning
+### Contact / Probe Scanning
 
 A physical probe touches the object at known points. Each contact point becomes a measured coordinate.
 
