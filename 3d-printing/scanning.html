@@ -1,0 +1,172 @@
+<head> 
+  <base target="_child">  
+</head>
+
+<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
+<div id="header"></div>
+
+<xmp style="display:none;">
+
+# 3D Scanning Technologies: Core Principles
+
+3D scanning is about estimating the shape of real objects by collecting enough reliable observations of their surfaces. The method changes, but the core requirements stay the same: visible surface, usable signal, multiple views, alignment, scale, and cleanup. The quality of the scan is more of a function of the time and care you put into prep work and cleanup than the scanning technology itself. 
+
+---
+
+## Structured Light
+
+A projector casts a known pattern onto the object. A camera sees how the pattern bends across the surface. The scanner calculates depth from that distortion.
+
+![structured-light-technology.jpg](structured light)
+_Depth comes from how the known pattern deforms._
+
+
+Best for: matte objects, faces, sculptures, medium-sized parts.
+
+---
+
+## Laser Triangulation
+
+A laser projects a dot or line. A camera views it from an offset angle. The apparent position of the laser line shifts with surface depth.
+
+```text
+Laser line
+   |
+   v
+  ----->
+        \ object surface
+         \______
+
+Camera sees line shifted sideways
+depending on distance/depth.
+
+Laser + camera angle = triangle = depth.
+```
+
+Best for: close-range scanning, reverse engineering, inspection, small-to-medium objects.
+
+---
+
+## Photogrammetry
+
+Photogrammetry uses many overlapping photos. Software finds the same visual features in different images, estimates camera positions, and reconstructs 3D points.
+
+```text
+ Camera A        Camera B        Camera C
+    \              |              /
+     \             |             /
+      v            v            v
+
+        same visible feature
+              *
+             /|\
+            / | \
+           /  |  \
+
+Matching the same point from many views
+lets software triangulate its 3D position.
+```
+
+Best for: textured objects, artifacts, sculpture, architecture, outdoor objects, classroom/makerspace use.
+
+---
+
+## Time-of-Flight / LiDAR
+
+A sensor emits light and measures how long it takes to return. Distance is calculated from travel time or phase shift.
+
+```text
+Sensor emits light pulse
+        |
+        v
+   [ LiDAR ]  ----->  object
+   [sensor]  <-----  reflected light
+
+Longer return time = farther surface.
+Shorter return time = closer surface.
+```
+
+Best for: rooms, furniture, bodies, AR, spatial mapping, large objects.
+
+---
+
+## Contact / Probe Scanning
+
+A physical probe touches the object at known points. Each contact point becomes a measured coordinate.
+
+```text
+Probe arm
+   |
+   v
+  (tip) * contact point
+        |
+     ___v___
+    /       \
+   / object  \
+   \_________/
+
+Each touch records one measured 3D point.
+```
+
+Best for: precise measurement, machining, quality control, shiny or transparent objects.
+
+---
+
+## What All Scanners Need
+
+```text
+Real object
+   |
+   v
+Surface observations
+   |
+   v
+Alignment / registration
+   |
+   v
+Scale
+   |
+   v
+Mesh or point cloud
+   |
+   v
+Cleanup / export
+```
+
+Common failure causes:
+
+| Problem             | Why it matters                             |
+| ------------------- | ------------------------------------------ |
+| Shiny surface       | Reflections move and confuse measurements  |
+| Transparent surface | Light passes through or refracts           |
+| Black surface       | Too little light returns                   |
+| Textureless surface | Photogrammetry cannot find enough features |
+| Thin parts          | Edges are hard to resolve                  |
+| Repetitive patterns | Software may match the wrong features      |
+| Deep cavities       | Not enough line of sight                   |
+| Motion              | The object changes between views           |
+
+---
+
+## Practical Rule
+
+Choose the method whose assumptions match the object and environment.
+
+| Situation                      | Good starting method                |
+| ------------------------------ | ----------------------------------- |
+| Shared classroom or makerspace | Phone photogrammetry                |
+| Quick matte object scan        | Structured light                    |
+| Room or furniture scan         | LiDAR / time-of-flight              |
+| Small precise mechanical part  | Structured light, laser, or probe   |
+| Shiny or transparent object    | Surface prep or contact measurement |
+
+The best scanner is not the one with the highest advertised accuracy. It is the one that survives the users, captures the object reliably, and exports the data you actually need.
+
+
+</xmp>
+
+<script src="../js/strapdown.js"></script>
+<script type="text/javascript" src="../js/iframeResizer.contentWindow.min.js"></script>
+<link href="../css/style.css" rel="stylesheet">
+</html>
+
