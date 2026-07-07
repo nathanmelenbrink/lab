@@ -7,17 +7,18 @@
 
 <xmp style="display:none;">
 
-# 3D Scanning Technologies: Core Principles
+### 3D Scanning Technologies: Core Principles
 
 3D scanning is about estimating the shape of real objects by collecting enough reliable observations of their surfaces. The method changes, but the core requirements stay the same: visible surface, usable signal, multiple views, alignment, scale, and cleanup. The quality of the scan is more of a function of the time and care you put into prep work and cleanup than the scanning technology itself. 
 
 ---
 
-## Structured Light
+#### Structured Light
 
 A projector casts a known pattern onto the object. A camera sees how the pattern bends across the surface. The scanner calculates depth from that distortion.
 
-![structured-light-technology.jpg](structured light)
+![structured light](structured-light-technology.jpg)
+
 _Depth comes from how the known pattern deforms._
 
 
@@ -25,47 +26,12 @@ Best for: matte objects, faces, sculptures, medium-sized parts.
 
 ---
 
-## Laser Triangulation
-
-A laser projects a dot or line. A camera views it from an offset angle. The apparent position of the laser line shifts with surface depth.
-
-```text
-Laser line
-   |
-   v
-  ----->
-        \ object surface
-         \______
-
-Camera sees line shifted sideways
-depending on distance/depth.
-
-Laser + camera angle = triangle = depth.
-```
-
-Best for: close-range scanning, reverse engineering, inspection, small-to-medium objects.
-
----
-
-## Photogrammetry
+#### Photogrammetry
 
 Photogrammetry uses many overlapping photos. Software finds the same visual features in different images, estimates camera positions, and reconstructs 3D points.
 
-```text
- Camera A        Camera B        Camera C
-    \              |              /
-     \             |             /
-      v            v            v
-
-        same visible feature
-              *
-             /|\
-            / | \
-           /  |  \
-
 Matching the same point from many views
 lets software triangulate its 3D position.
-```
 
 Best for: textured objects, artifacts, sculpture, architecture, outdoor objects, classroom/makerspace use.
 
@@ -112,26 +78,6 @@ Best for: precise measurement, machining, quality control, shiny or transparent 
 
 ---
 
-## What All Scanners Need
-
-```text
-Real object
-   |
-   v
-Surface observations
-   |
-   v
-Alignment / registration
-   |
-   v
-Scale
-   |
-   v
-Mesh or point cloud
-   |
-   v
-Cleanup / export
-```
 
 Common failure causes:
 
@@ -146,21 +92,14 @@ Common failure causes:
 | Deep cavities       | Not enough line of sight                   |
 | Motion              | The object changes between views           |
 
----
 
-## Practical Rule
+<!-- ## Laser Triangulation
 
-Choose the method whose assumptions match the object and environment.
+A laser projects a dot or line. A camera views it from an offset angle. The apparent position of the laser line shifts with surface depth.
 
-| Situation                      | Good starting method                |
-| ------------------------------ | ----------------------------------- |
-| Shared classroom or makerspace | Phone photogrammetry                |
-| Quick matte object scan        | Structured light                    |
-| Room or furniture scan         | LiDAR / time-of-flight              |
-| Small precise mechanical part  | Structured light, laser, or probe   |
-| Shiny or transparent object    | Surface prep or contact measurement |
+Best for: close-range scanning, reverse engineering, inspection, small-to-medium objects.
 
-The best scanner is not the one with the highest advertised accuracy. It is the one that survives the users, captures the object reliably, and exports the data you actually need.
+--- -->
 
 
 </xmp>
