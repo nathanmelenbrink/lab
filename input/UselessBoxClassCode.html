@@ -14,95 +14,102 @@
     <pre><code>
 
 #include &lt;ESP32Servo.h&gt;
+    
+// Set your pin variables
+int switchPin = D0;
+int switchServoPin = D0;
+int lidServoPin = D0;
 
-int switchPin = 35;
-int switchServoPin = 32;
+class Switch {
+	private:
+	// Create an instance variable for the Switch class called pin
 
-class Switch{
-  int currentState;
-  int lastState = 0;
+	public:
+	Switch(int pin) {
+		// Set the pin instance variable to the value of the constructor parameter using this->
+		
+		// Set the pinmode of pin to be an input with a pull-up resistor
+	};
 
-  public:
-  Switch(int switchPin){
-    pinMode(switchPin, INPUT_PULLUP);
-  };
-
-  bool isPressed(){
-    currentState = digitalRead(switchPin);
-    if (currentState == HIGH && lastState == LOW){
-      lastState = currentState;
-      return true;
-    }
-    else if (currentState == LOW && lastState == HIGH){
-      lastState = currentState;
-      return false;
-    }
-  }
+	bool isOn() {
+		// Read the value of pin and return it, digital or analog?
+	}
 };
 
-class UselessServo{
-  Servo servo;
-  int pos;
-  int increment;
-  int updateInterval;
-  unsigned long lastUpdate;
-  int startPos;
-  int endPos;
+class UselessServo {
+	private:
+	Servo servo;
 
-  public:
-  UselessServo(int interval, int start, int target){
-    updateInterval = interval;
-    increment = -1;
-    startPos = start-1;
-    pos = startPos;
-    endPos = target;
-  }
+	int pos;
+	int increment;
+	int interval;
+	unsigned long lastUpdate;
 
-  void Attach(int pin){
-    servo.attach(pin);
-    servo.write(startPos);
-  }
+	int home;
+	int target;
 
-  void Detach(){
-    servo.detach();
-  }
+	public:
+	UselessServo(int interval, int home, int target) {
+		// Set the interval, home, and target constructor parameters to their respective constructor parameters
+		
+		// Set increment to -1 or 1 depending on the direction of your Servo
 
-  void toTarget(){
-    if((millis() - lastUpdate) > updateInterval && pos != endPos){
-      lastUpdate = millis();
-      pos += increment;
-      servo.write(pos);
-    }
-  }
+		// Set the pos instance variable to be home (notice no this-> because a constructor parameter doesn't have the same name)
+	}
 
-  void Return(){
-    if((millis() - lastUpdate) > updateInterval && pos != startPos){
-      lastUpdate = millis();
-      pos -= increment;
-      servo.write(pos);
-    }
-  }
+	void Attach(int pin) {
+		servo.attach(pin);
+		// Make the servo go to the home position
+	}
+
+	void Detach() {
+		servo.detach();
+	}
+
+	void toTarget() {
+		// Check whether the last time we've updated the servo (ie. millis() - lastUpdate) is greater than interval
+		// AND whether the current position of the servo isn't at target
+		if ( true ) {
+			// If the last time we've update the servo is greater than interval and the current position of the servo
+			// isn't at target:
+			//  1. update lastUpdate to be the current time,
+			//  2. add increment to pos
+			//  3. write pos to the servo
+		}
+	}
+
+	void returnHome() {
+		// Check whether the last time we've update the servo (ie. millis() - lastUpdate) is greater than interval
+		// AND whether the current position of the servo isn't at home
+		if ( true ) {
+			// If the last time we've update the servo is greater than interval and the current position of the servo
+			// isn't at home:
+			//  1. update lastUpdate to be the current time,
+			//  2. subtract increment from pos
+			//  3. write pos to the servo
+		}
+	}
 };
 
-Switch mainSwitch(switchPin);
-UselessServo switchServo(0.5, 180, 0);
+// Create a Switch object with the correct pin
+// Create a UselessServo object for your switch servo. Set the interval to 2, home to 180, target to 0
+// Create a UselessServo object for your lid servo. Set the interval to 1, home to 110, target to 0
 
 void setup() {
-  switchServo.Attach(switchServoPin);
-  Serial.begin(9600);
+	Serial.begin(9600);
+	switchServo.Attach(switchServoPin);
+	lidServo.Attach(lidServoPin);
 }
 
 void loop() {
-  if(mainSwitch.isPressed() == 1){
-    switchServo.toTarget();
-
-  }
-  else{
-    switchServo.Return();
-  }
+	if (boxSwitch.isOn()) {
+		lidServo.toTarget();
+		switchServo.toTarget();
+	} else {
+		lidServo.returnHome();
+		switchServo.returnHome();
+	}
 }
-
-
 </code>
 </pre>
 </div>
