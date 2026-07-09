@@ -1,7 +1,7 @@
 
 long result;   //variable for the result of the tx_rx measurement.
-int analog_pin = A3;
-int tx_pin = 4;
+int analog_pin = A0;
+int tx_pin = D4;
 
 void setup() {
     pinMode(tx_pin, OUTPUT);      //Pin 4 provides the voltage step
