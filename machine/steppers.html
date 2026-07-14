@@ -111,8 +111,8 @@ Note some of the Electrical Specifications:
 </p>
 
 <pre><code class="language-arduino">
-const int stepPin = 13;
-const int dirPin = 12;
+const int stepPin = D0;
+const int dirPin = D1;
 
 void setup() {
   // put your setup code here, to run once:
@@ -139,8 +139,8 @@ void loop() {
 <pre><code class="language-arduino">
 #include &lt;AccelStepper.h&gt;
 
-const int stepPin = 13;  // blue
-const int dirPin = 12;   // orange
+const int stepPin = D0; 
+const int dirPin = D1;   
 
 // Define a stepper and the pins it will use
 AccelStepper stepper(1, stepPin, dirPin); // initialise accelstepper for a two wire board
