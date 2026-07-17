@@ -1,0 +1,74 @@
+<head> 
+  <base target="_child">  
+</head>
+
+<div class="navbar navbar-fixed-top" style="z-index: -1;"></div>
+<div id="header"></div>
+
+<xmp style="display:none;">
+
+<a href="https://docs.google.com/presentation/d/1nJxkHjFghOLMLG9y3Jg8hHeLzAsGRRuC-UVfzDiuMeY/edit?usp=sharing">Kicad Workshop Slides</a>
+
+# PCB CNC (SRM-20) Tutorial 
+
+<video width = "100%"  controls style = "margin-top: 50px;margin-bottom: 50px;">
+    <source src = "CNC_TUTORIAL.mp4" type = "video/mp4">
+</video>
+
+##PS70 Lab - PCB CNC (SRM-20) Tutorial
+    
+This guide is a quick summary of the video above.
+
+###0. Quick Notes
+  * After moving the toolhead, wait 5 seconds before opening the lid.
+  * Set the Z height to 50 before moving the toolhead.
+  * Mill traces with 30° V-bit, then cut board outline with 1/32” endmill.
+  * Don't clamp flutes, but also clamp a good portion of the endmill.
+  * Don't over tighten the set screw.
+
+###1. Turning on the CNC and preparing CCL
+  * Press the button on the top of the machine to turn it on. Give it a second to auto-home.
+  * Grab a sheet of copper clad laminate and apply double sided tape to one side. Avoid overlaps and kinks in the tape.
+  * Stick the CCL into the machine. Make it square with the bed. 
+
+###2. Cutting traces
+  * Loosen the set screw and remove the endmill from the toolhead.
+  * Insert a 30° V-bit. Do not clamp the flutes, but avoid too much stickout.
+  * Tighten the set screw. Not too much force is necessary. Just enough so you it doesn't move if tugged.
+  * Remember to always close the lid before moving toolhead.
+  * Open <a href="leomcelroy.com/bitrunner">leomcelroy.com/bitrunner</a>.
+  * Connect to the CNC by hitting the "Connect to Machine" button
+  * Drag your front copper image into bitrunner.
+  * Position your V-bit on your CCL. This will the bottom left corner of your PCB, so ensure that isn't too close to the edge of your CCL.
+  * Lower the V-bit so that it's around 1 to 3 millimeters above the surface of the CCL.
+  * Loosen the set screw and let the V-bit drop onto the surface of the CCL.
+  * Retighten the set screw. 
+  * Hit "Move Job to Pointer" on bitrunner.
+  * Generate toolpaths with the "Circuit Traces (1/64 in)" preset
+  * Hit "Start Cut" and mill your traces!
+
+###3. Cutting board outline
+  * Set Z to 50.
+  * Take out the 30° V-bit and put in the 1/32" endmill.
+  * Find a section of uncut copper. Position your 1/32" endmill so that it's around 1 to 3 millimeters above the section.
+  * Drop the 1/32" endmill onto the surface of the CCL.
+  * Drag your edge cuts and hole image into bitrunner.
+  * Generate toolpaths with the "Circuit Outline (1/32 in)" preset
+  * If certain holes aren't being drilled through, shrink tool diameter slightly.
+  * Hit "Start Cut" and mill your board outline.
+
+###4. Taking your board out of the machine
+  * Vacuum the dust.
+  * Use the paint scraper to gently pry out your board. Avoid excessively bending the CCL.
+
+***4. Safety
+  * If you're ever confused with a step, stop and ask the teaching staff.
+  * In an emergency, open the lid to shut off the machine.
+
+</xmp>
+
+
+<script src="../js/strapdown.js"></script>
+<script type="text/javascript" src="../js/iframeResizer.contentWindow.min.js"></script>
+<link href="../css/style.css" rel="stylesheet">
+</html>
